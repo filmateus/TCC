@@ -281,6 +281,13 @@ Maranhao = data %>%
   summarise(Quantidade = n())
 ```
 
+### Detalhando os dados
+
+
+```{r}
+
+
+```
 
 
 ```{r eval=FALSE}
