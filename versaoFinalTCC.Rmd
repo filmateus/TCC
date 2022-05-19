@@ -1,0 +1,548 @@
+---
+title: ''
+output: 
+  pdf_document:
+    number_sections: TRUE
+    keep_tex: TRUE
+    #extra_dependencies: ["float"]
+geometry: "left = 2.5cm, right = 2cm, top = 2cm, bottom = 2cm"
+fontsize: 11pt
+header-includes:
+  - \usepackage{newunicodechar}
+  - \usepackage{float}
+  - \usepackage{sectsty}
+  - \usepackage{paralist}
+  - \usepackage{setspace}\spacing{1.5}
+  - \usepackage{fancyhdr}
+  - \usepackage{lastpage}
+  - \usepackage{dcolumn}
+  - \usepackage{natbib}\bibliographystyle{agsm}
+  - \usepackage[nottoc, numbib]{tocbibind}
+  - \usepackage[T1]{fontenc}
+  - \usepackage{palatino}
+  - \newcommand\tab[1][1cm]{\hspace*{#1}}
+  - \newunicodechar{≤}{\ensuremath{\leq}}
+  - \newunicodechar{≥}{\ensuremath{\geq}}
+  
+#bibliography: Referencias.bib
+---
+
+```{r setup, include= FALSE, cache = FALSE, warning=FALSE, message=FALSE}
+# configurações de chuck
+knitr::opts_chunk$set(echo = FALSE,
+                      warning=FALSE,
+                      message=FALSE,
+                      fig.align = 'center',
+                      cache = TRUE)
+
+# carregando pacotes 
+library(tidyverse)
+library(tinytex)
+#\pagenumbering{gobble}
+```
+
+
+\subsectionfont{\raggedright}
+\subsubsectionfont{\raggedright}
+
+\thispagestyle{empty}
+
+
+\begin{centering}
+
+```{r logo_universidade, out.width="30%"}
+knitr::include_graphics("ufpi.png")
+```
+\begin{singlespace}
+\LARGE
+UNIVERSIDADE FEDERAL DO PIAUÍ
+
+\Large
+CENTRO DE CIÊNCIAS DA NATUREZA
+
+\Large
+CURSO DE GRADUAÇÃO EM ESTATÍSTICA
+\end{singlespace}
+
+\vspace{3cm}
+
+\LARGE
+\doublespacing
+{\bf Análise das infrações de trânsito de excesso de velocidade através da Teoria de Valores Extremos}
+
+\vspace{3cm}
+
+\doublespacing
+
+\Large              
+{\bf Filipe Mateus de Sousa Costa}
+
+\vspace{3cm}
+
+\doublespacing
+
+\Large  
+{\bf TERESINA - 2022}
+
+\end{centering}
+
+
+\newpage
+\thispagestyle{empty}
+\begin{centering}
+
+\Large              
+{\bf Filipe Mateus de Sousa Costa}
+
+\vspace{5cm}
+\doublespacing
+\Large              
+{\bf Monografia:}
+
+
+{\bf Análise das infrações de trânsito de excesso de velocidade através da Teoria de Valores Extremos}
+
+\vspace{3cm}
+\begin{flushright}
+\normalsize
+\begin{singlespace}
+Monografia submetida à Coordenação do\\
+curso de graduação em Estatística, da Uni-\\
+versidade  Federal  do Piauí, como requisito\\
+parcial  para  obtenção do grau de Bacharel \\
+em Estatística.\\
+\end{singlespace}
+\end{flushright}
+
+\vspace{1cm}
+\begin{flushright}
+\normalsize
+Orientador:\\
+Profa. Dra. Valmária Rocha da Silva Ferraz\\
+Co-orientador:\\
+Prof. Dr. Fernando Ferraz do Nascimento
+\end{flushright}
+
+
+\vspace{2cm}
+\Large  
+{\bf TERESINA - 2022}
+
+\end{centering}
+
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+
+\newpage
+
+\listoffigures
+
+\newpage
+
+\listoftables
+
+\newpage
+
+# Agradecimentos
+
+\tab Primeiramente, eu preciso agradecer a Deus por ter permitido a possibilidade de realizar uma segunda graduação e ter me sustentado durante todo o curso, foram vários os desafios, mas Ele permitiu que eu conseguisse superar tudo. Soli Deo Glória.  
+\tab  Preciso agradecer a minha esposa que ficou do meu lado durante este período, sacrificando-se para permitir que eu estudasse, motivando-me. Superando o ciúme por ter sido trocada, muitas vezes, por um livro cheio de fórmulas esquisitas. Incluo meu filho Mateus, que chegou no durante o curso para dar mais emoção à vida. Mesmo pequeno, me ensinou a ser mais produtivo. E claro, meu pai, minha mãe e minha irmã, mesmo a distância, me apoiavam.  
+\tab Agradeço a Professora Valmaria por ter aceitado o desafio de me orientar nesse TCC, juntamente com o professor Fernando que ofereceu o apoio teórico para a realização desse projeto. Incluo a STRANS, na pessoa do superitendente Claudio Pessoa, que gentilmente, disponibilizaram os dados para este trabalho.     
+\tab Finalizo os agradecimentos aos amigos que foram criados durante o curso. Edvaldo que, como eu, chefe de família. Compartilhamos muito do desafio de trabalhar, cuidar do lar e estudar. Eva, cheia de energia, se esforçava para tirar as melhores notas nas disciplinas. Envelheceu alguns anos durante as madrugadas acordadas, mas ok.
+Obrigado a todos, de coração.
+
+
+
+\newpage
+
+# Resumo
+
+\newpage
+
+# Abstract
+
+\newpage
+
+# Introdução
+
+\tab Eventos extremos são situações ou comportamentos que não ocorrem com tanta frequência. No desenho da distribuição normal, são aqueles que ficam próximos as caudas, distantes do pico onde está localizado a média, a situação de normalidade. Entretanto, é possível que estes eventos ocorram, na verdade, é esperado que eles ocorram. Diante dessa situação, é importante que possamos prever seus acontecimentos, pois quando ocorrem, as consequências podem ser trágicas.
+
+\tab Exemplos que demonstram com facilidade os efeitos de eventos extremos estão na área da climatologia. Para os portais de notícias, o aquecimento global tem trazido mais manchetes de catástrofes climáticas que causaram prejuízos substanciais e, infelizmente, mortes. Uma busca rápida em sites de pesquisa nos direciona facilmente para estes eventos.  	
+
+\tab O surgimento da teoria de valores extremos surge da necessidade de pesquisas sobre eventos extremos de forma mais eficiente. As distribuições mais comuns trabalham melhor na análise dos eventos centrais, mais frequentes. Dessa forma, os acontecimentos mais raros possuem ficam mais difíceis de prever.
+
+## Apresentando os dados
+
+\tab Os dados que iremos trabalhar neste projeto têm como origem as medições de excesso de velocidade registradas por radares no munícipio de Teresina. Baseado no Código de Trânsito Brasileiros, ruas, avenidas e estradas no Brasil, possuem limites de velocidade especificados, entretanto, para a realização do registro infração, é preciso que a via esteja sinalizada informando a velocidade máxima.  
+
+\tab Um ponto importante sobre as infrações de velocidade é que existe uma margem de erro para medição da velocidade registrada. Para fim de registro de infração, não se registra a velocidade obtida por instrumentos de medição, mas subtrai-se um valor na velocidade medida (para vias de velocidade máxima até 100km/h, o valor é 7), o que passar deste valor acima da velocidade permitida, será considerado para infração.
+
+\tab Por exemplo, para vias de com velocidade máxima de 60 km/h, as infrações serão registradas somente quando o veículo passar pelo ponto de medição quando a velocidade calculada for de 68 km/h, registrando um excesso de 1km/h. O resultado dessa distinção é o uso de dois termos: Velocidade medida, que consiste na velocidade registrada e Velocidade Considerada, que é a velocidade medida menos o fator de correção. Na tabela abaixo, temos a relação entre velocidade medida e velocidade considerada. A infração é feita quando a considerada é maior que permitida na via. 
+
+
+```{r  fig.cap= "Tabela com relação Velocidade Medida (VM) e Velocidade Considerada (VC)", out.height= '93%', fig.pos = "H"}
+knitr::include_graphics('1_MINFRA_9_002.jpg')
+#https://www.in.gov.br/en/web/dou/-/resolucao-n-798-de-2-de-setembro-de-2020-276446814
+```
+
+
+\tab Na tabela acima, temos os valores entres as velocidades medidas e consideradas, note-se que na medida 107 e 108 km/h, a considerada se repete, neste ponto se inicia um aumento da margem de erro.  Para este trabalho, iremos utilizar a medição calculada com a Velocidade considerada, pois o cálculo da infração é realizado com ela. 
+
+
+\tab Em relação as infrações, o CTB normatiza três tipos de infrações para o excesso de velocidade baseado no percentual registado acima. Para medições até 20% acima da permitida, a infração é média, entre 20% e 50% é considerada grave e, superior a 50%, é gravíssima. O aumento da gravidade resulta no aumento do valor pago da multa. Nas tabelas abaixo, temos um resumo da divisão de tipificação, o intervalo de excesso e o valor pago. A primeira tabela refere-se para vias com velocidade máxima até 60 km/h e a segunda tabela considera a máxima 40km/h
+
+- **Radares de 60 km/h**
+
+```{r}
+# construção das tabela com informações de faixas de velocidade
+data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
+           'Faixa percentual' = c('até 20%', 'entre 20% e 50%', 'superior a 50%'),
+          `Faixa de Excesso` = c('1 ≤ v ≤ 12', '13 ≤ v ≤ 30' , '≥ 31'), 
+           'Valor da Multa'= c('R$ 130,16', 'R$ 195,23', 'R$ 880,41'), 
+           check.names = FALSE)|> knitr::kable()
+```
+
+- **Radares de 40 km/h**
+
+```{r}
+data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
+           'Faixa percentual' = c('até 20%', 'entre 20% e 50%', 'superior a 50%'),
+          `Faixa de Excesso` = c('1 ≤ v ≤ 8', '9 ≤ v ≤ 20' , '≥ 21'), 
+           'Valor da Multa'= c('R$ 130,16', 'R$ 195,23', 'R$ 880,41'), 
+           check.names = FALSE)|> knitr::kable()
+```
+
+### Pontos de medição de excesso de velocidade
+
+
+\tab Para a realização deste trabalho, escolhemos 4 endereços, são eles:
+
+- Alameda Parnaíba, próximo Ponte Estaiada João Isidoro França – Zona Norte;
+
+- Av. Raul Lopes, em frente ao Teresina Shopping – Zona Leste;
+
+- Av. Maranhão, trecho entre o centro Administrativo e ponte da Amizade – Zona Sul;
+
+- Av. Barão de Castelo Branco, próximo Igreja Católica do Cristo Rei. – Zona Sul.     
+
+
+\tab Estes radares são considerados famosos com velocidade máxima de 60 km/h, exceção do radar da Av. Barão de Castelo Branco, onde o excesso é de 40 km/h.  Seus bancos de dados são extensos e iremos apresentar algumas medidas descritivas para termos uma noção melhor da distribuição dos excessos. 
+      
+\tab É importante destacar que não iremos realizar uma distinção do sentido que o veículo está indo, para análises futuras, pode-se aprofundar nesta análise. Destaco, também, que  utilizaremos todas os registros realizados, independente se auto não foi expedido por motivos técnicos ou administrativos.
+
+
+```{r}
+data = "radar.csv" |>
+  read.csv() |> 
+  filter(grepl('745-5',ST_CODENQUADRA) | # até 20 %
+           grepl('746-3',ST_CODENQUADRA) | # entre 20 % e 50 % 
+           grepl('747-1',ST_CODENQUADRA) & # mais de 50 %
+           ST_DESDOBRAMENTO == '0') |>
+  filter(DT_DATAINFRACAO <= '2021-12-31')|>
+  mutate(Excesso = NR_MEDICAOCONSIDERADA - NR_LIMITEPERMITIDO)|>
+  filter(NR_LIMITEPERMITIDO == 40 | # selecionando linhas com valores corretos de limite
+           NR_LIMITEPERMITIDO == 60 ) |> 
+  filter(Excesso > 0 & Excesso <= 200) %>% #Eliminando Excesso negativos/zerados
+  filter(ST_TIPOAUTOINFRACAO == 2)
+
+# dados para alameda Parnaiba
+Alameda = data %>% 
+  filter(grepl("Alameda Parnaiba", ST_LOCALMULTA)) %>%
+  filter(!grepl("1817", ST_LOCALMULTA))|>
+  filter(DT_DATAINFRACAO >= '2016-05-05')|>
+  group_by(ST_CODENQUADRA)|>
+  summarise(Quantidade = n())
+
+
+# dados para BArão de castelo branco
+Barao = data %>% 
+  filter(grepl("AV. BARAO DE CASTELO BRANCO, PROX AO REST. CASARAO",
+               ST_LOCALMULTA) |
+        grepl("Av. Barao de C. Branco, prox ao n. 1434",
+               ST_LOCALMULTA))|>
+                filter(DT_DATAINFRACAO >= '2016-09-26')|>
+  group_by(ST_CODENQUADRA)|>
+  summarise(Quantidade = n())
+
+# Dados para Av. Raul Lopes 
+Shopping = data %>% 
+  filter(grepl("Shopping",  ST_LOCALMULTA))|>
+  filter(DT_DATAINFRACAO >= '2017-05-05')|>
+  group_by(ST_CODENQUADRA)|>
+  summarise(Quantidade = n())
+
+
+# Dados para Av. Maranhão
+Maranhao = data %>% 
+    filter(DT_DATAINFRACAO >= '2017-05-05')|>
+  filter(grepl("Av. Maranhao,",  ST_LOCALMULTA))|>
+  group_by(ST_CODENQUADRA)|>
+  summarise(Quantidade = n())
+```
+
+
+
+```{r eval=FALSE}
+data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes', 'Av. dos Ipes', 
+                     'Av. Jose F. de A. Neto', 'Av. Maranhão',
+                      'Av. B. de Castelo Branco'),
+           Dias  = c(length(AlamedaDiario$DT_DATAINFRACAO),
+                     length(ShoppingDiario$Dia),
+                     length(IpesDiario$Dia),
+                     length(JoseDiario$Dia),
+                     length(MaranhaoDiario$Dia),
+                     length(BaraoDiario$Dia)), 
+          'Nº de Autos' = c(sum(AlamedaDiario$Quantidade),
+                     sum(ShoppingDiario$Quantidade),
+                     sum(IpesDiario$Quantidade),
+                     sum(JoseDiario$Quantidade),
+                     sum(MaranhaoDiario$Quantidade),
+                     sum(BaraoDiario$Quantidade)),
+          "Percentual até 20%" = c(90.19, 92.75, 85.58, 80.61, 88.34, 79.18),
+          "Percentual entre 20% e 50%" = c(9.34, 7.03, 13.51, 17.14, 10.94, 17.66),
+          "Percentual acima 50%" = c(0.46, 0.22, 0.90, 2.25, 0.72, 3.16) ,check.names = FALSE)|>knitr::kable()
+```
+
+\newpage
+
+# Distribuição Pareto Generalizada (GPD)
+
+\tab A distribuição Pareto Generalizada (GPD) analisa a distribuição dos excessos de acordo com um limiar determinado. Esse formato de análise é mais eficaz pois evita a perda de informações que uma análise em períodos (ou blocos) pode gerar, afetando, principalmente, pesquisas com um grande volume de dados.
+
+\tab  A distribuição Pareto Generalizada foi desenvolvida por Pickands [1975] é baseada no seguinte teorema:
+
+*Teorema 1: Se x for uma variável aleatória (v.a.) com função distribuição (f.d.) $F_{x}$, que pertence ao domínio da de atração de uma distribuição GEV, então, quando $\mu \to \infty$, $F(x|u) = Pr{X > u + x|X > u}$, possui distribuição GPD, com a seguinte função de distribuição:*
+
+$$
+P(x|\xi, \sigma, \mu)\ = \
+\left\{ \begin{array}{rcl}
+1 - (1 + \xi\frac{(x - \mu)}{\sigma})^{-\frac{1}{\xi}},\ \mbox{se}\ \xi \neq 0\\
+1 - exp\left\{-\frac{(x - \mu)}{\sigma}\right\}, \ \mbox{se}\ \xi = 0
+\end{array}\right.
+$$
+
+onde $\mu > 0, x - \mu \geqslant 0$, se $\xi > 0$, e $0 \leqslant x - \mu \leqslant - \frac{\sigma}{\xi}$, se $\xi < 0$. O caso $\xi = 0$ é interpretado como sendo o limite quando $\xi \rightarrow 0$, e tem como caso particular a distribuiçãoexponencial de parâmetro $\frac{1}{\sigma}$. Os parametros são $\xi$, $\sigma$ e $\mu$, que representam, respectivamente, a forma, a escala e o limiar da distribuição.
+
+\tab A função de densidade da distribuição GPD é dada por:
+
+$$
+p(x|\xi, \sigma, \mu)\ = \
+\left\{ \begin{array}{rcl}
+\frac{1}{\sigma}(1 + \xi\frac{x - \mu}{\sigma})^{-\frac{1}{\xi}},\ \mbox{se}& \xi \neq 0\\
+\frac{1}{\sigma}exp\left\{-\frac{(x - \mu)}{\sigma}\right\}, \ \mbox{se}& \xi = 0
+\end{array}\right.
+$$
+
+onde $x - \mu > 0$ para $\xi \geqslant 0$ e $0 \leqslant x - \mu < -\frac{\mu}{\xi}$ para $\xi > 0$.
+
+\tab  A distribuição GPD possui as seguintes características em relação aos parâmetros:
+
+$$
+E(X)\ =\ \frac{\sigma}{1 - \xi};\ 
+\xi < 1; Md(x)\ =\ \frac{\sigma(2\xi -1)}{\xi};
+V(X)\ =\ \frac{\sigma^{2}}{(1-\xi)^{2}(1-2\xi)}
+$$
+
+\tab  Justificando o uso da GPD Pickands (1975) e Davidson e Smith (1990) demostram as propriedades e provam que GPD é única que satisfaz estas propriedades. "Por exemplo, estabilidade do limiar, ou seja, se Y possui distribuição GPD, e se $\mu > 0$ , então a distribuição de $P(Y - \mu|Y>\mu)$ também possui distribuição GPD". *prof fernando*
+
+\tab  Em valores extremos, além de encontrar a estimativa dos parâmetros do modelo, também é muito importante encontrar uma forma para determinar os quatis altos, acima do limiar, de tal forma que se X possui distribuição GPD, é importante saber com qual probabilidade ocorre um evento maior ou igual a q, ou seja, $P(X>q) = 1- q$.
+
+\tab Com os cálculos destes quantis, podemos realizar previsões com os dados de autos de excesso velocidade de trânsito de Teresina nos próximos anos, considerando uma manutenção da estrutura dos radares e, incluindo novos endereços de medição, uma previsão de quantos autos poderão ser registrados. Outra variável que pode ser analisada consiste no excessos de velocidade, determinando possíveis valores máximos e a previsão da quantidade de infrações. 
+
+\tab Na distribuição GPD, pode-se encontrar um quantil q com probabilidade $P(X < q)$ em função dos parâmetros. Invertendo a função acumulada, obtém-se a seguinte função dos quantis da cauda:
+
+$$
+q_{x}p = \frac{((1 - p*)^{-\xi}-1)}{\xi},
+$$ onde $p*\ =\ 1 - (1-p)N/N_{u}$.
+
+## Domínio da atração
+
+\tab As distribuições de valores extremos são obtidas como distribuição limite $(n \rightarrow \infty)$ do máximo de um conjunto de variáveis aleatórias (v.a.s) independente e identicamente distribuídas (i.i.d) e são unicamente determinadas, a menos de transformac˜oes afins. O teorema de Fisher-Tippet implica que se $F^{n}_{x}(C_{n}x + d_{n})$ e n˜ao degenerada quando $(n \rightarrow \infty)$, para certas constantes $C_{n} > 0,\ d_{n}\ \varepsilon\ \mathbb{R}$, então
+
+$$
+|F^{n}_{X}(x)\ -\ H(\frac{x - d_{n}}{c_{n}})|\  \rightarrow 0, n \rightarrow \infty
+$$
+
+para alguma distribuição H. A coleção das distribuições $F_{x}$ tais que os respectivos máximos possuem a mesma distribuição limite é chamada de domínio de atração.
+
+*Definição 2.1.2 Se (função) se verifica dizemos que* $F_{x}$ pertence ao domínio de atração do máximo da distribuição de valores extremos H. Notação: $F_{x}\  \epsilon\ MDA(H)$
+
+\tab Existem 3 casos possíveis para as distribuições limites das excedências de um limiar. Para domínio dp tipo I $(\gamma = 0)$, a distribuição se torna
+
+$$
+H(y)\ = 1 - e^{-\frac{y}{\sigma}},\ y > 0
+$$
+
+sendo assim, o domínio, uma distribuição Exponencial com parâmetro $\frac{1}{\sigma}$. Para o domínio tipo II $(\gamma > 0)$, a distribuição limite será a distribuição de Pareto . Já para o domínio tipo III $(\gamma < 0)$, quando $\sigma = -\frac{1}{\gamma}$ , a distribuição limite será uma Beta e quando $\sigma \neq -\frac{1}{\gamma}$, adistribuição limite será uma Beta reescalada com suporte em $(0,\frac{\sigma}{\gamma})$.
+
+## Determinação do Limiar
+
+\tab  A análise via GPD exige um cuidado inicial pois é preciso determinar um limiar para os dados. O valor escolhido pode ser determinado pelo pesquisador, entretanto, correm-se riscos que podem influenciar os cálculos, resultando em análises incorretas.
+
+\tab A escolha de um limiar $"\mu"$ muito alto implica em um número muito pequeno de observações resultando em estimadores com grande variabilidade. Um limiar muito pequeno resulta na violação do Teorema de Pickands (1945), modelando de forma errada os valores com limiar baixo, dessa forma, não se garante a convergência dos excessos Y para a família da GPD, levando a um vício alto.
+
+\tab  Métodos mais convencionais de determinação do limiar utilizam-se de análises gráficas da linearidade de $N_{u}$. Um método muito utilizado é o gráfico de médias de excessos (MRL\< *Mena Residual Life Plot*), baseado na espera da GPD (Nascimento [2012]). Sua construção segue o seguinte formato:
+
+$$
+\left\{\left(\mu,\ \frac{1}{n_{u}}\sum_{i=1}^{n_{u}} \right): \mu<x_{max}\right\} 
+$$
+
+onde $x_{1}\leqslant x_{2}\leqslant...x_{n}$ consistem nas $N_{u}$ observac˜oes que excedem $\mu$, e $x_{max}$ é o valor mais elevado das obervações.
+
+\tab Considerando a distribuição GPD válida para os excesso, esta também é valida para os excesso acima de todos os limiares $\mu > \mu_{0}$ 0, sujeito a mudan¸cas no parâmetro de escala $\sigma_{\mu} = \sigma_{\mu_{0}}+\xi_{\mu}$. Então, para $\mu > \mu_{o}$
+
+$$
+E(X - \mu|X>\mu)= \frac{\sigma_{\mu}}{1 -\xi}=\frac{\sigma_{\mu_{0}}+\xi_{\mu}}{1 - \xi}
+$$ 
+  Se o modelo é adequado a partir de $\mu_{0}$ o gráfico apresentará um comportamento linear a partir de u. Um problema recorrente com a utilização desse gráfico é que o limiar pode limitar o número de excessos devido a escolha de limiar muito alto.
+
+\tab Outra técnica gráfica utilizada é Dipersion Index Plot (DIP), baseado em Cunnane [1979] (Citado por Nascimento [2012]), que diz que, o número de excessos sobre um limiar alto em um determinado período (geralmente meses ou anos), pode ser distribuído através de um processo de Poisson. Assim, a razão entre a variância e a média é igual a 1. Assim, pode-se fazer um gráfico
+
+$$
+\left\{\left(\mu, \frac{Var(Y)}{E(Y)}\right): \mu <x_{max}\right\}
+$$
+
+## Estimação da GPD
+
+\tab Após determinar o limiar, a estimação dos parâmetros da distribuição GPD podem ser estimados por vários métodos, entre eles, tem-se o da máxima verossimilhança, que iremos trabalhar. Existem outros métodos como de momentos proposto por Smith [1987] (citado por Mendes [2004]) e o métodos dos momentos ponderados (Singh e Guo [1995], (citado por Mendes [2004]), em que a eficiência de cada método depende da situação estudada.
+
+\tab Os estimadores de máxima verossimilhança (EMV) que maximizam a função de log-verossimilhança, quando $\xi \neq 0$, é dado por
+
+$$
+l(\mu, \xi)\ =\ -n_{u}log(\sigma) - (1+\frac{1}{\xi}\sum_{i=1}^{n_{u}}log(1+\xi\frac{y_{i}}{\sigma}))
+$$ definida em $(1 + \xi\frac{y_{i}}{\sigma})>0$, para todo $i = 1,2,...,N_{u}$. No caso particular onde $\xi = 0$, a a log-verossimilhança é dada por
+
+$$
+l(\sigma)\ =\ -n_{u}log(\sigma)\ -\ \sum_{i=1}^{n_{u}}(\frac{y_i}{\sigma})
+$$
+
+\tab No caso de $\xi = 0$, a maximização dos parâmetros não pode ser obtida analiticamente, sendo necessárias técnicas numéricas de maximização.
+
+
+\newpage
+
+
+\newpage
+
+# Inferência Bayesiana
+
+\newpage
+
+# Modelos dinâmicos para Valores Extremos
+
+## Alameda Parnaíba
+```{r out.width=350, fig.cap="Alameda Parnaíba - Função fggpd"}
+knitr::include_graphics('Alameda1.png')
+```
+
+```{r out.width=350, fig.cap="Alameda Parnaíba - Função fmgpd"}
+knitr::include_graphics('Alameda2.png')
+```
+
+```{r}
+data.frame(Ajuste = c('Alameda com fggpd', 'Alameda com fmgpd'),
+            DIC = c(247310.8, 215577.4),
+            BIC = c(247351.3, 215641.7))|>knitr::kable()
+```
+
+## Av. Maranhão
+
+```{r out.width=350, fig.cap="Av. Maranhão - Função fggpd"}
+knitr::include_graphics('Maranhao1.png')
+```
+```{r out.width=350, fig.cap="Av. Maranhão - Função fmgpd"}
+knitr::include_graphics('Maranhao2.png')
+```
+
+```{r}
+data.frame(Ajuste = c('Av. Maranhao com fggpd', 'Av. Maranhão com fmgpd'),
+            DIC = c(480153.4, 485451.3),
+            BIC = c(480201.7, 485518.7))|>knitr::kable()
+```
+
+
+## Av. Raul Lopes - Shopping
+
+```{r out.width=350, fig.cap="Av. Raul Lopes - Função fggpd"}
+knitr::include_graphics('Shopping1.png')
+```
+
+```{r out.width=350, fig.cap="Av. Raul Lopes - Função fmgpd"}
+knitr::include_graphics('Shopping2.png')
+```
+
+```{r}
+data.frame(Ajuste = c('Av. Raul Lopes com fggpd', 'Av. Rul Lopes com fmgpd'),
+            DIC = c(253692.7, 211497.7),
+            BIC = c(253754.8, 211567.5))|>knitr::kable()
+```
+
+## Av. dos Ipês
+```{r out.width=350, fig.cap="Av. dos Ipês - Função fggpd"}
+knitr::include_graphics('Ipes1.png')
+```
+
+```{r out.width=350, fig.cap="Av. dos Ipês - Função fmgpd"}
+knitr::include_graphics('Ipes2.png')
+```
+
+
+```{r}
+data.frame(Ajuste = c('Av. Av. dos Ipês com fggpd', 'Av. dos Ipês com fmgpd'),
+            DIC = c(136611.9, 131887.8),
+            BIC = c(136654.4, 131672.3))|>knitr::kable()
+```
+
+## Av. Av. Jose Francisco de Almeida Neto
+
+```{r out.width=350, fig.cap="Av. Jose - Função fggpd"}
+knitr::include_graphics('Jose1.png')
+```
+
+```{r out.width=350, fig.cap="Av. Jose - Função fmgpd"}
+knitr::include_graphics('Jose2.png')
+```
+
+```{r}
+data.frame(Ajuste = c('Av. Av. Jose com fggpd', 'Av. Jose com fmgpd'),
+            DIC = c(313760.1, 313806.8),
+            BIC = c(303626.5, 303289.6))|>knitr::kable()
+```
+
+## Av. Barão de Castelo Branco
+
+```{r out.width=350, fig.cap="Av. Barão - Função fggpd"}
+knitr::include_graphics('Barao1.png')
+```
+```{r out.width=350, fig.cap="Av. Barão - Função fmgpd"}
+knitr::include_graphics('Barao2.png')
+```
+
+```{r}
+data.frame(Ajuste = c('Av. Barão com fggpd', 'Av. Barão com fmgpd'),
+            DIC = c(160774.3, 153049.2),
+            BIC = c(160813.9, 152921.9))|>knitr::kable()
+```
+
+
+
+\newpage
+
+
+
+
+
+
+# Conclusão
+
+\newpage
+
+# Referências Bibliográficas
+
+@book{AREL:03,
+	author={Nascimento, F. F.},
+	title={Modelos probabilísticos para dados extremos: teoria e aplicações},
+	publisher={EDUFPI},
+	year={2012.}
+}
