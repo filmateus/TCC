@@ -318,7 +318,7 @@ data.frame(Endereço = c('Alameda Parnaíba', "Av. Raul Lopes", "Av. Maranhão",
           'Data de Inicio' = c('05/05/2016', '12/05/2017', '05/05/2017', '26/09/2016'),
           'Data Final' = c('31/12/2021', '19/10/2020', '31/12/2021', '31/12/2020'),
           'Dias' = c(dim(Dias_alamenda)[1],dim(Dias_Shopping)[1], dim(Dias_Maranhao)[1], dim(Dias_Barao)[1] ), 
-          "Dias Zerados" = c(sum(!is.na(Dias_alamenda$Quantidade)), sum(is.na(Dias_Shopping$Quantidade)),
+          "Dias Zerados" = c(sum(is.na(Dias_alamenda$Quantidade)), sum(is.na(Dias_Shopping$Quantidade)),
                             sum(is.na(Dias_Maranhao$Quantidade)), sum(is.na(Dias_Barao$Quantidade))), check.names = FALSE)|> knitr::kable()
 ```
 
@@ -338,6 +338,44 @@ data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes',
           "Percentual entre 20% e 50%" = c(9.30, 7.03,  10.94, 17.66),
           "Percentual acima 50%" = c(0.45, 0.22, 0.72, 3.16), check.names = FALSE)|>knitr::kable()
 ```
+
+```{r}
+
+ggplot(Alameda)+
+aes(Excesso)+
+geom_histogram(binwidth=1, fill = '#eed600')+
+theme_minimal()
+```
+
+
+```{r}
+ggplot(Shopping)+
+aes(Excesso)+
+geom_histogram(binwidth=1, fill = '#0038ee')+
+theme_minimal()
+```
+
+
+```{r}
+ggplot(Maranhao)+
+aes(Excesso)+
+geom_histogram(binwidth=1, fill = '#00ee28')+
+theme_minimal()
+```
+
+
+```{r}
+ggplot(Barao)+
+aes(Excesso)+
+geom_histogram(binwidth=1, fill = '#ee00ab')+
+theme_minimal()
+```
+
+
+
+
+
+
 ### Arrecadação possível 
 
 ```{r}
