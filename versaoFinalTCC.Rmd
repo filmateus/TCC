@@ -281,14 +281,45 @@ Barao = data %>%
 - Alameda Parnaiba
 
 ```{r}
-calendario = calendario = data.frame(Dia = seq(as.Date('2016-05-05'), as.Date('2021-12-31'), by = 'day'))
-Alameda|>
-group_by(DT_DATAINFRACAO)|>
-summarise(Quantidade = n())|>
-rename(Dia = DT_DATAINFRACAO)|>
-dplyr::mutate(Dia = as.Date(Dia))|>
-dplyr::full_join(calendario, by = 'Dia')
 
+calendario = calendario = data.frame(Dia = seq(as.Date('2016-05-05'), as.Date('2021-12-31'), by = 'day'))
+Dias_alamenda = Alameda|>
+                group_by(DT_DATAINFRACAO)|>
+                summarise(Quantidade = n())|>
+                rename(Dia = DT_DATAINFRACAO)|>
+                dplyr::mutate(Dia = as.Date(Dia))|>
+                dplyr::full_join(calendario, by = 'Dia')
+
+calendario = calendario = data.frame(Dia = seq(as.Date('2017-05-12'), as.Date('2021-12-31'), by = 'day'))
+Dias_Shopping = Shopping|>
+                group_by(DT_DATAINFRACAO)|>
+                summarise(Quantidade = n())|>
+                rename(Dia = DT_DATAINFRACAO)|>
+                dplyr::mutate(Dia = as.Date(Dia))|>
+                dplyr::full_join(calendario, by = 'Dia')
+
+calendario = calendario = data.frame(Dia = seq(as.Date('2017-05-05'), as.Date('2021-12-31'), by = 'day'))
+Dias_Maranhao = Maranhao|>
+                group_by(DT_DATAINFRACAO)|>
+                summarise(Quantidade = n())|>
+                rename(Dia = DT_DATAINFRACAO)|>
+                dplyr::mutate(Dia = as.Date(Dia))|>
+                dplyr::full_join(calendario, by = 'Dia')
+
+calendario = calendario = data.frame(Dia = seq(as.Date('2017-09-26'), as.Date('2021-12-31'), by = 'day'))
+Dias_Barao = Barao|>
+                group_by(DT_DATAINFRACAO)|>
+                summarise(Quantidade = n())|>
+                rename(Dia = DT_DATAINFRACAO)|>
+                dplyr::mutate(Dia = as.Date(Dia))|>
+                dplyr::full_join(calendario, by = 'Dia')
+
+data.frame(Endereço = c('Alameda Parnaíba', "Av. Raul Lopes", "Av. Maranhão", 'Av. B. C. Branco'),
+          'Data de Inicio' = c('05/05/2016', '12/05/2017', '05/05/2017', '26/09/2016'),
+          'Data Final' = c('31/12/2021', '19/10/2020', '31/12/2021', '31/12/2020'),
+          'Dias' = c(dim(Dias_alamenda)[1],dim(Dias_Shopping)[1], dim(Dias_Maranhao)[1], dim(Dias_Barao)[1] ), 
+          "Dias Zerados" = c(sum(is.na(Dias_alamenda$Quantidade)), sum(is.na(Dias_Shopping$Quantidade)),
+                            sum(is.na(Dias_Maranhao$Quantidade)), sum(is.na(Dias_Barao$Quantidade))), check.names = FALSE)|> knitr::kable()
 ```
 
 - Av. Raul Lopes - Shopping
