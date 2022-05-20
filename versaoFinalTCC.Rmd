@@ -38,6 +38,7 @@ knitr::opts_chunk$set(echo = FALSE,
 # carregando pacotes 
 library(tidyverse)
 library(tinytex)
+library(lubridate)
 #\pagenumbering{gobble}
 ```
 
@@ -246,24 +247,29 @@ data = "radar.csv" |>
   filter(ST_TIPOAUTOINFRACAO == 2)
 
 # dados para alameda Parnaiba
+# os dados começam dia 05-05-2016 e terminam dia 31-12-2021
 Alameda = data %>% 
   filter(grepl("Alameda Parnaiba", ST_LOCALMULTA)) %>%
   filter(!grepl("1817", ST_LOCALMULTA))
 
-# Dados para Av. Raul Lopes 
+# Dados para Av. Raul Lopes
+#dados começam dia 12-05-2017 e terminam 19-10-2020
 Shopping = data %>% 
   filter(grepl("Shopping",  ST_LOCALMULTA))|>
   filter(DT_DATAINFRACAO >= '2017-05-05')
 
 # Dados para Av. Maranhão
+#dados começam dia 05-05-2017 e terminam 31-12-2021
 Maranhao = data %>% 
   filter(grepl("Av. Maranhao,",  ST_LOCALMULTA))|>
   filter(DT_DATAINFRACAO >= '2017-05-05')
 
 # dados para BArão de castelo branco
+#dados começam dia 26/09/2016 e terminam dia 31/12/2021
 Barao = data %>% 
   filter(grepl("AV. BARAO DE CASTELO BRANCO, PROX AO REST. CASARAO", ST_LOCALMULTA) |
-        grepl("Av. Barao de C. Branco, prox ao n. 1434", ST_LOCALMULTA))
+        grepl("Av. Barao de C. Branco, prox ao n. 1434", ST_LOCALMULTA))|>
+        filter(DT_DATAINFRACAO >= '2016-09-27')
 ```
 
 ### Detalhando os dados
@@ -273,46 +279,32 @@ Barao = data %>%
 \tab Abaixo, apresentamos algumas tabelas, por via analisada, especificando a data de início e fim dos registros, a quantidade dias entre as datas e a quantidade de dias zerados. 
 
 - Alameda Parnaiba
+
 ```{r}
-# inicio das operações em '2016-05-05' e fim das operações em '2021-12-31'
-data.frame("Data de inicio" = c('05/05/2016'),
-          "Data final" = c('31/12/2021'),
-          "Quantidade de dias" = c(dim(dataAlameda)[1]),
-          "Dias sem registro" = c(sum(is.na(dataAlameda$Quantidade))) ,check.names = FALSE)|>t()|>
-          knitr::kable()
+calendario = calendario = data.frame(Dia = seq(as.Date('2016-05-05'), as.Date('2021-12-31'), by = 'day'))
+Alameda|>
+group_by(DT_DATAINFRACAO)|>
+summarise(Quantidade = n())|>
+rename(Dia = DT_DATAINFRACAO)|>
+dplyr::mutate(Dia = as.Date(Dia))|>
+dplyr::full_join(calendario, by = 'Dia')
+
 ```
 
 - Av. Raul Lopes - Shopping
-
 ```{r}
-# inicio das operações em '2017-05-22' (60km/h)  e fim das operações em '2020-10-19'
-data.frame("Data de inicio" = c('24/05/2016'),
-          "Data final" = c('19/10/2021'),
-          "Quantidade de dias" = c(dim(dataShopping)[1]),
-          "Dias sem registro" = c(sum(is.na(dataShopping$Quantidade))) ,check.names = FALSE)|>t()|>
-          knitr::kable()
+
 ```
 
 - Av. Maranhao
 
 ```{r}
-# inicio das operações em '2017-05-22' (60km/h) e fim das operações '2021-12-31'
-data.frame("Data de inicio" = c('22/09/2017'),
-          "Data final" = c('31/12/2021'),
-          "Quantidade de dias" = c(dim(dataMaranhao)[1]),
-          "Dias sem registro" = c(sum(is.na(dataMaranhao$Quantidade))) ,check.names = FALSE)|>t()|>
-          knitr::kable()
-```
+
 
 - Av. Barão de Castelo Branco
 
 ```{r}
-# inicio das operações em '2016-09-26' e fim das operações em '2021-12-31'
-data.frame("Data de inicio" = c('26/09/2016'),
-          "Data final" = c('31/12/2021'),
-          "Quantidade de dias" = c(dim(dataBarao)[1]),
-          "Dias sem registro" = c(sum(is.na(dataBarao$Quantidade))) ,check.names = FALSE)|>t()|>
-          knitr::kable()
+
 ```
 
 
