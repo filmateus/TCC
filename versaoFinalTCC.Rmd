@@ -318,46 +318,25 @@ data.frame(Endereço = c('Alameda Parnaíba', "Av. Raul Lopes", "Av. Maranhão",
           'Data de Inicio' = c('05/05/2016', '12/05/2017', '05/05/2017', '26/09/2016'),
           'Data Final' = c('31/12/2021', '19/10/2020', '31/12/2021', '31/12/2020'),
           'Dias' = c(dim(Dias_alamenda)[1],dim(Dias_Shopping)[1], dim(Dias_Maranhao)[1], dim(Dias_Barao)[1] ), 
-          "Dias Zerados" = c(sum(is.na(Dias_alamenda$Quantidade)), sum(is.na(Dias_Shopping$Quantidade)),
+          "Dias Zerados" = c(sum(!is.na(Dias_alamenda$Quantidade)), sum(is.na(Dias_Shopping$Quantidade)),
                             sum(is.na(Dias_Maranhao$Quantidade)), sum(is.na(Dias_Barao$Quantidade))), check.names = FALSE)|> knitr::kable()
 ```
 
-- Av. Raul Lopes - Shopping
-```{r}
-
-```
-
-- Av. Maranhao
 
 ```{r}
-
-
-- Av. Barão de Castelo Branco
-
-```{r}
-
-```
-
-
-```{r eval=FALSE}
-data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes', 'Av. dos Ipes', 
-                     'Av. Jose F. de A. Neto', 'Av. Maranhão',
-                      'Av. B. de Castelo Branco'),
-           Dias  = c(length(AlamedaDiario$DT_DATAINFRACAO),
-                     length(ShoppingDiario$Dia),
-                     length(IpesDiario$Dia),
-                     length(JoseDiario$Dia),
-                     length(MaranhaoDiario$Dia),
-                     length(BaraoDiario$Dia)), 
-          'Nº de Autos' = c(sum(AlamedaDiario$Quantidade),
-                     sum(ShoppingDiario$Quantidade),
-                     sum(IpesDiario$Quantidade),
-                     sum(JoseDiario$Quantidade),
-                     sum(MaranhaoDiario$Quantidade),
-                     sum(BaraoDiario$Quantidade)),
-          "Percentual até 20%" = c(90.19, 92.75, 85.58, 80.61, 88.34, 79.18),
-          "Percentual entre 20% e 50%" = c(9.34, 7.03, 13.51, 17.14, 10.94, 17.66),
-          "Percentual acima 50%" = c(0.46, 0.22, 0.90, 2.25, 0.72, 3.16) ,check.names = FALSE)|>knitr::kable()
+data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes', 
+                       'Av. Maranhão',  'Av. B. de Castelo Branco'),
+           Dias  = c(sum(!is.na(Dias_alamenda$Quantidade)),
+                     sum(!is.na(Dias_Shopping$Quantidade)),
+                     sum(!is.na(Dias_Maranhao$Quantidade)),
+                     sum(!is.na(Dias_Barao$Quantidade))), 
+          'Nº de Autos' = c(dim(Alameda)[1],
+                            dim(Shopping)[1],
+                            dim(Maranhao)[1],
+                            dim(Barao)[1]),
+          "Percentual até 20%" = c(90.23, 92.75, 88.34, 79.18),
+          "Percentual entre 20% e 50%" = c(9.30, 7.03,  10.94, 17.66),
+          "Percentual acima 50%" = c(0.45, 0.22, 0.72, 3.16), check.names = FALSE)|>knitr::kable()
 ```
 
 \newpage
@@ -489,6 +468,7 @@ $$
 
 ## Alameda Parnaíba
 ```{r out.width=350, fig.cap="Alameda Parnaíba - Função fggpd"}
+
 knitr::include_graphics('Alameda1.png')
 ```
 
