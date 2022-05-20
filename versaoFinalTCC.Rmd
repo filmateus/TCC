@@ -338,6 +338,16 @@ data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes',
           "Percentual entre 20% e 50%" = c(9.30, 7.03,  10.94, 17.66),
           "Percentual acima 50%" = c(0.45, 0.22, 0.72, 3.16), check.names = FALSE)|>knitr::kable()
 ```
+### Arrecadação possível 
+
+```{r}
+data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes', 
+                       'Av. Maranhão',  'Av. B. de Castelo Branco'),
+          'Arrecadação Possível' = c('R$ 6.794.927', 'R$ 7.036.259',
+          'R$ 3.891.757' , 'R$ 5.119.140'), check.names = FALSE)|>knitr::kable()
+        
+```
+
 
 \newpage
 
