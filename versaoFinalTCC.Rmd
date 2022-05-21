@@ -33,7 +33,8 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning=FALSE,
                       message=FALSE,
                       fig.align = 'center',
-                      cache = TRUE)
+                      cache = TRUE,
+                      fig.width=6, fig.height=3.5, fig.retina=3)
 
 # carregando pacotes 
 library(tidyverse)
@@ -208,7 +209,7 @@ data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
 
 ```{r}
 data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
-           'Faixa percentual' = c('até 20%', 'entre 20% e 50%', 'superior a 50%'),
+          'Faixa percentual' = c('até 20%', 'entre 20% e 50%','superior a 50%'),
           `Faixa de Excesso` = c('1 ≤ v ≤ 8', '9 ≤ v ≤ 20' , '≥ 21'), 
            'Valor da Multa'= c('R$ 130,16', 'R$ 195,23', 'R$ 880,41'), 
            check.names = FALSE)|> knitr::kable()
@@ -276,12 +277,10 @@ Barao = data %>%
 
 \tab Os dados utilizados apresentam algumas diferenças de período de registro por via, entretanto, todos os dados têm a data limite de 31/12/2021, sendo seus inícios variados. Isto ocorre devido a fatores administrativos e técnicos. Um fator que não podemos mensurar facilmente são os dias zerados para autuações, pois não podemos identificar se foi problema técnico ou se realmente não houve nenhum registro naquele específico.
     
-\tab Abaixo, apresentamos algumas tabelas, por via analisada, especificando a data de início e fim dos registros, a quantidade dias entre as datas e a quantidade de dias zerados. 
+\tab Abaixo, apresentamos uma tabela especificando a data de início e fim dos registros, a quantidade dias entre as datas e a quantidade de dias zerados. 
 
-- Alameda Parnaiba
 
 ```{r}
-
 calendario = calendario = data.frame(Dia = seq(as.Date('2016-05-05'), as.Date('2021-12-31'), by = 'day'))
 Dias_alamenda = Alameda|>
                 group_by(DT_DATAINFRACAO)|>
@@ -322,9 +321,9 @@ data.frame(Endereço = c('Alameda Parnaíba', "Av. Raul Lopes", "Av. Maranhão",
                             sum(is.na(Dias_Maranhao$Quantidade)), sum(is.na(Dias_Barao$Quantidade))), check.names = FALSE)|> knitr::kable()
 ```
 
-
+\tab A próxima tabela apresenta a quantidade de dias com registros de autuação, a quantidade de autos registrados em todo o período analisando e a divisão percentual por tipo de infração apresentada anteriomente, média, grave e gravissima.
 ```{r}
-data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes', 
+data.frame(Endereço = c('Alameda Parnaiba', 'Av. Raul Lopes', 
                        'Av. Maranhão',  'Av. B. de Castelo Branco'),
            Dias  = c(sum(!is.na(Dias_alamenda$Quantidade)),
                      sum(!is.na(Dias_Shopping$Quantidade)),
@@ -339,45 +338,88 @@ data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes',
           "Percentual acima 50%" = c(0.45, 0.22, 0.72, 3.16), check.names = FALSE)|>knitr::kable()
 ```
 
-```{r}
 
+### Análise descritiva e da distribuição dos excessos. 
+
+\tab O objetivo deste tópico é apresentar algumas medidas básicas dos radares que estamos analisando. Primeiramente, temos um tabela com as informações descritivas dos radares. Num segundo momento, construímos algumas imagens com `ggplot` com as distribuições dos excessos dos radares. 
+
+```{r}
+data.frame(Endereço = c('Alameda Parnaiba', 'Av. Raul Lopes', 
+                       'Av. Maranhão',  'Av. B. de Castelo Branco'),
+            Média = c(round(mean(Alameda$Excesso), 2),  round(mean(Shopping$Excesso), 2), 
+                      round(mean(Maranhao$Excesso), 2), round(mean(Barao$Excesso), 2)),
+            'Desvio Padrão' = c(round(sd(Alameda$Excesso), 2),  round(mean(Shopping$Excesso), 2), # nolint # nolint # nolint
+                                round(sd(Maranhao$Excesso), 2), round(sd(Barao$Excesso), 2)),
+            Mediana  = c(median(Alameda$Excesso),  median(Shopping$Excesso),
+                          median(Maranhao$Excesso), median(Barao$Excesso)),
+            Mínimo = c(min(Alameda$Excesso),  min(Shopping$Excesso),
+                        min(Maranhao$Excesso), min(Barao$Excesso)),
+            Máximo = c(max(Alameda$Excesso),  max(Shopping$Excesso),
+                       max(Maranhao$Excesso), max(Barao$Excesso)) , check.names = FALSE)|>knitr::kable()
+
+```
+
+
+```{r fig.cap= "Distribuição de excesso na Alameda Parnaíba"}
 ggplot(Alameda)+
 aes(Excesso)+
-geom_histogram(binwidth=1, fill = '#eed600')+
+geom_histogram(binwidth=1, fill = '#eed600', bins = 50)+
+labs(y = 'Quantidade')+
+theme(axis.title.y = element_text(size = 15, family = "Nunito",
+                                    margin = margin(r = 7)),
+        axis.title.x = element_text(size = 15, family = "Nunito",
+                                    margin = margin(t = 8)))+
 theme_minimal()
+
 ```
 
 
-```{r}
+```{r fig.cap= "Distribuição de excesso na Av. Raul Lopes", fig.}
 ggplot(Shopping)+
 aes(Excesso)+
-geom_histogram(binwidth=1, fill = '#0038ee')+
+geom_histogram(binwidth=1, fill = '#0038ee', bins = 50)+
+labs(y = 'Quantidade')+
+theme(axis.title.y = element_text(size = 15, family = "Nunito",
+                                    margin = margin(r = 7)),
+        axis.title.x = element_text(size = 15, family = "Nunito",
+                                    margin = margin(t = 8)))+
 theme_minimal()
 ```
 
 
-```{r}
+```{r fig.cap= "Distribuição de excesso na Av. Maranhão"}
 ggplot(Maranhao)+
 aes(Excesso)+
-geom_histogram(binwidth=1, fill = '#00ee28')+
+geom_histogram(binwidth=1, fill = '#00ee28', bins = 50)+
+labs(y = 'Quantidade')+
+theme(axis.title.y = element_text(size = 15, family = "Nunito",
+                                    margin = margin(r = 7)),
+        axis.title.x = element_text(size = 15, family = "Nunito",
+                                    margin = margin(t = 8)))+
+
 theme_minimal()
 ```
 
-
-```{r}
+```{r fig.cap= "Distribuição de excesso na Av. B. Castelo Branco"}
 ggplot(Barao)+
 aes(Excesso)+
 geom_histogram(binwidth=1, fill = '#ee00ab')+
+labs(y = 'Quantidade')+
+theme(axis.title.y = element_text(size = 15, family = "Nunito",
+                                    margin = margin(r = 7)),
+        axis.title.x = element_text(size = 15, family = "Nunito",
+                                    margin = margin(t = 8)))+
 theme_minimal()
 ```
 
+\newpage
 
-
-
+### Alguns testes
 
 
 ### Arrecadação possível 
 
+\tab Finalizando esta análise no ponto que consiste o objetivo final do trabalho, a arrecadação. A idéia do trabalho é utilizar as informações detalhadas acima para que seja possível realizar uma previsão de arrecadação e, desta forma, aperfeiçoar a forma de administração das receitas e despesas públicas. Abaixo, temos a arredacação possível se todas as multas fosses pagas com o valor integral. 
 ```{r}
 data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes', 
                        'Av. Maranhão',  'Av. B. de Castelo Branco'),

@@ -1,0 +1,951 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+]{article}
+\author{}
+\date{\vspace{-2.5em}}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[left = 2.5cm, right = 2cm, top = 2cm, bottom =
+2cm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{newunicodechar}
+\usepackage{float}
+\usepackage{sectsty}
+\usepackage{paralist}
+\usepackage{setspace}\spacing{1.5}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{dcolumn}
+\usepackage{natbib}\bibliographystyle{agsm}
+\usepackage[nottoc, numbib]{tocbibind}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+
+\subsectionfont{\raggedright}
+\subsubsectionfont{\raggedright}
+
+\thispagestyle{empty}
+
+\begin{centering}
+
+
+\begin{center}\includegraphics[width=0.3\linewidth]{ufpi} \end{center}
+\begin{singlespace}
+\LARGE
+UNIVERSIDADE FEDERAL DO PIAUÍ
+
+\Large
+CENTRO DE CIÊNCIAS DA NATUREZA
+
+\Large
+CURSO DE GRADUAÇÃO EM ESTATÍSTICA
+\end{singlespace}
+
+\vspace{3cm}
+
+\LARGE
+\doublespacing
+{\bf Análise das infrações de trânsito de excesso de velocidade através da Teoria de Valores Extremos}
+
+\vspace{3cm}
+
+\doublespacing
+
+\Large              
+{\bf Filipe Mateus de Sousa Costa}
+
+\vspace{3cm}
+
+\doublespacing
+
+\Large  
+{\bf TERESINA - 2022}
+
+\end{centering}
+
+\newpage
+\thispagestyle{empty}
+\begin{centering}
+
+\Large              
+{\bf Filipe Mateus de Sousa Costa}
+
+\vspace{5cm}
+\doublespacing
+\Large              
+{\bf Monografia:}
+
+
+{\bf Análise das infrações de trânsito de excesso de velocidade através da Teoria de Valores Extremos}
+
+\vspace{3cm}
+\begin{flushright}
+\normalsize
+\begin{singlespace}
+Monografia submetida à Coordenação do\\
+curso de graduação em Estatística, da Uni-\\
+versidade  Federal  do Piauí, como requisito\\
+parcial  para  obtenção do grau de Bacharel \\
+em Estatística.\\
+\end{singlespace}
+\end{flushright}
+
+\vspace{1cm}
+\begin{flushright}
+\normalsize
+Orientador:\\
+Profa. Dra. Valmária Rocha da Silva Ferraz\\
+Co-orientador:\\
+Prof. Dr. Fernando Ferraz do Nascimento
+\end{flushright}
+
+
+\vspace{2cm}
+\Large  
+{\bf TERESINA - 2022}
+
+\end{centering}
+
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+
+\newpage
+
+\listoffigures
+
+\newpage
+
+\listoftables
+
+\newpage
+
+\hypertarget{agradecimentos}{%
+\section{Agradecimentos}\label{agradecimentos}}
+
+\hspace*{1cm} Primeiramente, eu preciso agradecer a Deus por ter
+permitido a possibilidade de realizar uma segunda graduação e ter me
+sustentado durante todo o curso, foram vários os desafios, mas Ele
+permitiu que eu conseguisse superar tudo. Soli Deo Glória.\\
+\hspace*{1cm} Preciso agradecer a minha esposa que ficou do meu lado
+durante este período, sacrificando-se para permitir que eu estudasse,
+motivando-me. Superando o ciúme por ter sido trocada, muitas vezes, por
+um livro cheio de fórmulas esquisitas. Incluo meu filho Mateus, que
+chegou no durante o curso para dar mais emoção à vida. Mesmo pequeno, me
+ensinou a ser mais produtivo. E claro, meu pai, minha mãe e minha irmã,
+mesmo a distância, me apoiavam.\\
+\hspace*{1cm} Agradeço a Professora Valmaria por ter aceitado o desafio
+de me orientar nesse TCC, juntamente com o professor Fernando que
+ofereceu o apoio teórico para a realização desse projeto. Incluo a
+STRANS, na pessoa do superitendente Claudio Pessoa, que gentilmente,
+disponibilizaram os dados para este trabalho.\\
+\hspace*{1cm} Finalizo os agradecimentos aos amigos que foram criados
+durante o curso. Edvaldo que, como eu, chefe de família. Compartilhamos
+muito do desafio de trabalhar, cuidar do lar e estudar. Eva, cheia de
+energia, se esforçava para tirar as melhores notas nas disciplinas.
+Envelheceu alguns anos durante as madrugadas acordadas, mas ok. Obrigado
+a todos, de coração.
+
+\newpage
+
+\hypertarget{resumo}{%
+\section{Resumo}\label{resumo}}
+
+\newpage
+
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+\newpage
+
+\hypertarget{introduuxe7uxe3o}{%
+\section{Introdução}\label{introduuxe7uxe3o}}
+
+\hspace*{1cm} Eventos extremos são situações ou comportamentos que não
+ocorrem com tanta frequência. No desenho da distribuição normal, são
+aqueles que ficam próximos as caudas, distantes do pico onde está
+localizado a média, a situação de normalidade. Entretanto, é possível
+que estes eventos ocorram, na verdade, é esperado que eles ocorram.
+Diante dessa situação, é importante que possamos prever seus
+acontecimentos, pois quando ocorrem, as consequências podem ser
+trágicas.
+
+\hspace*{1cm} Exemplos que demonstram com facilidade os efeitos de
+eventos extremos estão na área da climatologia. Para os portais de
+notícias, o aquecimento global tem trazido mais manchetes de catástrofes
+climáticas que causaram prejuízos substanciais e, infelizmente, mortes.
+Uma busca rápida em sites de pesquisa nos direciona facilmente para
+estes eventos.
+
+\hspace*{1cm} O surgimento da teoria de valores extremos surge da
+necessidade de pesquisas sobre eventos extremos de forma mais eficiente.
+As distribuições mais comuns trabalham melhor na análise dos eventos
+centrais, mais frequentes. Dessa forma, os acontecimentos mais raros
+possuem ficam mais difíceis de prever.
+
+\hypertarget{apresentando-os-dados}{%
+\subsection{Apresentando os dados}\label{apresentando-os-dados}}
+
+\hspace*{1cm} Os dados que iremos trabalhar neste projeto têm como
+origem as medições de excesso de velocidade registradas por radares no
+munícipio de Teresina. Baseado no Código de Trânsito Brasileiros, ruas,
+avenidas e estradas no Brasil, possuem limites de velocidade
+especificados, entretanto, para a realização do registro infração, é
+preciso que a via esteja sinalizada informando a velocidade máxima.
+
+\hspace*{1cm} Um ponto importante sobre as infrações de velocidade é que
+existe uma margem de erro para medição da velocidade registrada. Para
+fim de registro de infração, não se registra a velocidade obtida por
+instrumentos de medição, mas subtrai-se um valor na velocidade medida
+(para vias de velocidade máxima até 100km/h, o valor é 7), o que passar
+deste valor acima da velocidade permitida, será considerado para
+infração.
+
+\hspace*{1cm} Por exemplo, para vias de com velocidade máxima de 60
+km/h, as infrações serão registradas somente quando o veículo passar
+pelo ponto de medição quando a velocidade calculada for de 68 km/h,
+registrando um excesso de 1km/h. O resultado dessa distinção é o uso de
+dois termos: Velocidade medida, que consiste na velocidade registrada e
+Velocidade Considerada, que é a velocidade medida menos o fator de
+correção. Na tabela abaixo, temos a relação entre velocidade medida e
+velocidade considerada. A infração é feita quando a considerada é maior
+que permitida na via.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[height=0.93\textheight]{1_MINFRA_9_002} 
+
+}
+
+\caption{Tabela com relação Velocidade Medida (VM) e Velocidade Considerada (VC)}\label{fig:unnamed-chunk-1}
+\end{figure}
+
+\hspace*{1cm} Na tabela acima, temos os valores entres as velocidades
+medidas e consideradas, note-se que na medida 107 e 108 km/h, a
+considerada se repete, neste ponto se inicia um aumento da margem de
+erro. Para este trabalho, iremos utilizar a medição calculada com a
+Velocidade considerada, pois o cálculo da infração é realizado com ela.
+
+\hspace*{1cm} Em relação as infrações, o CTB normatiza três tipos de
+infrações para o excesso de velocidade baseado no percentual registado
+acima. Para medições até 20\% acima da permitida, a infração é média,
+entre 20\% e 50\% é considerada grave e, superior a 50\%, é gravíssima.
+O aumento da gravidade resulta no aumento do valor pago da multa. Nas
+tabelas abaixo, temos um resumo da divisão de tipificação, o intervalo
+de excesso e o valor pago. A primeira tabela refere-se para vias com
+velocidade máxima até 60 km/h e a segunda tabela considera a máxima
+40km/h
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Radares de 60 km/h}
+\end{itemize}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Tipo & Faixa percentual & Faixa de Excesso & Valor da Multa \\
+\midrule
+\endhead
+Média & até 20\% & 1 ≤ v ≤ 12 & R\$ 130,16 \\
+Grave & entre 20\% e 50\% & 13 ≤ v ≤ 30 & R\$ 195,23 \\
+Gravíssima & superior a 50\% & ≥ 31 & R\$ 880,41 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Radares de 40 km/h}
+\end{itemize}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Tipo & Faixa percentual & Faixa de Excesso & Valor da Multa \\
+\midrule
+\endhead
+Média & até 20\% & 1 ≤ v ≤ 8 & R\$ 130,16 \\
+Grave & entre 20\% e 50\% & 9 ≤ v ≤ 20 & R\$ 195,23 \\
+Gravíssima & superior a 50\% & ≥ 21 & R\$ 880,41 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{pontos-de-mediuxe7uxe3o-de-excesso-de-velocidade}{%
+\subsubsection{Pontos de medição de excesso de
+velocidade}\label{pontos-de-mediuxe7uxe3o-de-excesso-de-velocidade}}
+
+\hspace*{1cm} Para a realização deste trabalho, escolhemos 4 endereços,
+são eles:
+
+\begin{itemize}
+\item
+  Alameda Parnaíba, próximo Ponte Estaiada João Isidoro França -- Zona
+  Norte;
+\item
+  Av. Raul Lopes, em frente ao Teresina Shopping -- Zona Leste;
+\item
+  Av. Maranhão, trecho entre o centro Administrativo e ponte da Amizade
+  -- Zona Sul;
+\item
+  Av. Barão de Castelo Branco, próximo Igreja Católica do Cristo Rei. --
+  Zona Sul.
+\end{itemize}
+
+\hspace*{1cm} Estes radares são considerados famosos com velocidade
+máxima de 60 km/h, exceção do radar da Av. Barão de Castelo Branco, onde
+o excesso é de 40 km/h. Seus bancos de dados são extensos e iremos
+apresentar algumas medidas descritivas para termos uma noção melhor da
+distribuição dos excessos.
+
+\hspace*{1cm} É importante destacar que não iremos realizar uma
+distinção do sentido que o veículo está indo, para análises futuras,
+pode-se aprofundar nesta análise. Destaco, também, que utilizaremos
+todas os registros realizados, independente se auto não foi expedido por
+motivos técnicos ou administrativos.
+
+\hypertarget{detalhando-os-dados}{%
+\subsubsection{Detalhando os dados}\label{detalhando-os-dados}}
+
+\hspace*{1cm} Os dados utilizados apresentam algumas diferenças de
+período de registro por via, entretanto, todos os dados têm a data
+limite de 31/12/2021, sendo seus inícios variados. Isto ocorre devido a
+fatores administrativos e técnicos. Um fator que não podemos mensurar
+facilmente são os dias zerados para autuações, pois não podemos
+identificar se foi problema técnico ou se realmente não houve nenhum
+registro naquele específico.
+
+\hspace*{1cm} Abaixo, apresentamos uma tabela especificando a data de
+início e fim dos registros, a quantidade dias entre as datas e a
+quantidade de dias zerados.
+
+\begin{longtable}[]{@{}lllrr@{}}
+\toprule
+Endereço & Data de Inicio & Data Final & Dias & Dias Zerados \\
+\midrule
+\endhead
+Alameda Parnaíba & 05/05/2016 & 31/12/2021 & 2089 & 282 \\
+Av. Raul Lopes & 12/05/2017 & 19/10/2020 & 1696 & 595 \\
+Av. Maranhão & 05/05/2017 & 31/12/2021 & 1702 & 292 \\
+Av. B. C. Branco & 26/09/2016 & 31/12/2020 & 1830 & 334 \\
+\bottomrule
+\end{longtable}
+
+\hspace*{1cm} A próxima tabela apresenta a quantidade de dias com
+registros de autuação, a quantidade de autos registrados em todo o
+período analisando e a divisão percentual por tipo de infração
+apresentada anteriomente, média, grave e gravissima.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.23}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.05}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.11}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.25}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.19}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Endereço
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Dias
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Nº de Autos
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Percentual até 20\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Percentual entre 20\% e 50\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Percentual acima 50\%
+\end{minipage} \\
+\midrule
+\endhead
+Alameda Parnaiba & 1807 & 48647 & 90.23 & 9.30 & 0.45 \\
+Av. Raul Lopes & 1101 & 51605 & 92.75 & 7.03 & 0.22 \\
+Av. Maranhão & 1410 & 27273 & 88.34 & 10.94 & 0.72 \\
+Av. B. de Castelo Branco & 1496 & 30954 & 79.18 & 17.66 & 3.16 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{anuxe1lise-descritiva-e-da-distribuiuxe7uxe3o-dos-excessos.}{%
+\subsubsection{Análise descritiva e da distribuição dos
+excessos.}\label{anuxe1lise-descritiva-e-da-distribuiuxe7uxe3o-dos-excessos.}}
+
+\hspace*{1cm} O objetivo deste tópico é apresentar algumas medidas
+básicas dos radares que estamos analisando. Primeiramente, temos um
+tabela com as informações descritivas dos radares. Num segundo momento,
+construímos algumas imagens com \texttt{ggplot} com as distribuições dos
+excessos dos radares.
+
+\begin{longtable}[]{@{}lrrrrr@{}}
+\toprule
+Endereço & Média & Desvio Padrão & Mediana & Mínimo & Máximo \\
+\midrule
+\endhead
+Alameda Parnaiba & 5.61 & 5.39 & 4 & 1 & 67 \\
+Av. Raul Lopes & 5.02 & 5.02 & 4 & 1 & 92 \\
+Av. Maranhão & 6.05 & 5.94 & 4 & 1 & 70 \\
+Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
+\bottomrule
+\end{longtable}
+
+\begin{figure}
+
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-8-1} 
+
+}
+
+\caption{Distribuição de excesso na Alameda Parnaíba}\label{fig:unnamed-chunk-8}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/fig.-1} 
+
+}
+
+\caption{Distribuição de excesso na Av. Raul Lopes}\label{fig:fig.}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-9-1} 
+
+}
+
+\caption{Distribuição de excesso na Av. Maranhão}\label{fig:unnamed-chunk-9}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-10-1} 
+
+}
+
+\caption{Distribuição de excesso na Av. B. Castelo Branco}\label{fig:unnamed-chunk-10}
+\end{figure}
+
+\newpage
+
+\hypertarget{alguns-testes}{%
+\subsubsection{Alguns testes}\label{alguns-testes}}
+
+\hypertarget{arrecadauxe7uxe3o-possuxedvel}{%
+\subsubsection{Arrecadação
+possível}\label{arrecadauxe7uxe3o-possuxedvel}}
+
+\hspace*{1cm} Finalizando esta análise no ponto que consiste o objetivo
+final do trabalho, a arrecadação. A idéia do trabalho é utilizar as
+informações detalhadas acima para que seja possível realizar uma
+previsão de arrecadação e, desta forma, aperfeiçoar a forma de
+administração das receitas e despesas públicas. Abaixo, temos a
+arredacação possível se todas as multas fosses pagas com o valor
+integral.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Local & Arrecadação Possível \\
+\midrule
+\endhead
+Alameda Parnaiba & R\$ 6.794.927 \\
+Av. Raul Lopes & R\$ 7.036.259 \\
+Av. Maranhão & R\$ 3.891.757 \\
+Av. B. de Castelo Branco & R\$ 5.119.140 \\
+\bottomrule
+\end{longtable}
+
+\newpage
+
+\hypertarget{distribuiuxe7uxe3o-pareto-generalizada-gpd}{%
+\section{Distribuição Pareto Generalizada
+(GPD)}\label{distribuiuxe7uxe3o-pareto-generalizada-gpd}}
+
+\hspace*{1cm} A distribuição Pareto Generalizada (GPD) analisa a
+distribuição dos excessos de acordo com um limiar determinado. Esse
+formato de análise é mais eficaz pois evita a perda de informações que
+uma análise em períodos (ou blocos) pode gerar, afetando,
+principalmente, pesquisas com um grande volume de dados.
+
+\hspace*{1cm} A distribuição Pareto Generalizada foi desenvolvida por
+Pickands {[}1975{]} é baseada no seguinte teorema:
+
+\emph{Teorema 1: Se x for uma variável aleatória (v.a.) com função
+distribuição (f.d.) \(F_{x}\), que pertence ao domínio da de atração de
+uma distribuição GEV, então, quando \(\mu \to \infty\),
+\(F(x|u) = Pr{X > u + x|X > u}\), possui distribuição GPD, com a
+seguinte função de distribuição:}
+
+\[
+P(x|\xi, \sigma, \mu)\ = \
+\left\{ \begin{array}{rcl}
+1 - (1 + \xi\frac{(x - \mu)}{\sigma})^{-\frac{1}{\xi}},\ \mbox{se}\ \xi \neq 0\\
+1 - exp\left\{-\frac{(x - \mu)}{\sigma}\right\}, \ \mbox{se}\ \xi = 0
+\end{array}\right.
+\]
+
+onde \(\mu > 0, x - \mu \geqslant 0\), se \(\xi > 0\), e
+\(0 \leqslant x - \mu \leqslant - \frac{\sigma}{\xi}\), se \(\xi < 0\).
+O caso \(\xi = 0\) é interpretado como sendo o limite quando
+\(\xi \rightarrow 0\), e tem como caso particular a
+distribuiçãoexponencial de parâmetro \(\frac{1}{\sigma}\). Os parametros
+são \(\xi\), \(\sigma\) e \(\mu\), que representam, respectivamente, a
+forma, a escala e o limiar da distribuição.
+
+\hspace*{1cm} A função de densidade da distribuição GPD é dada por:
+
+\[
+p(x|\xi, \sigma, \mu)\ = \
+\left\{ \begin{array}{rcl}
+\frac{1}{\sigma}(1 + \xi\frac{x - \mu}{\sigma})^{-\frac{1}{\xi}},\ \mbox{se}& \xi \neq 0\\
+\frac{1}{\sigma}exp\left\{-\frac{(x - \mu)}{\sigma}\right\}, \ \mbox{se}& \xi = 0
+\end{array}\right.
+\]
+
+onde \(x - \mu > 0\) para \(\xi \geqslant 0\) e
+\(0 \leqslant x - \mu < -\frac{\mu}{\xi}\) para \(\xi > 0\).
+
+\hspace*{1cm} A distribuição GPD possui as seguintes características em
+relação aos parâmetros:
+
+\[
+E(X)\ =\ \frac{\sigma}{1 - \xi};\ 
+\xi < 1; Md(x)\ =\ \frac{\sigma(2\xi -1)}{\xi};
+V(X)\ =\ \frac{\sigma^{2}}{(1-\xi)^{2}(1-2\xi)}
+\]
+
+\hspace*{1cm} Justificando o uso da GPD Pickands (1975) e Davidson e
+Smith (1990) demostram as propriedades e provam que GPD é única que
+satisfaz estas propriedades. ``Por exemplo, estabilidade do limiar, ou
+seja, se Y possui distribuição GPD, e se \(\mu > 0\) , então a
+distribuição de \(P(Y - \mu|Y>\mu)\) também possui distribuição GPD''.
+\emph{prof fernando}
+
+\hspace*{1cm} Em valores extremos, além de encontrar a estimativa dos
+parâmetros do modelo, também é muito importante encontrar uma forma para
+determinar os quatis altos, acima do limiar, de tal forma que se X
+possui distribuição GPD, é importante saber com qual probabilidade
+ocorre um evento maior ou igual a q, ou seja, \(P(X>q) = 1- q\).
+
+\hspace*{1cm} Com os cálculos destes quantis, podemos realizar previsões
+com os dados de autos de excesso velocidade de trânsito de Teresina nos
+próximos anos, considerando uma manutenção da estrutura dos radares e,
+incluindo novos endereços de medição, uma previsão de quantos autos
+poderão ser registrados. Outra variável que pode ser analisada consiste
+no excessos de velocidade, determinando possíveis valores máximos e a
+previsão da quantidade de infrações.
+
+\hspace*{1cm} Na distribuição GPD, pode-se encontrar um quantil q com
+probabilidade \(P(X < q)\) em função dos parâmetros. Invertendo a função
+acumulada, obtém-se a seguinte função dos quantis da cauda:
+
+\[
+q_{x}p = \frac{((1 - p*)^{-\xi}-1)}{\xi},
+\] onde \(p*\ =\ 1 - (1-p)N/N_{u}\).
+
+\hypertarget{domuxednio-da-atrauxe7uxe3o}{%
+\subsection{Domínio da atração}\label{domuxednio-da-atrauxe7uxe3o}}
+
+\hspace*{1cm} As distribuições de valores extremos são obtidas como
+distribuição limite \((n \rightarrow \infty)\) do máximo de um conjunto
+de variáveis aleatórias (v.a.s) independente e identicamente
+distribuídas (i.i.d) e são unicamente determinadas, a menos de
+transformac˜oes afins. O teorema de Fisher-Tippet implica que se
+\(F^{n}_{x}(C_{n}x + d_{n})\) e n˜ao degenerada quando
+\((n \rightarrow \infty)\), para certas constantes
+\(C_{n} > 0,\ d_{n}\ \varepsilon\ \mathbb{R}\), então
+
+\[
+|F^{n}_{X}(x)\ -\ H(\frac{x - d_{n}}{c_{n}})|\  \rightarrow 0, n \rightarrow \infty
+\]
+
+para alguma distribuição H. A coleção das distribuições \(F_{x}\) tais
+que os respectivos máximos possuem a mesma distribuição limite é chamada
+de domínio de atração.
+
+\emph{Definição 2.1.2 Se (função) se verifica dizemos que} \(F_{x}\)
+pertence ao domínio de atração do máximo da distribuição de valores
+extremos H. Notação: \(F_{x}\  \epsilon\ MDA(H)\)
+
+\hspace*{1cm} Existem 3 casos possíveis para as distribuições limites
+das excedências de um limiar. Para domínio dp tipo I \((\gamma = 0)\), a
+distribuição se torna
+
+\[
+H(y)\ = 1 - e^{-\frac{y}{\sigma}},\ y > 0
+\]
+
+sendo assim, o domínio, uma distribuição Exponencial com parâmetro
+\(\frac{1}{\sigma}\). Para o domínio tipo II \((\gamma > 0)\), a
+distribuição limite será a distribuição de Pareto . Já para o domínio
+tipo III \((\gamma < 0)\), quando \(\sigma = -\frac{1}{\gamma}\) , a
+distribuição limite será uma Beta e quando
+\(\sigma \neq -\frac{1}{\gamma}\), adistribuição limite será uma Beta
+reescalada com suporte em \((0,\frac{\sigma}{\gamma})\).
+
+\hypertarget{determinauxe7uxe3o-do-limiar}{%
+\subsection{Determinação do Limiar}\label{determinauxe7uxe3o-do-limiar}}
+
+\hspace*{1cm} A análise via GPD exige um cuidado inicial pois é preciso
+determinar um limiar para os dados. O valor escolhido pode ser
+determinado pelo pesquisador, entretanto, correm-se riscos que podem
+influenciar os cálculos, resultando em análises incorretas.
+
+\hspace*{1cm} A escolha de um limiar \("\mu"\) muito alto implica em um
+número muito pequeno de observações resultando em estimadores com grande
+variabilidade. Um limiar muito pequeno resulta na violação do Teorema de
+Pickands (1945), modelando de forma errada os valores com limiar baixo,
+dessa forma, não se garante a convergência dos excessos Y para a família
+da GPD, levando a um vício alto.
+
+\hspace*{1cm} Métodos mais convencionais de determinação do limiar
+utilizam-se de análises gráficas da linearidade de \(N_{u}\). Um método
+muito utilizado é o gráfico de médias de excessos (MRL\textless{}
+\emph{Mena Residual Life Plot}), baseado na espera da GPD (Nascimento
+{[}2012{]}). Sua construção segue o seguinte formato:
+
+\[
+\left\{\left(\mu,\ \frac{1}{n_{u}}\sum_{i=1}^{n_{u}} \right): \mu<x_{max}\right\} 
+\]
+
+onde \(x_{1}\leqslant x_{2}\leqslant...x_{n}\) consistem nas \(N_{u}\)
+observac˜oes que excedem \(\mu\), e \(x_{max}\) é o valor mais elevado
+das obervações.
+
+\hspace*{1cm} Considerando a distribuição GPD válida para os excesso,
+esta também é valida para os excesso acima de todos os limiares
+\(\mu > \mu_{0}\) 0, sujeito a mudan¸cas no parâmetro de escala
+\(\sigma_{\mu} = \sigma_{\mu_{0}}+\xi_{\mu}\). Então, para
+\(\mu > \mu_{o}\)
+
+\[
+E(X - \mu|X>\mu)= \frac{\sigma_{\mu}}{1 -\xi}=\frac{\sigma_{\mu_{0}}+\xi_{\mu}}{1 - \xi}
+\] Se o modelo é adequado a partir de \(\mu_{0}\) o gráfico apresentará
+um comportamento linear a partir de u. Um problema recorrente com a
+utilização desse gráfico é que o limiar pode limitar o número de
+excessos devido a escolha de limiar muito alto.
+
+\hspace*{1cm} Outra técnica gráfica utilizada é Dipersion Index Plot
+(DIP), baseado em Cunnane {[}1979{]} (Citado por Nascimento {[}2012{]}),
+que diz que, o número de excessos sobre um limiar alto em um determinado
+período (geralmente meses ou anos), pode ser distribuído através de um
+processo de Poisson. Assim, a razão entre a variância e a média é igual
+a 1. Assim, pode-se fazer um gráfico
+
+\[
+\left\{\left(\mu, \frac{Var(Y)}{E(Y)}\right): \mu <x_{max}\right\}
+\]
+
+\hypertarget{estimauxe7uxe3o-da-gpd}{%
+\subsection{Estimação da GPD}\label{estimauxe7uxe3o-da-gpd}}
+
+\hspace*{1cm} Após determinar o limiar, a estimação dos parâmetros da
+distribuição GPD podem ser estimados por vários métodos, entre eles,
+tem-se o da máxima verossimilhança, que iremos trabalhar. Existem outros
+métodos como de momentos proposto por Smith {[}1987{]} (citado por
+Mendes {[}2004{]}) e o métodos dos momentos ponderados (Singh e Guo
+{[}1995{]}, (citado por Mendes {[}2004{]}), em que a eficiência de cada
+método depende da situação estudada.
+
+\hspace*{1cm} Os estimadores de máxima verossimilhança (EMV) que
+maximizam a função de log-verossimilhança, quando \(\xi \neq 0\), é dado
+por
+
+\[
+l(\mu, \xi)\ =\ -n_{u}log(\sigma) - (1+\frac{1}{\xi}\sum_{i=1}^{n_{u}}log(1+\xi\frac{y_{i}}{\sigma}))
+\] definida em \((1 + \xi\frac{y_{i}}{\sigma})>0\), para todo
+\(i = 1,2,...,N_{u}\). No caso particular onde \(\xi = 0\), a a
+log-verossimilhança é dada por
+
+\[
+l(\sigma)\ =\ -n_{u}log(\sigma)\ -\ \sum_{i=1}^{n_{u}}(\frac{y_i}{\sigma})
+\]
+
+\hspace*{1cm} No caso de \(\xi = 0\), a maximização dos parâmetros não
+pode ser obtida analiticamente, sendo necessárias técnicas numéricas de
+maximização.
+
+\newpage
+
+\newpage
+
+\hypertarget{inferuxeancia-bayesiana}{%
+\section{Inferência Bayesiana}\label{inferuxeancia-bayesiana}}
+
+\newpage
+
+\hypertarget{modelos-dinuxe2micos-para-valores-extremos}{%
+\section{Modelos dinâmicos para Valores
+Extremos}\label{modelos-dinuxe2micos-para-valores-extremos}}
+
+\hypertarget{alameda-parnauxedba}{%
+\subsection{Alameda Parnaíba}\label{alameda-parnauxedba}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Alameda1} 
+
+}
+
+\caption{Alameda Parnaíba - Função fggpd}\label{fig:unnamed-chunk-12}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Alameda2} 
+
+}
+
+\caption{Alameda Parnaíba - Função fmgpd}\label{fig:unnamed-chunk-13}
+\end{figure}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+Ajuste & DIC & BIC \\
+\midrule
+\endhead
+Alameda com fggpd & 247310.8 & 247351.3 \\
+Alameda com fmgpd & 215577.4 & 215641.7 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{av.-maranhuxe3o}{%
+\subsection{Av. Maranhão}\label{av.-maranhuxe3o}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Maranhao1} 
+
+}
+
+\caption{Av. Maranhão - Função fggpd}\label{fig:unnamed-chunk-15}
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Maranhao2} 
+
+}
+
+\caption{Av. Maranhão - Função fmgpd}\label{fig:unnamed-chunk-16}
+\end{figure}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+Ajuste & DIC & BIC \\
+\midrule
+\endhead
+Av. Maranhao com fggpd & 480153.4 & 480201.7 \\
+Av. Maranhão com fmgpd & 485451.3 & 485518.7 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{av.-raul-lopes---shopping}{%
+\subsection{Av. Raul Lopes - Shopping}\label{av.-raul-lopes---shopping}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Shopping1} 
+
+}
+
+\caption{Av. Raul Lopes - Função fggpd}\label{fig:unnamed-chunk-18}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Shopping2} 
+
+}
+
+\caption{Av. Raul Lopes - Função fmgpd}\label{fig:unnamed-chunk-19}
+\end{figure}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+Ajuste & DIC & BIC \\
+\midrule
+\endhead
+Av. Raul Lopes com fggpd & 253692.7 & 253754.8 \\
+Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{av.-dos-ipuxeas}{%
+\subsection{Av. dos Ipês}\label{av.-dos-ipuxeas}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Ipes1} 
+
+}
+
+\caption{Av. dos Ipês - Função fggpd}\label{fig:unnamed-chunk-21}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Ipes2} 
+
+}
+
+\caption{Av. dos Ipês - Função fmgpd}\label{fig:unnamed-chunk-22}
+\end{figure}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+Ajuste & DIC & BIC \\
+\midrule
+\endhead
+Av. Av. dos Ipês com fggpd & 136611.9 & 136654.4 \\
+Av. dos Ipês com fmgpd & 131887.8 & 131672.3 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{av.-av.-jose-francisco-de-almeida-neto}{%
+\subsection{Av. Av. Jose Francisco de Almeida
+Neto}\label{av.-av.-jose-francisco-de-almeida-neto}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Jose1} 
+
+}
+
+\caption{Av. Jose - Função fggpd}\label{fig:unnamed-chunk-24}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Jose2} 
+
+}
+
+\caption{Av. Jose - Função fmgpd}\label{fig:unnamed-chunk-25}
+\end{figure}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+Ajuste & DIC & BIC \\
+\midrule
+\endhead
+Av. Av. Jose com fggpd & 313760.1 & 303626.5 \\
+Av. Jose com fmgpd & 313806.8 & 303289.6 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{av.-baruxe3o-de-castelo-branco}{%
+\subsection{Av. Barão de Castelo
+Branco}\label{av.-baruxe3o-de-castelo-branco}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Barao1} 
+
+}
+
+\caption{Av. Barão - Função fggpd}\label{fig:unnamed-chunk-27}
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=350px]{Barao2} 
+
+}
+
+\caption{Av. Barão - Função fmgpd}\label{fig:unnamed-chunk-28}
+\end{figure}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+Ajuste & DIC & BIC \\
+\midrule
+\endhead
+Av. Barão com fggpd & 160774.3 & 160813.9 \\
+Av. Barão com fmgpd & 153049.2 & 152921.9 \\
+\bottomrule
+\end{longtable}
+
+\newpage
+
+\hypertarget{conclusuxe3o}{%
+\section{Conclusão}\label{conclusuxe3o}}
+
+\newpage
+
+\hypertarget{referuxeancias-bibliogruxe1ficas}{%
+\section{Referências
+Bibliográficas}\label{referuxeancias-bibliogruxe1ficas}}
+
+@book\{AREL:03, author=\{Nascimento, F. F.\}, title=\{Modelos
+probabilísticos para dados extremos: teoria e aplicações\},
+publisher=\{EDUFPI\}, year=\{2012.\} \}
+
+\end{document}

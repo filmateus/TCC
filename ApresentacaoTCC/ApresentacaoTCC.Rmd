@@ -1,0 +1,65 @@
+---
+title: "Análise das infrações de trânsito de excesso de velocidade através da Teoria de Valores Extremos"
+#subtitle: 
+author: 
+  - "Filipe Costa"
+date: '`r format(Sys.Date(), "%d %B,%Y")`'
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    chakra: libs/remark-latest.min.js
+    nature:
+      #slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+
+```{r include=FALSE,warning=FALSE, message=FALSE}
+options(htmltools.dir.version = FALSE)
+xaringan::summon_remark()
+knitr::opts_chunk$set(
+  fig.width=10, fig.height=5, fig.retina=3,
+  out.width = "100%",
+  cache = TRUE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+
+library(tidyverse)
+set.seed(04)
+```
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+#configure the slides
+style_duo_accent(
+  primary_color = "#030200",
+  secondary_color = "#000000",
+  inverse_header_color = "#e34210",
+  title_slide_background_color = "#fdfdfd",
+  title_slide_text_color = "#000000",
+  title_slide_background_image ="https://www.infoescola.com/wp-content/uploads/2016/05/ufpi.png",
+  title_slide_background_size = "50",
+  title_slide_background_position = "bottom 0px right 00px;",
+  header_font_google = google_font("Source Code Pro"),
+  base_font_size = "20px")
+```
+
+
+---
+# Obrigado
+
+```{r fig.align='center', out.width= '60%', echo=FALSE}
+knitr::include_graphics('https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif')
+```
+
+
+- Só Jesus Salva
