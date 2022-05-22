@@ -417,6 +417,16 @@ theme_minimal()
 ### Alguns testes
 
 
+```{r}
+excessos = c(Alameda$Excesso, Shopping$Excesso, 
+              Maranhao$Excesso, Barao$Excesso)
+
+origem = factor(rep(1:4, c(dim(Alameda)[1], dim(Shopping)[1],
+                            dim(Maranhao)[1], dim(Barao)[1])))
+
+kruskal.test(excessos ~ origem)
+```
+
 ### Arrecadação possível 
 
 \tab Finalizando esta análise no ponto que consiste o objetivo final do trabalho, a arrecadação. A idéia do trabalho é utilizar as informações detalhadas acima para que seja possível realizar uma previsão de arrecadação e, desta forma, aperfeiçoar a forma de administração das receitas e despesas públicas. Abaixo, temos a arredacação possível se todas as multas fosses pagas com o valor integral. 
