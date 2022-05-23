@@ -30,13 +30,13 @@ header-includes:
 ```{r setup, include= FALSE, cache = FALSE, warning=FALSE, message=FALSE}
 # configurações de chuck
 knitr::opts_chunk$set(echo = FALSE,
-                      warning=FALSE,
-                      message=FALSE,
+                      warning = FALSE,
+                      message = FALSE,
                       fig.align = 'center',
                       cache = TRUE,
-                      fig.width=6, fig.height=3.5, fig.retina=3)
+                      fig.width = 6, fig.height = 3.5, fig.retina = 3)
 
-# carregando pacotes 
+# carregando pacotes
 library(tidyverse)
 library(tinytex)
 library(lubridate)
@@ -155,7 +155,6 @@ Prof. Dr. Fernando Ferraz do Nascimento
 Obrigado a todos, de coração.
 
 
-
 \newpage
 
 # Resumo
@@ -231,7 +230,7 @@ data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
 
 \tab Estes radares são considerados famosos com velocidade máxima de 60 km/h, exceção do radar da Av. Barão de Castelo Branco, onde o excesso é de 40 km/h.  Seus bancos de dados são extensos e iremos apresentar algumas medidas descritivas para termos uma noção melhor da distribuição dos excessos. 
       
-\tab É importante destacar que não iremos realizar uma distinção do sentido que o veículo está indo, para análises futuras, pode-se aprofundar nesta análise. Destaco, também, que  utilizaremos todas os registros realizados, independente se auto não foi expedido por motivos técnicos ou administrativos.
+\tab É importante destacar que não iremos realizar uma distinção do sentido que o veículo está indo, para análises futuras, pode-se aprofundar nesta análise. Destaco, também, que  utilizaremos todas os registros realizados, independente se o auto não foi expedido por motivos técnicos ou administrativos.
 
 ```{r}
 data = "radar.csv" |>
@@ -358,7 +357,7 @@ data.frame(Endereço = c('Alameda Parnaiba', 'Av. Raul Lopes',
                        max(Maranhao$Excesso), max(Barao$Excesso)) , check.names = FALSE)|>knitr::kable()
 
 ```
-
+\tab 
 
 ```{r fig.cap= "Distribuição de excesso na Alameda Parnaíba"}
 ggplot(Alameda)+
@@ -416,6 +415,10 @@ theme_minimal()
 
 ### Alguns testes
 
+\tab Através das dos gráficos da distribuição dos excessos de velocidade, podemos  afirmar que não ocorrem distribuições do tipo normal. Nota-se que quanto maior for a velocidade de excesso, menor é sua probabilidade de ocorrer, sendo a de 1km/h a mais frequente.
+
+\tab Iremos realizar alguns testes que buscam identificar se a ocorrência de multas dos excessos ocorre de uma forma aleatória ou não. Para isso, utilzaremos o teste de corridas, que se baseia no aumento ou diminuição da medição comparada a anterior.
+
 #### Teste de Corrridas 
 
 - **Alameda Parnaíba**
@@ -441,8 +444,11 @@ DescTools::RunsTest(Maranhao$Excesso, alternative = c("two.sided"))
 ```{r}
 DescTools::RunsTest(Barao$Excesso, alternative = c("two.sided"))
 ```
+\tab Com os testes realizados, podemos afirmar que o registro dos radares não é aleatório para todos os radares. Dessa forma, podemos contruir uma análise que possa descrever o funcionamento dos radares. 
 
-#### Teste de Kruskal White
+#### Teste de Kruskal White   
+          
+\tab Outro teste que podemos realizar é o de Kruskal White, com ele iremos analisar a distribuição dos quatro radares buscando definir se o comportamento é parecido ou não. Se o resultado indicar que existe diferença, utilizaremos um pós-teste (Teste de Dunn) para identificar entre quais ocorrem a diferença.
 
 
 ```{r}
@@ -455,8 +461,11 @@ origem = factor(rep(1:4, c(dim(Alameda)[1], dim(Shopping)[1],
 #kruskal.test(excessos ~ origem)
 broom::tidy(kruskal.test(excessos ~ origem))
 ```
+\tab O resultado do teste indica que existe diferença entres as distribuições entre os radares. Assim, o próximo o passo é realizar o pós teste para identificar onde estão as diferenças. 
 
 #### Pós-Teste
+
+\tab Utilizamos os teste de Dunn
 
 ```{r}
 df= data.frame(excessos, origem) # nolint
@@ -464,6 +473,8 @@ teste_dunn = df|> rstatix::dunn_test(excessos ~ origem, p.adjust.method = 'bonfe
 
 teste_dunn|> knitr::kable()
 ```
+
+\tab O pós teste indica que somente Alameda Parnaíba e Av. Maranhão possuem um comportamento de distribuição parecidos. Em seguida, fazemos um gráfico Boxplot comparado as distribuições dos excessos. 
 
 - **Gráfico comparativo**
 
@@ -475,8 +486,7 @@ scale_fill_manual(breaks = origem, values = c('#eed600','#0038ee', '#00ee28', '#
 labs(x = 'Endereços', y = 'Excessos')+
 theme_minimal()
 ```
-
-
+\newpage
 
 ### Arrecadação possível 
 
