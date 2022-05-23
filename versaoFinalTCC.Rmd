@@ -416,6 +416,34 @@ theme_minimal()
 
 ### Alguns testes
 
+#### Teste de Corrridas 
+
+- **Alameda Parnaíba**
+
+```{r}
+DescTools::RunsTest(Alameda$Excesso, alternative = c("two.sided"))
+
+```
+- **Av. Raul Lopes**
+
+```{r}
+DescTools::RunsTest(Shopping$Excesso, alternative = c("two.sided"))
+```
+
+- **Av. Maranhão**
+
+```{r}
+DescTools::RunsTest(Maranhao$Excesso, alternative = c("two.sided"))
+```
+
+- **Av. B. de Castelo Branco**
+
+```{r}
+DescTools::RunsTest(Barao$Excesso, alternative = c("two.sided"))
+```
+
+#### Teste de Kruskal White
+
 
 ```{r}
 excessos = c(Alameda$Excesso, Shopping$Excesso, 
@@ -424,8 +452,31 @@ excessos = c(Alameda$Excesso, Shopping$Excesso,
 origem = factor(rep(1:4, c(dim(Alameda)[1], dim(Shopping)[1],
                             dim(Maranhao)[1], dim(Barao)[1])))
 
-kruskal.test(excessos ~ origem)
+#kruskal.test(excessos ~ origem)
+broom::tidy(kruskal.test(excessos ~ origem))
 ```
+
+#### Pós-Teste
+
+```{r}
+df= data.frame(excessos, origem) # nolint
+teste_dunn = df|> rstatix::dunn_test(excessos ~ origem, p.adjust.method = 'bonferroni')
+
+teste_dunn|> knitr::kable()
+```
+
+- **Gráfico comparativo**
+
+```{r fig.cap = 'Boxplot comparativo das distribuições dos excessos'}
+ggplot(df)+
+aes(x = as.factor(origem), y = excessos, fill = origem)+
+geom_boxplot()+
+scale_fill_manual(breaks = origem, values = c('#eed600','#0038ee', '#00ee28', '#ee00ab'))+
+labs(x = 'Endereços', y = 'Excessos')+
+theme_minimal()
+```
+
+
 
 ### Arrecadação possível 
 
@@ -434,8 +485,7 @@ kruskal.test(excessos ~ origem)
 data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes', 
                        'Av. Maranhão',  'Av. B. de Castelo Branco'),
           'Arrecadação Possível' = c('R$ 6.794.927', 'R$ 7.036.259',
-          'R$ 3.891.757' , 'R$ 5.119.140'), check.names = FALSE)|>knitr::kable()
-        
+          'R$ 3.891.757' , 'R$ 5.119.140'), check.names = FALSE)|>knitr::kable()     
 ```
 
 

@@ -500,6 +500,124 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 \hypertarget{alguns-testes}{%
 \subsubsection{Alguns testes}\label{alguns-testes}}
 
+\hypertarget{teste-de-corrridas}{%
+\paragraph{Teste de Corrridas}\label{teste-de-corrridas}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Alameda Parnaíba}
+\end{itemize}
+
+\begin{verbatim}
+## 
+##  Runs Test for Randomness
+## 
+## data:  Alameda$Excesso
+## z = -2.8499, runs = 23806, m = 26564, n = 22083, p-value = 0.004373
+## alternative hypothesis: true number of runs is not equal the expected number
+## sample estimates:
+## median(x) 
+##         4
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Av. Raul Lopes}
+\end{itemize}
+
+\begin{verbatim}
+## 
+##  Runs Test for Randomness
+## 
+## data:  Shopping$Excesso
+## z = -2.6169, runs = 24539, m = 30826, n = 20779, p-value = 0.008872
+## alternative hypothesis: true number of runs is not equal the expected number
+## sample estimates:
+## median(x) 
+##         4
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Av. Maranhão}
+\end{itemize}
+
+\begin{verbatim}
+## 
+##  Runs Test for Randomness
+## 
+## data:  Maranhao$Excesso
+## z = -3.1474, runs = 13355, m = 14191, n = 13082, p-value = 0.001647
+## alternative hypothesis: true number of runs is not equal the expected number
+## sample estimates:
+## median(x) 
+##         4
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Av. B. de Castelo Branco}
+\end{itemize}
+
+\begin{verbatim}
+## 
+##  Runs Test for Randomness
+## 
+## data:  Barao$Excesso
+## z = -2.1968, runs = 15009, m = 17554, n = 13400, p-value = 0.02803
+## alternative hypothesis: true number of runs is not equal the expected number
+## sample estimates:
+## median(x) 
+##         4
+\end{verbatim}
+
+\hypertarget{teste-de-kruskal-white}{%
+\paragraph{Teste de Kruskal White}\label{teste-de-kruskal-white}}
+
+\begin{verbatim}
+## # A tibble: 1 x 4
+##   statistic  p.value parameter method                      
+##       <dbl>    <dbl>     <int> <chr>                       
+## 1      435. 5.45e-94         3 Kruskal-Wallis rank sum test
+\end{verbatim}
+
+\hypertarget{puxf3s-teste}{%
+\paragraph{Pós-Teste}\label{puxf3s-teste}}
+
+\begin{longtable}[]{@{}lllrrrrrl@{}}
+\toprule
+.y. & group1 & group2 & n1 & n2 & statistic & p & p.adj &
+p.adj.signif \\
+\midrule
+\endhead
+excessos & 1 & 2 & 48647 & 51605 & -13.916882 & 0.0000000 & 0 & **** \\
+excessos & 1 & 3 & 48647 & 27273 & 7.843274 & 0.0000000 & 0 & **** \\
+excessos & 1 & 4 & 48647 & 30954 & -0.867789 & 0.3855098 & 1 & ns \\
+excessos & 2 & 3 & 51605 & 27273 & 19.672889 & 0.0000000 & 0 & **** \\
+excessos & 2 & 4 & 51605 & 30954 & 11.355477 & 0.0000000 & 0 & **** \\
+excessos & 3 & 4 & 27273 & 30954 & -7.903749 & 0.0000000 & 0 & **** \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Gráfico comparativo}
+\end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-17-1} 
+
+}
+
+\caption{Boxplot comparativo das distribuições dos excessos}\label{fig:unnamed-chunk-17}
+\end{figure}
+
 \hypertarget{arrecadauxe7uxe3o-possuxedvel}{%
 \subsubsection{Arrecadação
 possível}\label{arrecadauxe7uxe3o-possuxedvel}}
@@ -756,7 +874,7 @@ Extremos}\label{modelos-dinuxe2micos-para-valores-extremos}}
 
 }
 
-\caption{Alameda Parnaíba - Função fggpd}\label{fig:unnamed-chunk-12}
+\caption{Alameda Parnaíba - Função fggpd}\label{fig:unnamed-chunk-19}
 \end{figure}
 
 \begin{figure}
@@ -765,7 +883,7 @@ Extremos}\label{modelos-dinuxe2micos-para-valores-extremos}}
 
 }
 
-\caption{Alameda Parnaíba - Função fmgpd}\label{fig:unnamed-chunk-13}
+\caption{Alameda Parnaíba - Função fmgpd}\label{fig:unnamed-chunk-20}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -787,7 +905,7 @@ Alameda com fmgpd & 215577.4 & 215641.7 \\
 
 }
 
-\caption{Av. Maranhão - Função fggpd}\label{fig:unnamed-chunk-15}
+\caption{Av. Maranhão - Função fggpd}\label{fig:unnamed-chunk-22}
 \end{figure}
 \begin{figure}
 
@@ -795,7 +913,7 @@ Alameda com fmgpd & 215577.4 & 215641.7 \\
 
 }
 
-\caption{Av. Maranhão - Função fmgpd}\label{fig:unnamed-chunk-16}
+\caption{Av. Maranhão - Função fmgpd}\label{fig:unnamed-chunk-23}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -817,7 +935,7 @@ Av. Maranhão com fmgpd & 485451.3 & 485518.7 \\
 
 }
 
-\caption{Av. Raul Lopes - Função fggpd}\label{fig:unnamed-chunk-18}
+\caption{Av. Raul Lopes - Função fggpd}\label{fig:unnamed-chunk-25}
 \end{figure}
 
 \begin{figure}
@@ -826,7 +944,7 @@ Av. Maranhão com fmgpd & 485451.3 & 485518.7 \\
 
 }
 
-\caption{Av. Raul Lopes - Função fmgpd}\label{fig:unnamed-chunk-19}
+\caption{Av. Raul Lopes - Função fmgpd}\label{fig:unnamed-chunk-26}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -848,7 +966,7 @@ Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
 
 }
 
-\caption{Av. dos Ipês - Função fggpd}\label{fig:unnamed-chunk-21}
+\caption{Av. dos Ipês - Função fggpd}\label{fig:unnamed-chunk-28}
 \end{figure}
 
 \begin{figure}
@@ -857,7 +975,7 @@ Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
 
 }
 
-\caption{Av. dos Ipês - Função fmgpd}\label{fig:unnamed-chunk-22}
+\caption{Av. dos Ipês - Função fmgpd}\label{fig:unnamed-chunk-29}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -880,7 +998,7 @@ Neto}\label{av.-av.-jose-francisco-de-almeida-neto}}
 
 }
 
-\caption{Av. Jose - Função fggpd}\label{fig:unnamed-chunk-24}
+\caption{Av. Jose - Função fggpd}\label{fig:unnamed-chunk-31}
 \end{figure}
 
 \begin{figure}
@@ -889,7 +1007,7 @@ Neto}\label{av.-av.-jose-francisco-de-almeida-neto}}
 
 }
 
-\caption{Av. Jose - Função fmgpd}\label{fig:unnamed-chunk-25}
+\caption{Av. Jose - Função fmgpd}\label{fig:unnamed-chunk-32}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -912,7 +1030,7 @@ Branco}\label{av.-baruxe3o-de-castelo-branco}}
 
 }
 
-\caption{Av. Barão - Função fggpd}\label{fig:unnamed-chunk-27}
+\caption{Av. Barão - Função fggpd}\label{fig:unnamed-chunk-34}
 \end{figure}
 \begin{figure}
 
@@ -920,7 +1038,7 @@ Branco}\label{av.-baruxe3o-de-castelo-branco}}
 
 }
 
-\caption{Av. Barão - Função fmgpd}\label{fig:unnamed-chunk-28}
+\caption{Av. Barão - Função fmgpd}\label{fig:unnamed-chunk-35}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
