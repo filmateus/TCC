@@ -362,7 +362,7 @@ data.frame(Endereço = c('Alameda Parnaiba', 'Av. Raul Lopes',
 ```{r fig.cap= "Distribuição de excesso na Alameda Parnaíba"}
 ggplot(Alameda)+
 aes(Excesso)+
-geom_histogram(binwidth=1, fill = '#eed600', bins = 50)+
+geom_histogram(binwidth=1, colour="black", fill = '#eed600', bins = 50)+
 labs(y = 'Quantidade')+
 theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
@@ -376,7 +376,7 @@ theme_minimal()
 ```{r fig.cap= "Distribuição de excesso na Av. Raul Lopes", fig.}
 ggplot(Shopping)+
 aes(Excesso)+
-geom_histogram(binwidth=1, fill = '#0038ee', bins = 50)+
+geom_histogram(binwidth=1, colour = "black", fill = '#0038ee', bins = 50)+
 labs(y = 'Quantidade')+
 theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
@@ -389,7 +389,7 @@ theme_minimal()
 ```{r fig.cap= "Distribuição de excesso na Av. Maranhão"}
 ggplot(Maranhao)+
 aes(Excesso)+
-geom_histogram(binwidth=1, fill = '#00ee28', bins = 50)+
+geom_histogram(binwidth=1, colour="black", fill = '#00ee28', bins = 50)+
 labs(y = 'Quantidade')+
 theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
@@ -402,7 +402,7 @@ theme_minimal()
 ```{r fig.cap= "Distribuição de excesso na Av. B. Castelo Branco"}
 ggplot(Barao)+
 aes(Excesso)+
-geom_histogram(binwidth=1, fill = '#ee00ab')+
+geom_histogram(binwidth=1, colour="black", fill = '#ee00ab')+
 labs(y = 'Quantidade')+
 theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
@@ -482,9 +482,9 @@ teste_dunn|> knitr::kable()
 ggplot(df)+
 aes(x = as.factor(origem), y = excessos, fill = origem)+
 geom_boxplot()+
-scale_fill_manual(breaks = origem, values = c('#eed600','#0038ee', '#00ee28', '#ee00ab'))+
 labs(x = 'Endereços', y = 'Excessos')+
-theme_minimal()
+theme_minimal()+
+scale_fill_manual(values = c('#eed600','#0038ee', '#00ee28', '#ee00ab'))
 ```
 \newpage
 
