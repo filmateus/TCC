@@ -368,6 +368,7 @@ theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
         axis.title.x = element_text(size = 15, family = "Nunito",
                                     margin = margin(t = 8)))+
+geom_vline(xintercept = c(12, 30), linetype="dotted",  color = "#000000", size=1)+
 theme_minimal()
 
 ```
@@ -382,6 +383,7 @@ theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
         axis.title.x = element_text(size = 15, family = "Nunito",
                                     margin = margin(t = 8)))+
+geom_vline(xintercept = c(12, 30), linetype="dotted",  color = "#000000", size=1)+
 theme_minimal()
 ```
 
@@ -395,6 +397,7 @@ theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
         axis.title.x = element_text(size = 15, family = "Nunito",
                                     margin = margin(t = 8)))+
+geom_vline(xintercept = c(12, 30), linetype="dotted",  color = "#000000", size=1)+
 
 theme_minimal()
 ```
@@ -408,6 +411,7 @@ theme(axis.title.y = element_text(size = 15, family = "Nunito",
                                     margin = margin(r = 7)),
         axis.title.x = element_text(size = 15, family = "Nunito",
                                     margin = margin(t = 8)))+
+geom_vline(xintercept = c(8, 20), linetype="dotted",  color = "#000000", size=1)+
 theme_minimal()
 ```
 
