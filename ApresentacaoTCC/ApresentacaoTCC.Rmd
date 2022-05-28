@@ -16,6 +16,7 @@ output:
       highlightLines: true
       ratio: 16:9
       countIncrementalSlides: true
+knit: pagedown::chrome_print
 ---
 
 
@@ -62,4 +63,3 @@ knitr::include_graphics('https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.
 ```
 
 
-- Só Jesus Salva
