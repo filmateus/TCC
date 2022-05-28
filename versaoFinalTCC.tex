@@ -5,9 +5,6 @@
 \documentclass[
   11pt,
 ]{article}
-\author{}
-\date{\vspace{-2.5em}}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -90,6 +87,9 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+
+\author{}
+\date{\vspace{-2.5em}}
 
 \begin{document}
 
@@ -409,12 +409,12 @@ período analisando e a divisão percentual por tipo de infração
 apresentada anteriomente, média, grave e gravissima.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.23}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.05}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.11}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.25}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.19}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2294}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0459}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1101}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1743}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2477}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1927}}@{}}
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Endereço
@@ -448,9 +448,27 @@ tabela com as informações descritivas dos radares. Num segundo momento,
 construímos algumas imagens com \texttt{ggplot} com as distribuições dos
 excessos dos radares.
 
-\begin{longtable}[]{@{}lrrrrr@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.3731}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0896}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2090}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1194}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1045}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1045}}@{}}
 \toprule
-Endereço & Média & Desvio Padrão & Mediana & Mínimo & Máximo \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Endereço
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Média
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Desvio Padrão
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Mediana
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Mínimo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Máximo
+\end{minipage} \\
 \midrule
 \endhead
 Alameda Parnaiba & 5.61 & 5.39 & 4 & 1 & 67 \\
@@ -501,7 +519,7 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 \newpage
 
 \hypertarget{alguns-testes}{%
-\subsubsection{Alguns testes}\label{alguns-testes}}
+\subsection{Alguns testes}\label{alguns-testes}}
 
 \hspace*{1cm} Através das dos gráficos da distribuição dos excessos de
 velocidade, podemos afirmar que não ocorrem distribuições do tipo
@@ -529,9 +547,7 @@ sendo este o valor utilizado para determinar a aleatoriedade ou não do
 processo.\\
 \hspace*{1cm} As respostas possíveis do teste aplicado são,
 
-\[H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória\]
-
-\[H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória\],
+\[H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória \\ H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória\]
 
 \hspace*{1cm} Para a realização do teste, utlizando a função
 \texttt{DescTools::RunsTest} no \texttt{R} e os resultados são
@@ -614,7 +630,7 @@ dos radares não é aleatório para todos os radares. Dessa forma, podemos
 contruir uma análise que possa descrever o funcionamento dos radares.
 
 \hypertarget{teste-de-kruskal-white}{%
-\paragraph{Teste de Kruskal White}\label{teste-de-kruskal-white}}
+\subsubsection{Teste de Kruskal White}\label{teste-de-kruskal-white}}
 
 \hspace*{1cm} Outro teste que podemos realizar é o de Kruskal White, com
 ele iremos analisar a distribuição dos quatro radares buscando definir
@@ -634,14 +650,40 @@ distribuições entre os radares. Assim, o próximo o passo é realizar o
 pós teste para identificar onde estão as diferenças.
 
 \hypertarget{puxf3s-teste}{%
-\paragraph{Pós-Teste}\label{puxf3s-teste}}
+\subsubsection{Pós-Teste}\label{puxf3s-teste}}
 
 \hspace*{1cm} Utilizamos os teste de Dunn
 
-\begin{longtable}[]{@{}lllrrrrrl@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1200}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.0933}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.0933}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.0800}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.0800}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1467}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.0800}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1733}}@{}}
 \toprule
-.y. & group1 & group2 & n1 & n2 & statistic & p & p.adj &
-p.adj.signif \\
+\begin{minipage}[b]{\linewidth}\raggedright
+.y.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+group1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+group2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+statistic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p.adj
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+p.adj.signif
+\end{minipage} \\
 \midrule
 \endhead
 excessos & 1 & 2 & 48647 & 51605 & -13.916882 & 0.0000000 & 0 & **** \\

@@ -417,7 +417,7 @@ theme_minimal()
 
 \newpage
 
-### Alguns testes
+## Alguns testes
 
 \tab Através das dos gráficos da distribuição dos excessos de velocidade, podemos  afirmar que não ocorrem distribuições do tipo normal. Nota-se que quanto maior for a velocidade de excesso, menor é sua probabilidade de ocorrer, sendo a de 1km/h a mais frequente.
 
@@ -430,9 +430,8 @@ theme_minimal()
 \tab O `teste de corridas` faz uma comparação do valor medido numa posição no vetor em análise, comparando com a medição anterior analisando se o valor aumentou ou diminuiu e, a partir da sequencia de aumentos ou diminuições, será obtido o número de corridas, sendo este o valor utilizado para determinar a aleatoriedade ou não do processo.  
 \tab As respostas possíveis do teste aplicado são,    
 
-$$H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória$$
 
-$$H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória$$,  
+$$H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória \\ H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória$$
 
 \tab Para a realização do teste, utlizando a função `DescTools::RunsTest` no `R` e os resultados são apresentados a seguir:
 
@@ -442,9 +441,6 @@ $$H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória$$,
 ```{r}
 DescTools::RunsTest(Alameda$Excesso, alternative = c("two.sided"))
 ```
-
-
-
 
 - **Av. Raul Lopes**
 
@@ -465,9 +461,12 @@ DescTools::RunsTest(Barao$Excesso, alternative = c("two.sided"))
 ```
 \tab Com os testes realizados, podemos afirmar que o registro dos radares não é aleatório para todos os radares. Dessa forma, podemos contruir uma análise que possa descrever o funcionamento dos radares. 
 
-#### Teste de Kruskal White   
+### Teste de Kruskal White   
+
           
-\tab Outro teste que podemos realizar é o de Kruskal White, com ele iremos analisar a distribuição dos quatro radares buscando definir se o comportamento é parecido ou não. Se o resultado indicar que existe diferença, utilizaremos um pós-teste (Teste de Dunn) para identificar entre quais ocorrem a diferença.
+\tab Outro teste que podemos realizar é o de Kruskal White, com ele iremos analisar a distribuição dos quatro radares buscando definir se o comportamento é parecido ou não. Dessa forma, avalia-se de $H_{0}$ que determina o comportamento semelhante para todos as distribuições em análise ou a $H_{1}$, que determina que ao menos dois objetos de análise possui diferenaça.    
+
+\tab Se o resultado indicar que existe diferença, utilizaremos um pós-teste (Teste de Dunn) para identificar entre quais ocorrem a diferença.
 
 
 ```{r}
@@ -482,7 +481,7 @@ broom::tidy(kruskal.test(excessos ~ origem))
 ```
 \tab O resultado do teste indica que existe diferença entres as distribuições entre os radares. Assim, o próximo o passo é realizar o pós teste para identificar onde estão as diferenças. 
 
-#### Pós-Teste
+### Pós-Teste
 
 \tab Utilizamos os teste de Dunn
 
