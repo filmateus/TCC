@@ -267,8 +267,8 @@ preciso que a via esteja sinalizada informando a velocidade máxima.
 
 \hspace*{1cm} Um ponto importante sobre as infrações de velocidade é que
 existe uma margem de erro para medição da velocidade registrada. Para
-fim de registro de infração, não se registra a velocidade obtida por
-instrumentos de medição, mas subtrai-se um valor na velocidade medida
+fim de registro de infração, não se utiliza a velocidade obtida pelo
+instrumento de medição, mas subtrai-se um valor na velocidade medida
 (para vias de velocidade máxima até 100km/h, o valor é 7), o que passar
 deste valor acima da velocidade permitida, será considerado para
 infração.
@@ -276,12 +276,13 @@ infração.
 \hspace*{1cm} Por exemplo, para vias de com velocidade máxima de 60
 km/h, as infrações serão registradas somente quando o veículo passar
 pelo ponto de medição quando a velocidade calculada for de 68 km/h,
-registrando um excesso de 1km/h. O resultado dessa distinção é o uso de
-dois termos: Velocidade medida, que consiste na velocidade registrada e
-Velocidade Considerada, que é a velocidade medida menos o fator de
-correção. Na tabela abaixo, temos a relação entre velocidade medida e
-velocidade considerada. A infração é feita quando a considerada é maior
-que permitida na via.
+registrando um excesso de 1km/h, mas para uma velocidade registrada de
+67 km/h, o valor considerado é de 60km/h. O resultado dessa distinção é
+o uso de dois termos: Velocidade medida, que consiste na velocidade
+registrada e Velocidade Considerada, que é a velocidade medida menos o
+fator de correção. Na tabela abaixo, temos a relação entre velocidade
+medida e velocidade considerada. A infração é feita quando a considerada
+é maior que permitida na via.
 
 \begin{figure}[H]
 
@@ -372,8 +373,8 @@ distribuição dos excessos.
 \hspace*{1cm} É importante destacar que não iremos realizar uma
 distinção do sentido que o veículo está indo, para análises futuras,
 pode-se aprofundar nesta análise. Destaco, também, que utilizaremos
-todas os registros realizados, independente se auto não foi expedido por
-motivos técnicos ou administrativos.
+todas os registros realizados, independente se o auto não foi expedido
+por motivos técnicos ou administrativos.
 
 \hypertarget{detalhando-os-dados}{%
 \subsubsection{Detalhando os dados}\label{detalhando-os-dados}}
@@ -459,6 +460,8 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 \bottomrule
 \end{longtable}
 
+\hspace*{1cm}
+
 \begin{figure}
 
 {\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-8-1} 
@@ -500,8 +503,39 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 \hypertarget{alguns-testes}{%
 \subsubsection{Alguns testes}\label{alguns-testes}}
 
+\hspace*{1cm} Através das dos gráficos da distribuição dos excessos de
+velocidade, podemos afirmar que não ocorrem distribuições do tipo
+normal. Nota-se que quanto maior for a velocidade de excesso, menor é
+sua probabilidade de ocorrer, sendo a de 1km/h a mais frequente.
+
+\hspace*{1cm} Iremos realizar alguns testes que buscam identificar se a
+ocorrência de multas dos excessos ocorre de uma forma aleatória ou não.
+Para isso, utilzaremos o teste de corridas, que se baseia no aumento ou
+diminuição da medição comparada a anterior.
+
 \hypertarget{teste-de-corrridas}{%
-\paragraph{Teste de Corrridas}\label{teste-de-corrridas}}
+\subsubsection{Teste de Corrridas}\label{teste-de-corrridas}}
+
+\hspace*{1cm} O primeiro teste que iremos realizar tem como objetivo
+analisar se a distribuição em análise possui um comportamento aleatório
+ou não. De acordo com a resposta obtida por radar, podemos ter uma noção
+do funcionamento dos radares na registro do excessos.
+
+\hspace*{1cm} O \texttt{teste\ de\ corridas} faz uma comparação do valor
+medido numa posição no vetor em análise, comparando com a medição
+anterior analisando se o valor aumentou ou diminuiu e, a partir da
+sequencia de aumentos ou diminuições, será obtido o número de corridas,
+sendo este o valor utilizado para determinar a aleatoriedade ou não do
+processo.\\
+\hspace*{1cm} As respostas possíveis do teste aplicado são,
+
+\[H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória\]
+
+\[H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória\],
+
+\hspace*{1cm} Para a realização do teste, utlizando a função
+\texttt{DescTools::RunsTest} no \texttt{R} e os resultados são
+apresentados a seguir:
 
 \begin{itemize}
 \tightlist
@@ -575,8 +609,18 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 ##         4
 \end{verbatim}
 
+\hspace*{1cm} Com os testes realizados, podemos afirmar que o registro
+dos radares não é aleatório para todos os radares. Dessa forma, podemos
+contruir uma análise que possa descrever o funcionamento dos radares.
+
 \hypertarget{teste-de-kruskal-white}{%
 \paragraph{Teste de Kruskal White}\label{teste-de-kruskal-white}}
+
+\hspace*{1cm} Outro teste que podemos realizar é o de Kruskal White, com
+ele iremos analisar a distribuição dos quatro radares buscando definir
+se o comportamento é parecido ou não. Se o resultado indicar que existe
+diferença, utilizaremos um pós-teste (Teste de Dunn) para identificar
+entre quais ocorrem a diferença.
 
 \begin{verbatim}
 ## # A tibble: 1 x 4
@@ -585,8 +629,14 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 ## 1      435. 5.45e-94         3 Kruskal-Wallis rank sum test
 \end{verbatim}
 
+\hspace*{1cm} O resultado do teste indica que existe diferença entres as
+distribuições entre os radares. Assim, o próximo o passo é realizar o
+pós teste para identificar onde estão as diferenças.
+
 \hypertarget{puxf3s-teste}{%
 \paragraph{Pós-Teste}\label{puxf3s-teste}}
+
+\hspace*{1cm} Utilizamos os teste de Dunn
 
 \begin{longtable}[]{@{}lllrrrrrl@{}}
 \toprule
@@ -603,6 +653,10 @@ excessos & 3 & 4 & 27273 & 30954 & -7.903749 & 0.0000000 & 0 & **** \\
 \bottomrule
 \end{longtable}
 
+\hspace*{1cm} O pós teste indica que somente Alameda Parnaíba e Av.
+Maranhão possuem um comportamento de distribuição parecidos. Em seguida,
+fazemos um gráfico Boxplot comparado as distribuições dos excessos.
+
 \begin{itemize}
 \tightlist
 \item
@@ -617,6 +671,7 @@ excessos & 3 & 4 & 27273 & 30954 & -7.903749 & 0.0000000 & 0 & **** \\
 
 \caption{Boxplot comparativo das distribuições dos excessos}\label{fig:unnamed-chunk-17}
 \end{figure}
+\newpage
 
 \hypertarget{arrecadauxe7uxe3o-possuxedvel}{%
 \subsubsection{Arrecadação
@@ -1061,9 +1116,5 @@ Av. Barão com fmgpd & 153049.2 & 152921.9 \\
 \hypertarget{referuxeancias-bibliogruxe1ficas}{%
 \section{Referências
 Bibliográficas}\label{referuxeancias-bibliogruxe1ficas}}
-
-@book\{AREL:03, author=\{Nascimento, F. F.\}, title=\{Modelos
-probabilísticos para dados extremos: teoria e aplicações\},
-publisher=\{EDUFPI\}, year=\{2012.\} \}
 
 \end{document}

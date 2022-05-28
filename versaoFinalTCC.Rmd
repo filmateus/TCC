@@ -177,9 +177,9 @@ Obrigado a todos, de coração.
 
 \tab Os dados que iremos trabalhar neste projeto têm como origem as medições de excesso de velocidade registradas por radares no munícipio de Teresina. Baseado no Código de Trânsito Brasileiros, ruas, avenidas e estradas no Brasil, possuem limites de velocidade especificados, entretanto, para a realização do registro infração, é preciso que a via esteja sinalizada informando a velocidade máxima.  
 
-\tab Um ponto importante sobre as infrações de velocidade é que existe uma margem de erro para medição da velocidade registrada. Para fim de registro de infração, não se registra a velocidade obtida por instrumentos de medição, mas subtrai-se um valor na velocidade medida (para vias de velocidade máxima até 100km/h, o valor é 7), o que passar deste valor acima da velocidade permitida, será considerado para infração.
+\tab Um ponto importante sobre as infrações de velocidade é que existe uma margem de erro para medição da velocidade registrada. Para fim de registro de infração, não se utiliza a velocidade obtida pelo instrumento de medição, mas subtrai-se um valor na velocidade medida (para vias de velocidade máxima até 100km/h, o valor é 7), o que passar deste valor acima da velocidade permitida, será considerado para infração.
 
-\tab Por exemplo, para vias de com velocidade máxima de 60 km/h, as infrações serão registradas somente quando o veículo passar pelo ponto de medição quando a velocidade calculada for de 68 km/h, registrando um excesso de 1km/h. O resultado dessa distinção é o uso de dois termos: Velocidade medida, que consiste na velocidade registrada e Velocidade Considerada, que é a velocidade medida menos o fator de correção. Na tabela abaixo, temos a relação entre velocidade medida e velocidade considerada. A infração é feita quando a considerada é maior que permitida na via. 
+\tab Por exemplo, para vias de com velocidade máxima de 60 km/h, as infrações serão registradas somente quando o veículo passar pelo ponto de medição quando a velocidade calculada for de 68 km/h, registrando um excesso de 1km/h, mas para uma velocidade registrada de 67 km/h, o valor considerado é de 60km/h. O resultado dessa distinção é o uso de dois termos: Velocidade medida, que consiste na velocidade registrada e Velocidade Considerada, que é a velocidade medida menos o fator de correção. Na tabela abaixo, temos a relação entre velocidade medida e velocidade considerada. A infração é feita quando a considerada é maior que permitida na via. 
 
 
 ```{r  fig.cap= "Tabela com relação Velocidade Medida (VM) e Velocidade Considerada (VC)", out.height= '93%', fig.pos = "H"}
@@ -423,14 +423,29 @@ theme_minimal()
 
 \tab Iremos realizar alguns testes que buscam identificar se a ocorrência de multas dos excessos ocorre de uma forma aleatória ou não. Para isso, utilzaremos o teste de corridas, que se baseia no aumento ou diminuição da medição comparada a anterior.
 
-#### Teste de Corrridas 
+### Teste de Corrridas
+
+\tab O primeiro teste que iremos realizar tem como objetivo analisar se a distribuição em análise possui um comportamento aleatório ou não. De acordo com a resposta obtida por radar, podemos ter uma noção do funcionamento dos radares na registro do excessos.    
+
+\tab O `teste de corridas` faz uma comparação do valor medido numa posição no vetor em análise, comparando com a medição anterior analisando se o valor aumentou ou diminuiu e, a partir da sequencia de aumentos ou diminuições, será obtido o número de corridas, sendo este o valor utilizado para determinar a aleatoriedade ou não do processo.  
+\tab As respostas possíveis do teste aplicado são,    
+
+$$H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória$$
+
+$$H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória$$,  
+
+\tab Para a realização do teste, utlizando a função `DescTools::RunsTest` no `R` e os resultados são apresentados a seguir:
 
 - **Alameda Parnaíba**
 
+
 ```{r}
 DescTools::RunsTest(Alameda$Excesso, alternative = c("two.sided"))
-
 ```
+
+
+
+
 - **Av. Raul Lopes**
 
 ```{r}
@@ -725,13 +740,7 @@ data.frame(Ajuste = c('Av. Barão com fggpd', 'Av. Barão com fmgpd'),
             BIC = c(160813.9, 152921.9))|>knitr::kable()
 ```
 
-
-
 \newpage
-
-
-
-
 
 
 # Conclusão
@@ -740,9 +749,3 @@ data.frame(Ajuste = c('Av. Barão com fggpd', 'Av. Barão com fmgpd'),
 
 # Referências Bibliográficas
 
-@book{AREL:03,
-	author={Nascimento, F. F.},
-	title={Modelos probabilísticos para dados extremos: teoria e aplicações},
-	publisher={EDUFPI},
-	year={2012.}
-}
