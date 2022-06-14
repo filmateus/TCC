@@ -169,11 +169,11 @@ Obrigado a todos, de coração.
 
 \tab Eventos extremos são situações ou comportamentos que não ocorrem com tanta frequência. No desenho da distribuição normal, são aqueles que ficam próximos as caudas, distantes do pico onde está localizado a média, a situação de normalidade. Entretanto, é possível que estes eventos ocorram, na verdade, é esperado que eles ocorram. Diante dessa situação, é importante que possamos prever seus acontecimentos, pois quando ocorrem, as consequências podem ser trágicas.
 
-\tab Exemplos que demonstram com facilidade os efeitos de eventos extremos estão na área da climatologia. Para os portais de notícias, o aquecimento global tem trazido mais manchetes de catástrofes climáticas que causaram prejuízos substanciais e, infelizmente, mortes. Uma busca rápida em sites de pesquisa nos direciona facilmente para estes eventos.  	
+\tab Exemplos que demonstram com facilidade os efeitos de eventos extremos estão na área da climatologia. Para os portais de notícias, o aquecimento global tem trazido mais manchetes de catástrofes climáticas que causaram prejuízos substanciais e, infelizmente, mortes. Além da área de climatologia, podemos encontrar estudos que envolvem valores extremos em áreas de pesquisa como engenharia de materiais, controle de trágfego e economia. 
 
 \tab O surgimento da teoria de valores extremos surge da necessidade de pesquisas sobre eventos extremos de forma mais eficiente. As distribuições mais comuns trabalham melhor na análise dos eventos centrais, mais frequentes. Dessa forma, os acontecimentos mais raros possuem ficam mais difíceis de prever.
 
-## Apresentando os dados
+# Apresentando os dados
 
 \tab Os dados que iremos trabalhar neste projeto têm como origem as medições de excesso de velocidade registradas por radares no munícipio de Teresina. Baseado no Código de Trânsito Brasileiros, ruas, avenidas e estradas no Brasil, possuem limites de velocidade especificados, entretanto, para a realização do registro infração, é preciso que a via esteja sinalizada informando a velocidade máxima.  
 
@@ -720,6 +720,7 @@ knitr::include_graphics('Jose2.png')
 
 ```{r}
 data.frame(Ajuste = c('Av. Av. Jose com fggpd', 'Av. Jose com fmgpd'),
+
             DIC = c(313760.1, 313806.8),
             BIC = c(303626.5, 303289.6))|>knitr::kable()
 ```
@@ -748,3 +749,14 @@ data.frame(Ajuste = c('Av. Barão com fggpd', 'Av. Barão com fmgpd'),
 
 # Referências Bibliográficas
 
+(book?){Nascimento, author = {NASCIMENTO, F, F.}, title = {MODELOS PROBABILíSTICOS PARA
+DADOS EXTREMOS:TEORIA E APLICAÇÕES}, adress = {Teresina, PI}, year = {2012}}
+
+(Dissertação){Pinheiro, author = {PINHEIRO, E, C.}, title = {Contribuições em inferência e modelagem de valores extremos}, address = {São Paulo, SP}, year = {2014}}
+
+
+(TCC?){Lima, author = {StÊnio Rodrigues Lima}, title = {Modelos Dinâmicos para valores extremos de
+dados ambientais do Piauí usando a Distribuiç~ao de Pareto Generalizada (GPD)}, adress = {Teresina, PI},year = {2014}}
+
+(TCC?){Braga, author = {de Oliveira Matos Braga, Douglas}, title = {Aplicação da Teoria de Valores
+Extremos para índice pluviométrico da cidade de Juiz de Fora - MG}, adress = {Juiz de Fora, MG}, year ={2015}}
