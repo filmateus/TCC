@@ -81,6 +81,7 @@
 \usepackage[nottoc, numbib]{tocbibind}
 \usepackage[T1]{fontenc}
 \usepackage{palatino}
+\usepackage[brazilian]{babel}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 \newunicodechar{≤}{\ensuremath{\leq}}
 \newunicodechar{≥}{\ensuremath{\geq}}
@@ -218,6 +219,11 @@ energia, se esforçava para tirar as melhores notas nas disciplinas.
 Envelheceu alguns anos durante as madrugadas acordadas, mas ok. Obrigado
 a todos, de coração.
 
+\vspace{8cm}
+\begin{flushright}
+\emph{É Cristo, e somente Cristo, que torna o encarar a morte suportável. Cristo infunde aos aspectos mais dolorosos e desconcertantes do fim desta vida esperança e paz. - Nancy Guthrie}
+\end{flushright}
+
 \newpage
 
 \hypertarget{resumo}{%
@@ -246,43 +252,55 @@ trágicas.
 eventos extremos estão na área da climatologia. Para os portais de
 notícias, o aquecimento global tem trazido mais manchetes de catástrofes
 climáticas que causaram prejuízos substanciais e, infelizmente, mortes.
-Uma busca rápida em sites de pesquisa nos direciona facilmente para
-estes eventos.
+Além da área citada, podemos encontrar estudos que envolvem valores
+extremos em áreas de pesquisa como engenharia de materiais, controle de
+tráfego e economia.
 
 \hspace*{1cm} O surgimento da teoria de valores extremos surge da
 necessidade de pesquisas sobre eventos extremos de forma mais eficiente.
 As distribuições mais comuns trabalham melhor na análise dos eventos
 centrais, mais frequentes. Dessa forma, os acontecimentos mais raros
-possuem ficam mais difíceis de prever.
+possuem ficam mais difíceis de prever. Em (\textbf{PINHEIRO?}), podemos
+encontrar um resumo da teoria de valores extremos
+
+\textbf{O objetivo da teoria estatística do valor extremo é analisar
+valores extremos observados e prever possíveis valores ainda mais
+extremos, é fazer inferência para eventos cujas probabilidades são
+menroes do que qualquer evento observado anteriormente. Fenômenos em que
+a probablidade de um valor extremo é relativamente alta são
+caracterizados por distribuições com caudas pesadas}
+
+\newpage
 
 \hypertarget{apresentando-os-dados}{%
-\subsection{Apresentando os dados}\label{apresentando-os-dados}}
+\section{Apresentando os dados}\label{apresentando-os-dados}}
 
 \hspace*{1cm} Os dados que iremos trabalhar neste projeto têm como
 origem as medições de excesso de velocidade registradas por radares no
 munícipio de Teresina. Baseado no Código de Trânsito Brasileiros, ruas,
 avenidas e estradas no Brasil, possuem limites de velocidade
-especificados, entretanto, para a realização do registro infração, é
+especificados, no entanto, para a realização do registro infração, é
 preciso que a via esteja sinalizada informando a velocidade máxima.
 
-\hspace*{1cm} Um ponto importante sobre as infrações de velocidade é que
-existe uma margem de erro para medição da velocidade registrada. Para
-fim de registro de infração, não se utiliza a velocidade obtida pelo
-instrumento de medição, mas subtrai-se um valor na velocidade medida
-(para vias de velocidade máxima até 100km/h, o valor é 7), o que passar
-deste valor acima da velocidade permitida, será considerado para
-infração.
+\hspace*{1cm} Um ponto importante sobre as infrações de velocidade é a
+existência de uma margem de erro para medição da velocidade registrada.
+Para fim de registro de infração, não se utiliza a velocidade obtida
+pelo instrumento de medição, mas subtrai-se um valor na velocidade
+medida (para medições até 100km/h, o valor reduzido é de 7 km/h). A
+velocidade final obtida após a subtração será a considerada para o
+registro ou não da infração.
 
-\hspace*{1cm} Por exemplo, para vias de com velocidade máxima de 60
-km/h, as infrações serão registradas somente quando o veículo passar
-pelo ponto de medição quando a velocidade calculada for de 68 km/h,
-registrando um excesso de 1km/h, mas para uma velocidade registrada de
-67 km/h, o valor considerado é de 60km/h. O resultado dessa distinção é
-o uso de dois termos: Velocidade medida, que consiste na velocidade
-registrada e Velocidade Considerada, que é a velocidade medida menos o
-fator de correção. Na tabela abaixo, temos a relação entre velocidade
-medida e velocidade considerada. A infração é feita quando a considerada
-é maior que permitida na via.
+\hspace*{1cm} Por exemplo, para vias com velocidade máxima de 60 km/h,
+as infrações serão registradas somente a velocidade calculada no ponto
+de medição for, pelo menos, de 68 km/h, registrando um excesso de 1km/h,
+mas para uma velocidade registrada de 67 km/h, o valor considerado é de
+60km/h, não caracterizando uma infração. O resultado dessa distinção é o
+uso de dois termos: \textbf{Velocidade medida}, que consiste na
+velocidade Registrada e \textbf{Velocidade Considerada}, referente a
+velocidade medida menos o fator de correção. Na \texttt{Figura\ 1}
+abaixo, temos a relação entre velocidade medida e velocidade
+considerada. A infração é feita quando a considerada é maior que
+permitida na via.
 
 \begin{figure}[H]
 
@@ -292,12 +310,6 @@ medida e velocidade considerada. A infração é feita quando a considerada
 
 \caption{Tabela com relação Velocidade Medida (VM) e Velocidade Considerada (VC)}\label{fig:unnamed-chunk-1}
 \end{figure}
-
-\hspace*{1cm} Na tabela acima, temos os valores entres as velocidades
-medidas e consideradas, note-se que na medida 107 e 108 km/h, a
-considerada se repete, neste ponto se inicia um aumento da margem de
-erro. Para este trabalho, iremos utilizar a medição calculada com a
-Velocidade considerada, pois o cálculo da infração é realizado com ela.
 
 \hspace*{1cm} Em relação as infrações, o CTB normatiza três tipos de
 infrações para o excesso de velocidade baseado no percentual registado
@@ -364,17 +376,17 @@ são eles:
   Zona Sul.
 \end{itemize}
 
-\hspace*{1cm} Estes radares são considerados famosos com velocidade
-máxima de 60 km/h, exceção do radar da Av. Barão de Castelo Branco, onde
-o excesso é de 40 km/h. Seus bancos de dados são extensos e iremos
-apresentar algumas medidas descritivas para termos uma noção melhor da
-distribuição dos excessos.
+\hspace*{1cm} Estes radares são bastante conhecidos no município de
+Teresina com velocidade máxima de 60 km/h, exceção do radar da Av. Barão
+de Castelo Branco, onde o excesso é de 40 km/h. Seus bancos de dados são
+extensos e iremos apresentar algumas medidas descritivas para termos uma
+noção melhor da distribuição dos excessos.
 
 \hspace*{1cm} É importante destacar que não iremos realizar uma
 distinção do sentido que o veículo está indo, para análises futuras,
-pode-se aprofundar nesta análise. Destaco, também, que utilizaremos
-todas os registros realizados, independente se o auto não foi expedido
-por motivos técnicos ou administrativos.
+pode-se aprofundar neste ponto. Destaco, também, que utilizaremos todas
+os registros realizados, independente se o auto não foi expedido por
+motivos técnicos ou administrativos.
 
 \hypertarget{detalhando-os-dados}{%
 \subsubsection{Detalhando os dados}\label{detalhando-os-dados}}
@@ -482,11 +494,11 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 
 \begin{figure}
 
-{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-8-1} 
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-9-1} 
 
 }
 
-\caption{Distribuição de excesso na Alameda Parnaíba}\label{fig:unnamed-chunk-8}
+\caption{Distribuição de excesso na Alameda Parnaíba}\label{fig:unnamed-chunk-9}
 \end{figure}
 
 \begin{figure}
@@ -500,20 +512,20 @@ Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
 
 \begin{figure}
 
-{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-9-1} 
-
-}
-
-\caption{Distribuição de excesso na Av. Maranhão}\label{fig:unnamed-chunk-9}
-\end{figure}
-
-\begin{figure}
-
 {\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-10-1} 
 
 }
 
-\caption{Distribuição de excesso na Av. B. Castelo Branco}\label{fig:unnamed-chunk-10}
+\caption{Distribuição de excesso na Av. Maranhão}\label{fig:unnamed-chunk-10}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-11-1} 
+
+}
+
+\caption{Distribuição de excesso na Av. B. Castelo Branco}\label{fig:unnamed-chunk-11}
 \end{figure}
 
 \newpage
@@ -547,83 +559,24 @@ sendo este o valor utilizado para determinar a aleatoriedade ou não do
 processo.\\
 \hspace*{1cm} As respostas possíveis do teste aplicado são,
 
-\[H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória \\ H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória\]
+\[H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória\]
+\[H_{1}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória\]
 
 \hspace*{1cm} Para a realização do teste, utlizando a função
-\texttt{DescTools::RunsTest} no \texttt{R} e os resultados são
+\texttt{DescTools::RunsTest()} no \texttt{R} e os resultados são
 apresentados a seguir:
 
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Alameda Parnaíba}
-\end{itemize}
-
-\begin{verbatim}
-## 
-##  Runs Test for Randomness
-## 
-## data:  Alameda$Excesso
-## z = -2.8499, runs = 23806, m = 26564, n = 22083, p-value = 0.004373
-## alternative hypothesis: true number of runs is not equal the expected number
-## sample estimates:
-## median(x) 
-##         4
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Av. Raul Lopes}
-\end{itemize}
-
-\begin{verbatim}
-## 
-##  Runs Test for Randomness
-## 
-## data:  Shopping$Excesso
-## z = -2.6169, runs = 24539, m = 30826, n = 20779, p-value = 0.008872
-## alternative hypothesis: true number of runs is not equal the expected number
-## sample estimates:
-## median(x) 
-##         4
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Av. Maranhão}
-\end{itemize}
-
-\begin{verbatim}
-## 
-##  Runs Test for Randomness
-## 
-## data:  Maranhao$Excesso
-## z = -3.1474, runs = 13355, m = 14191, n = 13082, p-value = 0.001647
-## alternative hypothesis: true number of runs is not equal the expected number
-## sample estimates:
-## median(x) 
-##         4
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Av. B. de Castelo Branco}
-\end{itemize}
-
-\begin{verbatim}
-## 
-##  Runs Test for Randomness
-## 
-## data:  Barao$Excesso
-## z = -2.1968, runs = 15009, m = 17554, n = 13400, p-value = 0.02803
-## alternative hypothesis: true number of runs is not equal the expected number
-## sample estimates:
-## median(x) 
-##         4
-\end{verbatim}
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+Endereço & p.valor \\
+\midrule
+\endhead
+Alameda Parnaíba & 0.004 \\
+Av. Raul Lopes & 0.009 \\
+Av. Maranhão & 0.002 \\
+Av. Barão de C. Branco & 0.028 \\
+\bottomrule
+\end{longtable}
 
 \hspace*{1cm} Com os testes realizados, podemos afirmar que o registro
 dos radares não é aleatório para todos os radares. Dessa forma, podemos
@@ -634,16 +587,23 @@ contruir uma análise que possa descrever o funcionamento dos radares.
 
 \hspace*{1cm} Outro teste que podemos realizar é o de Kruskal White, com
 ele iremos analisar a distribuição dos quatro radares buscando definir
-se o comportamento é parecido ou não. Se o resultado indicar que existe
-diferença, utilizaremos um pós-teste (Teste de Dunn) para identificar
-entre quais ocorrem a diferença.
+se o comportamento é parecido ou não. Dessa forma, avalia-se de
+\(H_{0}\) que determina o comportamento semelhante para todos as
+distribuições em análise ou \(H_{1}\), que determina que ao menos dois
+objetos de análise possui diferenaça.
 
-\begin{verbatim}
-## # A tibble: 1 x 4
-##   statistic  p.value parameter method                      
-##       <dbl>    <dbl>     <int> <chr>                       
-## 1      435. 5.45e-94         3 Kruskal-Wallis rank sum test
-\end{verbatim}
+\hspace*{1cm} Se o resultado indicar que existe diferença, utilizaremos
+um pós-teste (Teste de Dunn) para identificar entre quais ocorrem a
+diferença.
+
+\begin{longtable}[]{@{}r@{}}
+\toprule
+p-valor \\
+\midrule
+\endhead
+0 \\
+\bottomrule
+\end{longtable}
 
 \hspace*{1cm} O resultado do teste indica que existe diferença entres as
 distribuições entre os radares. Assim, o próximo o passo é realizar o
@@ -707,11 +667,11 @@ fazemos um gráfico Boxplot comparado as distribuições dos excessos.
 
 \begin{figure}
 
-{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-17-1} 
+{\centering \includegraphics[width=432px]{versaoFinalTCC_files/figure-latex/unnamed-chunk-15-1} 
 
 }
 
-\caption{Boxplot comparativo das distribuições dos excessos}\label{fig:unnamed-chunk-17}
+\caption{Boxplot comparativo das distribuições dos excessos}\label{fig:unnamed-chunk-15}
 \end{figure}
 \newpage
 
@@ -971,7 +931,7 @@ Extremos}\label{modelos-dinuxe2micos-para-valores-extremos}}
 
 }
 
-\caption{Alameda Parnaíba - Função fggpd}\label{fig:unnamed-chunk-19}
+\caption{Alameda Parnaíba - Função fggpd}\label{fig:unnamed-chunk-17}
 \end{figure}
 
 \begin{figure}
@@ -980,7 +940,7 @@ Extremos}\label{modelos-dinuxe2micos-para-valores-extremos}}
 
 }
 
-\caption{Alameda Parnaíba - Função fmgpd}\label{fig:unnamed-chunk-20}
+\caption{Alameda Parnaíba - Função fmgpd}\label{fig:unnamed-chunk-18}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -1002,7 +962,7 @@ Alameda com fmgpd & 215577.4 & 215641.7 \\
 
 }
 
-\caption{Av. Maranhão - Função fggpd}\label{fig:unnamed-chunk-22}
+\caption{Av. Maranhão - Função fggpd}\label{fig:unnamed-chunk-20}
 \end{figure}
 \begin{figure}
 
@@ -1010,7 +970,7 @@ Alameda com fmgpd & 215577.4 & 215641.7 \\
 
 }
 
-\caption{Av. Maranhão - Função fmgpd}\label{fig:unnamed-chunk-23}
+\caption{Av. Maranhão - Função fmgpd}\label{fig:unnamed-chunk-21}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -1032,7 +992,7 @@ Av. Maranhão com fmgpd & 485451.3 & 485518.7 \\
 
 }
 
-\caption{Av. Raul Lopes - Função fggpd}\label{fig:unnamed-chunk-25}
+\caption{Av. Raul Lopes - Função fggpd}\label{fig:unnamed-chunk-23}
 \end{figure}
 
 \begin{figure}
@@ -1041,7 +1001,7 @@ Av. Maranhão com fmgpd & 485451.3 & 485518.7 \\
 
 }
 
-\caption{Av. Raul Lopes - Função fmgpd}\label{fig:unnamed-chunk-26}
+\caption{Av. Raul Lopes - Função fmgpd}\label{fig:unnamed-chunk-24}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -1063,7 +1023,7 @@ Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
 
 }
 
-\caption{Av. dos Ipês - Função fggpd}\label{fig:unnamed-chunk-28}
+\caption{Av. dos Ipês - Função fggpd}\label{fig:unnamed-chunk-26}
 \end{figure}
 
 \begin{figure}
@@ -1072,7 +1032,7 @@ Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
 
 }
 
-\caption{Av. dos Ipês - Função fmgpd}\label{fig:unnamed-chunk-29}
+\caption{Av. dos Ipês - Função fmgpd}\label{fig:unnamed-chunk-27}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -1095,7 +1055,7 @@ Neto}\label{av.-av.-jose-francisco-de-almeida-neto}}
 
 }
 
-\caption{Av. Jose - Função fggpd}\label{fig:unnamed-chunk-31}
+\caption{Av. Jose - Função fggpd}\label{fig:unnamed-chunk-29}
 \end{figure}
 
 \begin{figure}
@@ -1104,7 +1064,7 @@ Neto}\label{av.-av.-jose-francisco-de-almeida-neto}}
 
 }
 
-\caption{Av. Jose - Função fmgpd}\label{fig:unnamed-chunk-32}
+\caption{Av. Jose - Função fmgpd}\label{fig:unnamed-chunk-30}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -1127,7 +1087,7 @@ Branco}\label{av.-baruxe3o-de-castelo-branco}}
 
 }
 
-\caption{Av. Barão - Função fggpd}\label{fig:unnamed-chunk-34}
+\caption{Av. Barão - Função fggpd}\label{fig:unnamed-chunk-32}
 \end{figure}
 \begin{figure}
 
@@ -1135,7 +1095,7 @@ Branco}\label{av.-baruxe3o-de-castelo-branco}}
 
 }
 
-\caption{Av. Barão - Função fmgpd}\label{fig:unnamed-chunk-35}
+\caption{Av. Barão - Função fmgpd}\label{fig:unnamed-chunk-33}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -1158,5 +1118,23 @@ Av. Barão com fmgpd & 153049.2 & 152921.9 \\
 \hypertarget{referuxeancias-bibliogruxe1ficas}{%
 \section{Referências
 Bibliográficas}\label{referuxeancias-bibliogruxe1ficas}}
+
+(\textbf{article?})\{(\textbf{BRAGA?}), title = \{Aplicação da Teoria de
+Valores Extremos para índice pluviométrico da cidade de Juiz de Fora -
+MG\}, author = \{BRAGA, D. O. M.,\}, adress = \{Juiz de Fora, MG\}, year
+=\{2015\} \}
+
+(\textbf{article?})\{(\textbf{LIMA?}), title = \{Modelos Dinâmicos para
+valores extremos de dados ambientais do Piauí usando a Distribuição de
+Pareto Generalizada (GPD)\} author = \{Stênio Rodrigues Lima\}, adress =
+\{Teresina, PI\}, year = \{2014\} \}
+
+(\textbf{article?})\{(\textbf{NASCIMENTO?}), title = \{MODELOS
+PROBABILíSTICOS PARA DADOS EXTREMOS:TEORIA E APLICAÇÕES\}, author =
+\{NASCIMENTO, F, F.\}, adress = \{Teresina, PI\}, year = \{2012\} \}
+
+(\textbf{article?})\{(\textbf{PINHEIRO?}), title = \{Contribuições em
+inferência e modelagem de valores extremos\}, author = \{PINHEIRO, E,
+C.\}, address = \{São Paulo, SP\}, year = \{2014\} \}
 
 \end{document}

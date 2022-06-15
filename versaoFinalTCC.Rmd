@@ -21,12 +21,12 @@ header-includes:
   - \usepackage[nottoc, numbib]{tocbibind}
   - \usepackage[T1]{fontenc}
   - \usepackage{palatino}
+  - \usepackage[brazilian]{babel}
   - \newcommand\tab[1][1cm]{\hspace*{#1}}
   - \newunicodechar{≤}{\ensuremath{\leq}}
   - \newunicodechar{≥}{\ensuremath{\geq}}
   
-bibliography: Referencias.bib
-#encoding = 'UTF-8'
+bibliography: references.bib
 ---
 
 ```{r setup, include= FALSE, cache = FALSE, warning=FALSE, message=FALSE}
@@ -178,7 +178,7 @@ Obrigado a todos, de coração.
 
 \tab Exemplos que demonstram com facilidade os efeitos de eventos extremos estão na área da climatologia. Para os portais de notícias, o aquecimento global tem trazido mais manchetes de catástrofes climáticas que causaram prejuízos substanciais e, infelizmente, mortes. Além da área citada, podemos encontrar estudos que envolvem valores extremos em áreas de pesquisa como engenharia de materiais, controle de tráfego e economia. 
 
-\tab O surgimento da teoria de valores extremos surge da necessidade de pesquisas sobre eventos extremos de forma mais eficiente. As distribuições mais comuns trabalham melhor na análise dos eventos centrais, mais frequentes. Dessa forma, os acontecimentos mais raros possuem ficam mais difíceis de prever. Em @PINHEIRO, podemos encontrar um resumo da teoria de valores extremos
+\tab O surgimento da teoria de valores extremos surge da necessidade de pesquisas sobre eventos extremos de forma mais eficiente. As distribuições mais comuns trabalham melhor na análise dos eventos centrais, mais frequentes. Dessa forma, os acontecimentos mais raros possuem ficam mais difíceis de prever. Em [@PINHEIRO], podemos encontrar um resumo da teoria de valores extremos
 
 **O objetivo da teoria estatística do valor extremo é analisar valores extremos observados e prever possíveis valores ainda mais extremos, é fazer inferência para eventos cujas probabilidades são menroes do que qualquer evento observado anteriormente. Fenômenos em que a probablidade de um valor extremo é relativamente alta são caracterizados por distribuições com caudas pesadas**
 
@@ -191,7 +191,7 @@ Obrigado a todos, de coração.
 
 \tab Um ponto importante sobre as infrações de velocidade é a existência de uma margem de erro para medição da velocidade registrada. Para fim de registro de infração, não se utiliza a velocidade obtida pelo instrumento de medição, mas subtrai-se um valor na velocidade medida (para medições até 100km/h, o valor reduzido é de 7 km/h). A velocidade final obtida após a subtração será a considerada para o registro ou não da infração.
 
-\tab Por exemplo, para vias com velocidade máxima de 60 km/h, as infrações serão registradas somente a velocidade calculada no ponto de medição for, pelo menos, de 68 km/h, registrando um excesso de 1km/h, mas para uma velocidade registrada de 67 km/h, o valor considerado é de 60km/h, não caracterizando uma infração. O resultado dessa distinção é o uso de dois termos: **Velocidade medida**, que consiste na velocidade Registrada e **Velocidade Considerada**, referente a velocidade medida menos o fator de correção. Na tabela abaixo, temos a relação entre velocidade medida e velocidade considerada. A infração é feita quando a considerada é maior que permitida na via. 
+\tab Por exemplo, para vias com velocidade máxima de 60 km/h, as infrações serão registradas somente a velocidade calculada no ponto de medição for, pelo menos, de 68 km/h, registrando um excesso de 1km/h, mas para uma velocidade registrada de 67 km/h, o valor considerado é de 60km/h, não caracterizando uma infração. O resultado dessa distinção é o uso de dois termos: **Velocidade medida**, que consiste na velocidade Registrada e **Velocidade Considerada**, referente a velocidade medida menos o fator de correção. Na `Figura 1` abaixo, temos a relação entre velocidade medida e velocidade considerada. A infração é feita quando a considerada é maior que permitida na via. 
 
 
 ```{r  fig.cap= "Tabela com relação Velocidade Medida (VM) e Velocidade Considerada (VC)", out.height= '93%', fig.pos = "H"}
@@ -199,8 +199,9 @@ knitr::include_graphics('1_MINFRA_9_002.jpg')
 #https://www.in.gov.br/en/web/dou/-/resolucao-n-798-de-2-de-setembro-de-2020-276446814
 ```
 
-
-\tab Na tabela acima, temos os valores entres as velocidades medidas e consideradas, note-se que na medida 107 e 108 km/h, a considerada se repete, neste ponto se inicia um aumento da margem de erro.  Para este trabalho, iremos utilizar a medição calculada com a velocidade considerada, pois o cálculo da infração é realizado com ela. 
+```{r include=FALSE}
+# \tab Como podemos analisar, temos os valores entres as velocidades medidas e consideradas, note-se que na medida 107 e 108 km/h, a considerada se repete, neste ponto se inicia um aumento da margem de erro.  Para este trabalho, iremos utilizar a medição calculada com a velocidade considerada, pois o cálculo da infração é realizado com ela.
+```
 
 
 \tab Em relação as infrações, o CTB normatiza três tipos de infrações para o excesso de velocidade baseado no percentual registado acima. Para medições até 20% acima da permitida, a infração é média, entre 20% e 50% é considerada grave e, superior a 50%, é gravíssima. O aumento da gravidade resulta no aumento do valor pago da multa. Nas tabelas abaixo, temos um resumo da divisão de tipificação, o intervalo de excesso e o valor pago. A primeira tabela refere-se para vias com velocidade máxima até 60 km/h e a segunda tabela considera a máxima 40km/h
@@ -217,8 +218,8 @@ data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
 ```
 
 
-
 - **Radares de 40 km/h**
+
 
 ```{r}
 data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
@@ -227,6 +228,7 @@ data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
            'Valor da Multa'= c('R$ 130,16', 'R$ 195,23', 'R$ 880,41'), 
            check.names = FALSE)|> knitr::kable()
 ```
+
 
 ### Pontos de medição de excesso de velocidade
 
@@ -242,9 +244,9 @@ data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
 - Av. Barão de Castelo Branco, próximo Igreja Católica do Cristo Rei. – Zona Sul.     
 
 
-\tab Estes radares são considerados famosos com velocidade máxima de 60 km/h, exceção do radar da Av. Barão de Castelo Branco, onde o excesso é de 40 km/h.  Seus bancos de dados são extensos e iremos apresentar algumas medidas descritivas para termos uma noção melhor da distribuição dos excessos. 
+\tab Estes radares são bastante conhecidos no município de Teresina com velocidade máxima de 60 km/h, exceção do radar da Av. Barão de Castelo Branco, onde o excesso é de 40 km/h.  Seus bancos de dados são extensos e iremos apresentar algumas medidas descritivas para termos uma noção melhor da distribuição dos excessos. 
       
-\tab É importante destacar que não iremos realizar uma distinção do sentido que o veículo está indo, para análises futuras, pode-se aprofundar nesta análise. Destaco, também, que  utilizaremos todas os registros realizados, independente se o auto não foi expedido por motivos técnicos ou administrativos.
+\tab É importante destacar que não iremos realizar uma distinção do sentido que o veículo está indo, para análises futuras, pode-se aprofundar neste ponto. Destaco, também, que  utilizaremos todas os registros realizados, independente se o auto não foi expedido por motivos técnicos ou administrativos.
 
 ```{r}
 data = "radar.csv" |>
@@ -445,40 +447,32 @@ theme_minimal()
 \tab As respostas possíveis do teste aplicado são,    
 
 
-$$H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória \\ H_{0}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória$$
+$$H_{0}\ =\ A \ sequência \ de \ dados \ é \ aleatória$$
+$$H_{1}\ =\ A \ sequência \ de \ dados \ não \ é \ aleatória$$
 
-\tab Para a realização do teste, utlizando a função `DescTools::RunsTest` no `R` e os resultados são apresentados a seguir:
+\tab Para a realização do teste, utlizando a função `DescTools::RunsTest()` no `R` e os resultados são apresentados a seguir:
 
-- **Alameda Parnaíba**
-
-
-```{r}
-DescTools::RunsTest(Alameda$Excesso, alternative = c("two.sided"))
-```
-
-- **Av. Raul Lopes**
 
 ```{r}
-DescTools::RunsTest(Shopping$Excesso, alternative = c("two.sided"))
+Run_Alameda = DescTools::RunsTest(Alameda$Excesso, alternative = c("two.sided"))
+Run_Raul =  DescTools::RunsTest(Shopping$Excesso, alternative = c("two.sided"))
+Run_Maranhao =  DescTools::RunsTest(Maranhao$Excesso, alternative = c("two.sided"))
+Run_Barao = DescTools::RunsTest(Barao$Excesso, alternative = c("two.sided"))
+
+
+data.frame('Endereço' = c('Alameda Parnaíba', 'Av. Raul Lopes',
+                          'Av. Maranhão', 'Av. Barão de C. Branco'),
+           'p-valor' = c(round(Run_Alameda$p.value, 3), round(Run_Raul$p.value, 3),
+                         round(Run_Maranhao$p.value, 3), round(Run_Barao$p.value, 3)))|>knitr::kable()
+
 ```
 
-- **Av. Maranhão**
-
-```{r}
-DescTools::RunsTest(Maranhao$Excesso, alternative = c("two.sided"))
-```
-
-- **Av. B. de Castelo Branco**
-
-```{r}
-DescTools::RunsTest(Barao$Excesso, alternative = c("two.sided"))
-```
 \tab Com os testes realizados, podemos afirmar que o registro dos radares não é aleatório para todos os radares. Dessa forma, podemos contruir uma análise que possa descrever o funcionamento dos radares. 
 
-### Teste de Kruskal White   
 
+### Teste de Kruskal White   
           
-\tab Outro teste que podemos realizar é o de Kruskal White, com ele iremos analisar a distribuição dos quatro radares buscando definir se o comportamento é parecido ou não. Dessa forma, avalia-se de $H_{0}$ que determina o comportamento semelhante para todos as distribuições em análise ou a $H_{1}$, que determina que ao menos dois objetos de análise possui diferenaça.    
+\tab Outro teste que podemos realizar é o de Kruskal White, com ele iremos analisar a distribuição dos quatro radares buscando definir se o comportamento é parecido ou não. Dessa forma, avalia-se de $H_{0}$ que determina o comportamento semelhante para todos as distribuições em análise ou $H_{1}$, que determina que ao menos dois objetos de análise possui diferenaça.    
 
 \tab Se o resultado indicar que existe diferença, utilizaremos um pós-teste (Teste de Dunn) para identificar entre quais ocorrem a diferença.
 
@@ -491,7 +485,11 @@ origem = factor(rep(1:4, c(dim(Alameda)[1], dim(Shopping)[1],
                             dim(Maranhao)[1], dim(Barao)[1])))
 
 #kruskal.test(excessos ~ origem)
-broom::tidy(kruskal.test(excessos ~ origem))
+Kruskal_excessos = kruskal.test(excessos ~ origem)
+
+data.frame('p-valor' = c(round(Kruskal_excessos$p.value, 5)),check.names = FALSE)|>
+  knitr::kable()
+
 ```
 \tab O resultado do teste indica que existe diferença entres as distribuições entre os radares. Assim, o próximo o passo é realizar o pós teste para identificar onde estão as diferenças. 
 
