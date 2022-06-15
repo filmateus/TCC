@@ -16,19 +16,18 @@ output:
       highlightLines: true
       ratio: 16:9
       countIncrementalSlides: true
-knit: pagedown::chrome_print
+#knit: pagedown::chrome_print
 ---
-
 
 ```{r include=FALSE,warning=FALSE, message=FALSE}
 options(htmltools.dir.version = FALSE)
 xaringan::summon_remark()
 knitr::opts_chunk$set(
-  fig.width=10, fig.height=5, fig.retina=3,
+  fig.width = 10, fig.height = 5, fig.retina = 3,
   out.width = "100%",
   cache = TRUE,
   echo = TRUE,
-  message = FALSE, 
+  message = FALSE,
   warning = FALSE,
   hiline = TRUE
 )
@@ -36,7 +35,6 @@ knitr::opts_chunk$set(
 library(tidyverse)
 set.seed(04)
 ```
-
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
@@ -47,19 +45,23 @@ style_duo_accent(
   inverse_header_color = "#e34210",
   title_slide_background_color = "#fdfdfd",
   title_slide_text_color = "#000000",
-  title_slide_background_image ="https://www.infoescola.com/wp-content/uploads/2016/05/ufpi.png",
+  title_slide_background_image = "https://www.infoescola.com/wp-content/uploads/2016/05/ufpi.png",
   title_slide_background_size = "50",
   title_slide_background_position = "bottom 0px right 00px;",
   header_font_google = google_font("Source Code Pro"),
   base_font_size = "20px")
 ```
 
+# Objetivos
+
 
 ---
 # Obrigado
 
-```{r fig.align='center', out.width= '60%', echo=FALSE}
+```{r fig.align='center', out.width= '55%', echo=FALSE}
 knitr::include_graphics('https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif')
 ```
 
-
+      
+      
+*É Cristo, e somente Cristo, que torna o encarar a morte suportável. Cristo infunde aos aspectos mais dolorosos e desconcertantes do fim desta vida esperança e paz.* - *Nancy Guthrie*

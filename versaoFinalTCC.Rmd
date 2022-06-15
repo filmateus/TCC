@@ -1,5 +1,6 @@
 ---
 title: ''
+encoding: "UTF-8"
 output: 
   pdf_document:
     number_sections: TRUE
@@ -24,7 +25,8 @@ header-includes:
   - \newunicodechar{≤}{\ensuremath{\leq}}
   - \newunicodechar{≥}{\ensuremath{\geq}}
   
-#bibliography: Referencias.bib
+bibliography: Referencias.bib
+#encoding = 'UTF-8'
 ---
 
 ```{r setup, include= FALSE, cache = FALSE, warning=FALSE, message=FALSE}
@@ -40,6 +42,7 @@ knitr::opts_chunk$set(echo = FALSE,
 library(tidyverse)
 library(tinytex)
 library(lubridate)
+
 #\pagenumbering{gobble}
 ```
 
@@ -154,6 +157,10 @@ Prof. Dr. Fernando Ferraz do Nascimento
 \tab Finalizo os agradecimentos aos amigos que foram criados durante o curso. Edvaldo que, como eu, chefe de família. Compartilhamos muito do desafio de trabalhar, cuidar do lar e estudar. Eva, cheia de energia, se esforçava para tirar as melhores notas nas disciplinas. Envelheceu alguns anos durante as madrugadas acordadas, mas ok.
 Obrigado a todos, de coração.
 
+\vspace{8cm}
+\begin{flushright}
+\emph{É Cristo, e somente Cristo, que torna o encarar a morte suportável. Cristo infunde aos aspectos mais dolorosos e desconcertantes do fim desta vida esperança e paz. - Nancy Guthrie}
+\end{flushright}
 
 \newpage
 
@@ -169,17 +176,22 @@ Obrigado a todos, de coração.
 
 \tab Eventos extremos são situações ou comportamentos que não ocorrem com tanta frequência. No desenho da distribuição normal, são aqueles que ficam próximos as caudas, distantes do pico onde está localizado a média, a situação de normalidade. Entretanto, é possível que estes eventos ocorram, na verdade, é esperado que eles ocorram. Diante dessa situação, é importante que possamos prever seus acontecimentos, pois quando ocorrem, as consequências podem ser trágicas.
 
-\tab Exemplos que demonstram com facilidade os efeitos de eventos extremos estão na área da climatologia. Para os portais de notícias, o aquecimento global tem trazido mais manchetes de catástrofes climáticas que causaram prejuízos substanciais e, infelizmente, mortes. Além da área de climatologia, podemos encontrar estudos que envolvem valores extremos em áreas de pesquisa como engenharia de materiais, controle de trágfego e economia. 
+\tab Exemplos que demonstram com facilidade os efeitos de eventos extremos estão na área da climatologia. Para os portais de notícias, o aquecimento global tem trazido mais manchetes de catástrofes climáticas que causaram prejuízos substanciais e, infelizmente, mortes. Além da área citada, podemos encontrar estudos que envolvem valores extremos em áreas de pesquisa como engenharia de materiais, controle de tráfego e economia. 
 
-\tab O surgimento da teoria de valores extremos surge da necessidade de pesquisas sobre eventos extremos de forma mais eficiente. As distribuições mais comuns trabalham melhor na análise dos eventos centrais, mais frequentes. Dessa forma, os acontecimentos mais raros possuem ficam mais difíceis de prever.
+\tab O surgimento da teoria de valores extremos surge da necessidade de pesquisas sobre eventos extremos de forma mais eficiente. As distribuições mais comuns trabalham melhor na análise dos eventos centrais, mais frequentes. Dessa forma, os acontecimentos mais raros possuem ficam mais difíceis de prever. Em @PINHEIRO, podemos encontrar um resumo da teoria de valores extremos
+
+**O objetivo da teoria estatística do valor extremo é analisar valores extremos observados e prever possíveis valores ainda mais extremos, é fazer inferência para eventos cujas probabilidades são menroes do que qualquer evento observado anteriormente. Fenômenos em que a probablidade de um valor extremo é relativamente alta são caracterizados por distribuições com caudas pesadas**
+
+
+\newpage
 
 # Apresentando os dados
 
-\tab Os dados que iremos trabalhar neste projeto têm como origem as medições de excesso de velocidade registradas por radares no munícipio de Teresina. Baseado no Código de Trânsito Brasileiros, ruas, avenidas e estradas no Brasil, possuem limites de velocidade especificados, entretanto, para a realização do registro infração, é preciso que a via esteja sinalizada informando a velocidade máxima.  
+\tab Os dados que iremos trabalhar neste projeto têm como origem as medições de excesso de velocidade registradas por radares no munícipio de Teresina. Baseado no Código de Trânsito Brasileiros, ruas, avenidas e estradas no Brasil, possuem limites de velocidade especificados, no entanto, para a realização do registro infração, é preciso que a via esteja sinalizada informando a velocidade máxima.  
 
-\tab Um ponto importante sobre as infrações de velocidade é que existe uma margem de erro para medição da velocidade registrada. Para fim de registro de infração, não se utiliza a velocidade obtida pelo instrumento de medição, mas subtrai-se um valor na velocidade medida (para vias de velocidade máxima até 100km/h, o valor é 7), o que passar deste valor acima da velocidade permitida, será considerado para infração.
+\tab Um ponto importante sobre as infrações de velocidade é a existência de uma margem de erro para medição da velocidade registrada. Para fim de registro de infração, não se utiliza a velocidade obtida pelo instrumento de medição, mas subtrai-se um valor na velocidade medida (para medições até 100km/h, o valor reduzido é de 7 km/h). A velocidade final obtida após a subtração será a considerada para o registro ou não da infração.
 
-\tab Por exemplo, para vias de com velocidade máxima de 60 km/h, as infrações serão registradas somente quando o veículo passar pelo ponto de medição quando a velocidade calculada for de 68 km/h, registrando um excesso de 1km/h, mas para uma velocidade registrada de 67 km/h, o valor considerado é de 60km/h. O resultado dessa distinção é o uso de dois termos: Velocidade medida, que consiste na velocidade registrada e Velocidade Considerada, que é a velocidade medida menos o fator de correção. Na tabela abaixo, temos a relação entre velocidade medida e velocidade considerada. A infração é feita quando a considerada é maior que permitida na via. 
+\tab Por exemplo, para vias com velocidade máxima de 60 km/h, as infrações serão registradas somente a velocidade calculada no ponto de medição for, pelo menos, de 68 km/h, registrando um excesso de 1km/h, mas para uma velocidade registrada de 67 km/h, o valor considerado é de 60km/h, não caracterizando uma infração. O resultado dessa distinção é o uso de dois termos: **Velocidade medida**, que consiste na velocidade Registrada e **Velocidade Considerada**, referente a velocidade medida menos o fator de correção. Na tabela abaixo, temos a relação entre velocidade medida e velocidade considerada. A infração é feita quando a considerada é maior que permitida na via. 
 
 
 ```{r  fig.cap= "Tabela com relação Velocidade Medida (VM) e Velocidade Considerada (VC)", out.height= '93%', fig.pos = "H"}
@@ -188,7 +200,7 @@ knitr::include_graphics('1_MINFRA_9_002.jpg')
 ```
 
 
-\tab Na tabela acima, temos os valores entres as velocidades medidas e consideradas, note-se que na medida 107 e 108 km/h, a considerada se repete, neste ponto se inicia um aumento da margem de erro.  Para este trabalho, iremos utilizar a medição calculada com a Velocidade considerada, pois o cálculo da infração é realizado com ela. 
+\tab Na tabela acima, temos os valores entres as velocidades medidas e consideradas, note-se que na medida 107 e 108 km/h, a considerada se repete, neste ponto se inicia um aumento da margem de erro.  Para este trabalho, iremos utilizar a medição calculada com a velocidade considerada, pois o cálculo da infração é realizado com ela. 
 
 
 \tab Em relação as infrações, o CTB normatiza três tipos de infrações para o excesso de velocidade baseado no percentual registado acima. Para medições até 20% acima da permitida, a infração é média, entre 20% e 50% é considerada grave e, superior a 50%, é gravíssima. O aumento da gravidade resulta no aumento do valor pago da multa. Nas tabelas abaixo, temos um resumo da divisão de tipificação, o intervalo de excesso e o valor pago. A primeira tabela refere-se para vias com velocidade máxima até 60 km/h e a segunda tabela considera a máxima 40km/h
@@ -203,6 +215,8 @@ data.frame(Tipo = c("Média", "Grave", "Gravíssima"),
            'Valor da Multa'= c('R$ 130,16', 'R$ 195,23', 'R$ 880,41'), 
            check.names = FALSE)|> knitr::kable()
 ```
+
+
 
 - **Radares de 40 km/h**
 
@@ -749,14 +763,32 @@ data.frame(Ajuste = c('Av. Barão com fggpd', 'Av. Barão com fmgpd'),
 
 # Referências Bibliográficas
 
-(book?){Nascimento, author = {NASCIMENTO, F, F.}, title = {MODELOS PROBABILíSTICOS PARA
-DADOS EXTREMOS:TEORIA E APLICAÇÕES}, adress = {Teresina, PI}, year = {2012}}
 
-(Dissertação){Pinheiro, author = {PINHEIRO, E, C.}, title = {Contribuições em inferência e modelagem de valores extremos}, address = {São Paulo, SP}, year = {2014}}
+@article{@BRAGA,
+  title = {Aplicação da Teoria de Valores Extremos para índice pluviométrico da cidade de Juiz de Fora - MG},
+  author = {BRAGA, D. O. M.,},
+  adress = {Juiz de Fora, MG},
+  year ={2015}
+  }
 
+@article{@LIMA,
+  title = {Modelos Dinâmicos para valores extremos de dados ambientais do Piauí usando a Distribuição de Pareto Generalizada (GPD)}
+  author = {Stênio Rodrigues Lima},
+  adress = {Teresina, PI},
+  year = {2014}
+  }
 
-(TCC?){Lima, author = {StÊnio Rodrigues Lima}, title = {Modelos Dinâmicos para valores extremos de
-dados ambientais do Piauí usando a Distribuiç~ao de Pareto Generalizada (GPD)}, adress = {Teresina, PI},year = {2014}}
+@article{@NASCIMENTO,
+  title = {MODELOS PROBABILíSTICOS PARA
+  DADOS EXTREMOS:TEORIA E APLICAÇÕES},
+  author = {NASCIMENTO, F, F.},
+  adress = {Teresina, PI}, 
+  year = {2012}
+  }
 
-(TCC?){Braga, author = {de Oliveira Matos Braga, Douglas}, title = {Aplicação da Teoria de Valores
-Extremos para índice pluviométrico da cidade de Juiz de Fora - MG}, adress = {Juiz de Fora, MG}, year ={2015}}
+@article{@PINHEIRO,
+  title = {Contribuições em inferência e modelagem de valores extremos}, 
+  author = {PINHEIRO, E, C.}, 
+  address = {São Paulo, SP}, 
+  year = {2014}
+  }
