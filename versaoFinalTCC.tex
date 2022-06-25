@@ -34,12 +34,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left = 2.5cm, right = 2cm, top = 2cm, bottom =
 2cm]{geometry}
 \usepackage{longtable,booktabs,array}
@@ -88,6 +82,12 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \author{}
 \date{\vspace{-2.5em}}
@@ -328,14 +328,14 @@ velocidade máxima até 60 km/h e a segunda tabela considera a máxima
 \end{itemize}
 
 \begin{longtable}[]{@{}llll@{}}
-\toprule
+\toprule()
 Tipo & Faixa percentual & Faixa de Excesso & Valor da Multa \\
-\midrule
+\midrule()
 \endhead
 Média & até 20\% & 1 ≤ v ≤ 12 & R\$ 130,16 \\
 Grave & entre 20\% e 50\% & 13 ≤ v ≤ 30 & R\$ 195,23 \\
 Gravíssima & superior a 50\% & ≥ 31 & R\$ 880,41 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \begin{itemize}
@@ -345,14 +345,14 @@ Gravíssima & superior a 50\% & ≥ 31 & R\$ 880,41 \\
 \end{itemize}
 
 \begin{longtable}[]{@{}llll@{}}
-\toprule
+\toprule()
 Tipo & Faixa percentual & Faixa de Excesso & Valor da Multa \\
-\midrule
+\midrule()
 \endhead
 Média & até 20\% & 1 ≤ v ≤ 8 & R\$ 130,16 \\
 Grave & entre 20\% e 50\% & 9 ≤ v ≤ 20 & R\$ 195,23 \\
 Gravíssima & superior a 50\% & ≥ 21 & R\$ 880,41 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{pontos-de-mediuxe7uxe3o-de-excesso-de-velocidade}{%
@@ -404,15 +404,15 @@ início e fim dos registros, a quantidade dias entre as datas e a
 quantidade de dias zerados.
 
 \begin{longtable}[]{@{}lllrr@{}}
-\toprule
+\toprule()
 Endereço & Data de Inicio & Data Final & Dias & Dias Zerados \\
-\midrule
+\midrule()
 \endhead
 Alameda Parnaíba & 05/05/2016 & 31/12/2021 & 2089 & 282 \\
 Av. Raul Lopes & 12/05/2017 & 19/10/2020 & 1696 & 595 \\
 Av. Maranhão & 05/05/2017 & 31/12/2021 & 1702 & 292 \\
 Av. B. C. Branco & 26/09/2016 & 31/12/2020 & 1830 & 334 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hspace*{1cm} A próxima tabela apresenta a quantidade de dias com
@@ -427,7 +427,7 @@ apresentada anteriomente, média, grave e gravissima.
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1743}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2477}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1927}}@{}}
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Endereço
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -441,13 +441,13 @@ Percentual entre 20\% e 50\%
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Percentual acima 50\%
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 Alameda Parnaiba & 1807 & 48647 & 90.23 & 9.30 & 0.45 \\
 Av. Raul Lopes & 1101 & 51605 & 92.75 & 7.03 & 0.22 \\
 Av. Maranhão & 1410 & 27273 & 88.34 & 10.94 & 0.72 \\
 Av. B. de Castelo Branco & 1496 & 30954 & 79.18 & 17.66 & 3.16 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{anuxe1lise-descritiva-e-da-distribuiuxe7uxe3o-dos-excessos.}{%
@@ -467,7 +467,7 @@ excessos dos radares.
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1194}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1045}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1045}}@{}}
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Endereço
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -481,13 +481,13 @@ Mínimo
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Máximo
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 Alameda Parnaiba & 5.61 & 5.39 & 4 & 1 & 67 \\
 Av. Raul Lopes & 5.02 & 5.02 & 4 & 1 & 92 \\
 Av. Maranhão & 6.05 & 5.94 & 4 & 1 & 70 \\
 Av. B. de Castelo Branco & 5.74 & 5.89 & 4 & 1 & 109 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hspace*{1cm}
@@ -567,15 +567,15 @@ processo.\\
 apresentados a seguir:
 
 \begin{longtable}[]{@{}lr@{}}
-\toprule
+\toprule()
 Endereço & p.valor \\
-\midrule
+\midrule()
 \endhead
 Alameda Parnaíba & 0.004 \\
 Av. Raul Lopes & 0.009 \\
 Av. Maranhão & 0.002 \\
 Av. Barão de C. Branco & 0.028 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hspace*{1cm} Com os testes realizados, podemos afirmar que o registro
@@ -597,12 +597,12 @@ um pós-teste (Teste de Dunn) para identificar entre quais ocorrem a
 diferença.
 
 \begin{longtable}[]{@{}r@{}}
-\toprule
+\toprule()
 p-valor \\
-\midrule
+\midrule()
 \endhead
 0 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hspace*{1cm} O resultado do teste indica que existe diferença entres as
@@ -624,7 +624,7 @@ pós teste para identificar onde estão as diferenças.
   >{\raggedleft\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1333}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.0800}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1733}}@{}}
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 .y.
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -644,7 +644,7 @@ p.adj
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 p.adj.signif
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 excessos & 1 & 2 & 48647 & 51605 & -13.916882 & 0.0000000 & 0 & **** \\
 excessos & 1 & 3 & 48647 & 27273 & 7.843274 & 0.0000000 & 0 & **** \\
@@ -652,7 +652,7 @@ excessos & 1 & 4 & 48647 & 30954 & -0.867789 & 0.3855098 & 1 & ns \\
 excessos & 2 & 3 & 51605 & 27273 & 19.672889 & 0.0000000 & 0 & **** \\
 excessos & 2 & 4 & 51605 & 30954 & 11.355477 & 0.0000000 & 0 & **** \\
 excessos & 3 & 4 & 27273 & 30954 & -7.903749 & 0.0000000 & 0 & **** \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hspace*{1cm} O pós teste indica que somente Alameda Parnaíba e Av.
@@ -688,15 +688,15 @@ arredacação possível se todas as multas fosses pagas com o valor
 integral.
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule
+\toprule()
 Local & Arrecadação Possível \\
-\midrule
+\midrule()
 \endhead
 Alameda Parnaiba & R\$ 6.794.927 \\
 Av. Raul Lopes & R\$ 7.036.259 \\
 Av. Maranhão & R\$ 3.891.757 \\
 Av. B. de Castelo Branco & R\$ 5.119.140 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \newpage
@@ -944,13 +944,13 @@ Extremos}\label{modelos-dinuxe2micos-para-valores-extremos}}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 Ajuste & DIC & BIC \\
-\midrule
+\midrule()
 \endhead
 Alameda com fggpd & 247310.8 & 247351.3 \\
 Alameda com fmgpd & 215577.4 & 215641.7 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{av.-maranhuxe3o}{%
@@ -974,13 +974,13 @@ Alameda com fmgpd & 215577.4 & 215641.7 \\
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 Ajuste & DIC & BIC \\
-\midrule
+\midrule()
 \endhead
 Av. Maranhao com fggpd & 480153.4 & 480201.7 \\
 Av. Maranhão com fmgpd & 485451.3 & 485518.7 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{av.-raul-lopes---shopping}{%
@@ -1005,13 +1005,13 @@ Av. Maranhão com fmgpd & 485451.3 & 485518.7 \\
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 Ajuste & DIC & BIC \\
-\midrule
+\midrule()
 \endhead
 Av. Raul Lopes com fggpd & 253692.7 & 253754.8 \\
 Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{av.-dos-ipuxeas}{%
@@ -1036,13 +1036,13 @@ Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 Ajuste & DIC & BIC \\
-\midrule
+\midrule()
 \endhead
 Av. Av. dos Ipês com fggpd & 136611.9 & 136654.4 \\
 Av. dos Ipês com fmgpd & 131887.8 & 131672.3 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{av.-av.-jose-francisco-de-almeida-neto}{%
@@ -1068,13 +1068,13 @@ Neto}\label{av.-av.-jose-francisco-de-almeida-neto}}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 Ajuste & DIC & BIC \\
-\midrule
+\midrule()
 \endhead
 Av. Av. Jose com fggpd & 313760.1 & 303626.5 \\
 Av. Jose com fmgpd & 313806.8 & 303289.6 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{av.-baruxe3o-de-castelo-branco}{%
@@ -1099,13 +1099,13 @@ Branco}\label{av.-baruxe3o-de-castelo-branco}}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
-\toprule
+\toprule()
 Ajuste & DIC & BIC \\
-\midrule
+\midrule()
 \endhead
 Av. Barão com fggpd & 160774.3 & 160813.9 \\
 Av. Barão com fmgpd & 153049.2 & 152921.9 \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \newpage

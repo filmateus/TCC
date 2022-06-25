@@ -27,6 +27,8 @@ header-includes:
   - \newunicodechar{≥}{\ensuremath{\geq}}
   
 bibliography: references.bib
+biblio-style: apalike
+link-citations: yes
 ---
 
 ```{r setup, include= FALSE, cache = FALSE, warning=FALSE, message=FALSE}
