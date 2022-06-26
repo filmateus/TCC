@@ -154,7 +154,7 @@ Prof. Dr. Fernando Ferraz do Nascimento
 # Agradecimentos
 
 \tab Primeiramente, eu preciso agradecer a Deus por ter permitido a possibilidade de realizar uma segunda graduação e ter me sustentado durante todo o curso, foram vários os desafios, mas Ele permitiu que eu conseguisse superar tudo. Soli Deo Glória.  
-\tab  Preciso agradecer a minha esposa que ficou do meu lado durante este período, sacrificando-se para permitir que eu estudasse, motivando-me. Superando o ciúme por ter sido trocada, muitas vezes, por um livro cheio de fórmulas esquisitas. Incluo meu filho Mateus, que chegou no durante o curso para dar mais emoção à vida. Mesmo pequeno, me ensinou a ser mais produtivo. E claro, meu pai, minha mãe e minha irmã, mesmo a distância, me apoiavam.  
+\tab Preciso agradecer a minha esposa que ficou do meu lado durante este período, sacrificando-se para permitir que eu estudasse, motivando-me. Superando o ciúme por ter sido trocada, muitas vezes, por um livro cheio de fórmulas esquisitas. Incluo meu filho Mateus, que chegou no durante o curso para dar mais emoção à vida. Mesmo pequeno, me ensinou a ser mais produtivo. E claro, meu pai, minha mãe e minha irmã, mesmo a distância, me apoiavam.  
 \tab Agradeço a Professora Valmaria por ter aceitado o desafio de me orientar nesse TCC, juntamente com o professor Fernando que ofereceu o apoio teórico para a realização desse projeto. Incluo a STRANS, na pessoa do superitendente Claudio Pessoa, que gentilmente, disponibilizaram os dados para este trabalho.     
 \tab Finalizo os agradecimentos aos amigos que foram criados durante o curso. Edvaldo que, como eu, chefe de família. Compartilhamos muito do desafio de trabalhar, cuidar do lar e estudar. Eva, cheia de energia, se esforçava para tirar as melhores notas nas disciplinas. Envelheceu alguns anos durante as madrugadas acordadas, mas ok.
 Obrigado a todos, de coração.
@@ -175,6 +175,13 @@ Obrigado a todos, de coração.
 \newpage
 
 # Introdução
+
+\tab  A previsão é uma importante ferramenta para o planejamento de qualquer experimento que se queira implantar. Seja na área pública ou privada, ao termos uma noção melhor dos resultados possíveis, pode-se trabalhar para a maximação do lucro ou melhor aplicação de arrecadações de impostos, por exemplo.
+
+\tab Este trabalho, analisa os dados das autuações de 4 radares em Teresina através das medições que realizam ao captar uma infração de excesso de velocidade. Dessa forma, buscaremos realizar uma previsão da arrecadação possível estes radares oferecer ao município. Existem outros fatores que influenciam na arrecadação por autos de trânsito como o precentual de autos que são pagos ou a data de pagamento das penalidades em relação ao dia de vencimento da penalidade, mas não pertencem ao objetivo de análise deste projeto.
+
+\tab As ferramentas estatísticas que utilizamos para a previsão orcamentária corresponde a primeiramente realizar uma descritiva dos dados, identificando possíveis problemas e falhas no dados que possam prejudicar uma previsão eficiente. Em um segundo momento, iremos utilizar alguns modelos ditribuições probalísticos 
+
 
 \tab Eventos extremos são situações ou comportamentos que não ocorrem com tanta frequência. No desenho da distribuição normal, são aqueles que ficam próximos as caudas, distantes do pico onde está localizado a média, a situação de normalidade. Entretanto, é possível que estes eventos ocorram, na verdade, é esperado que eles ocorram. Diante dessa situação, é importante que possamos prever seus acontecimentos, pois quando ocorrem, as consequências podem ser trágicas.
 
@@ -706,38 +713,6 @@ data.frame(Ajuste = c('Av. Raul Lopes com fggpd', 'Av. Rul Lopes com fmgpd'),
             BIC = c(253754.8, 211567.5))|>knitr::kable()
 ```
 
-## Av. dos Ipês
-```{r out.width=350, fig.cap="Av. dos Ipês - Função fggpd"}
-knitr::include_graphics('Ipes1.png')
-```
-
-```{r out.width=350, fig.cap="Av. dos Ipês - Função fmgpd"}
-knitr::include_graphics('Ipes2.png')
-```
-
-
-```{r}
-data.frame(Ajuste = c('Av. Av. dos Ipês com fggpd', 'Av. dos Ipês com fmgpd'),
-            DIC = c(136611.9, 131887.8),
-            BIC = c(136654.4, 131672.3))|>knitr::kable()
-```
-
-## Av. Av. Jose Francisco de Almeida Neto
-
-```{r out.width=350, fig.cap="Av. Jose - Função fggpd"}
-knitr::include_graphics('Jose1.png')
-```
-
-```{r out.width=350, fig.cap="Av. Jose - Função fmgpd"}
-knitr::include_graphics('Jose2.png')
-```
-
-```{r}
-data.frame(Ajuste = c('Av. Av. Jose com fggpd', 'Av. Jose com fmgpd'),
-
-            DIC = c(313760.1, 313806.8),
-            BIC = c(303626.5, 303289.6))|>knitr::kable()
-```
 
 ## Av. Barão de Castelo Branco
 
