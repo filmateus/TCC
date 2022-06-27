@@ -239,6 +239,27 @@ a todos, de coração.
 \hypertarget{introduuxe7uxe3o}{%
 \section{Introdução}\label{introduuxe7uxe3o}}
 
+\hspace*{1cm} A previsão é uma importante ferramenta para o planejamento
+de qualquer experimento que se queira implantar. Seja na área pública ou
+privada, ao termos uma noção melhor dos resultados possíveis, pode-se
+trabalhar para a maximação do lucro ou melhor aplicação de arrecadações
+de impostos, por exemplo.
+
+\hspace*{1cm} Este trabalho, analisa os dados das autuações de 4 radares
+em Teresina através das medições que realizam ao captar uma infração de
+excesso de velocidade. Dessa forma, buscaremos realizar uma previsão da
+arrecadação possível estes radares oferecer ao município. Existem outros
+fatores que influenciam na arrecadação por autos de trânsito como o
+precentual de autos que são pagos ou a data de pagamento das penalidades
+em relação ao dia de vencimento da penalidade, mas não pertencem ao
+objetivo de análise deste projeto.
+
+\hspace*{1cm} As ferramentas estatísticas que utilizamos para a previsão
+orcamentária corresponde a primeiramente realizar uma descritiva dos
+dados, identificando possíveis problemas e falhas no dados que possam
+prejudicar uma previsão eficiente. Em um segundo momento, iremos
+utilizar alguns modelos ditribuições probalísticos
+
 \hspace*{1cm} Eventos extremos são situações ou comportamentos que não
 ocorrem com tanta frequência. No desenho da distribuição normal, são
 aqueles que ficam próximos as caudas, distantes do pico onde está
@@ -260,7 +281,8 @@ tráfego e economia.
 necessidade de pesquisas sobre eventos extremos de forma mais eficiente.
 As distribuições mais comuns trabalham melhor na análise dos eventos
 centrais, mais frequentes. Dessa forma, os acontecimentos mais raros
-possuem ficam mais difíceis de prever. Em (\textbf{PINHEIRO?}), podemos
+possuem ficam mais difíceis de prever. Em
+(\protect\hyperlink{ref-PINHEIRO}{\textbf{PINHEIRO?}}), podemos
 encontrar um resumo da teoria de valores extremos
 
 \textbf{O objetivo da teoria estatística do valor extremo é analisar
@@ -701,8 +723,34 @@ Av. B. de Castelo Branco & R\$ 5.119.140 \\
 
 \newpage
 
+\hypertarget{distribuiuxe7uxf5es-de-probabilidade}{%
+\section{Distribuições de
+probabilidade}\label{distribuiuxe7uxf5es-de-probabilidade}}
+
+\hypertarget{distribuiuxe7uxe3o-de-poisson}{%
+\subsection{Distribuição de
+Poisson}\label{distribuiuxe7uxe3o-de-poisson}}
+
+\hspace*{1cm} A distribuição Poisson pertence a família das
+distribuições quantitivas discretas. Seus resultados indicam a
+probabilidade de evento ocorrer após um período de tempo, segundo
+((\protect\hyperlink{ref-CARSSELA}{\textbf{CARSSELA?}} e BERGER), 83),
+``um dos suposições básicas aobre a qual este modelo é desenvolvida é a
+de que, para pequnos intervalos de tempo, a probabilidade de uma chegada
+é proporcional ao tempo de espera.'', em outras palavras, o tempo que se
+aguardar para um evento influência o resultado.
+
+\hspace*{1cm} A distribuição Poisson possui um único parametro,
+\(\lambda\), que corresponde a um parametro de intensidade. Sua função
+de distribuição é:
+
+\[P(X = x|\lambda) = \frac{e^{-\lambda}\lambda^{x}}{x!},\ x = 0,1,...\]
+
+\hspace*{1cm} Para esta distribuição, temos que \(E(X) = \lambda\) e
+\(VAR(X) = \lambda\)
+
 \hypertarget{distribuiuxe7uxe3o-pareto-generalizada-gpd}{%
-\section{Distribuição Pareto Generalizada
+\subsection{Distribuição Pareto Generalizada
 (GPD)}\label{distribuiuxe7uxe3o-pareto-generalizada-gpd}}
 
 \hspace*{1cm} A distribuição Pareto Generalizada (GPD) analisa a
@@ -788,7 +836,7 @@ q_{x}p = \frac{((1 - p*)^{-\xi}-1)}{\xi},
 \] onde \(p*\ =\ 1 - (1-p)N/N_{u}\).
 
 \hypertarget{domuxednio-da-atrauxe7uxe3o}{%
-\subsection{Domínio da atração}\label{domuxednio-da-atrauxe7uxe3o}}
+\subsubsection{Domínio da atração}\label{domuxednio-da-atrauxe7uxe3o}}
 
 \hspace*{1cm} As distribuições de valores extremos são obtidas como
 distribuição limite \((n \rightarrow \infty)\) do máximo de um conjunto
@@ -828,7 +876,8 @@ distribuição limite será uma Beta e quando
 reescalada com suporte em \((0,\frac{\sigma}{\gamma})\).
 
 \hypertarget{determinauxe7uxe3o-do-limiar}{%
-\subsection{Determinação do Limiar}\label{determinauxe7uxe3o-do-limiar}}
+\subsubsection{Determinação do
+Limiar}\label{determinauxe7uxe3o-do-limiar}}
 
 \hspace*{1cm} A análise via GPD exige um cuidado inicial pois é preciso
 determinar um limiar para os dados. O valor escolhido pode ser
@@ -881,7 +930,7 @@ a 1. Assim, pode-se fazer um gráfico
 \]
 
 \hypertarget{estimauxe7uxe3o-da-gpd}{%
-\subsection{Estimação da GPD}\label{estimauxe7uxe3o-da-gpd}}
+\subsubsection{Estimação da GPD}\label{estimauxe7uxe3o-da-gpd}}
 
 \hspace*{1cm} Após determinar o limiar, a estimação dos parâmetros da
 distribuição GPD podem ser estimados por vários métodos, entre eles,
@@ -915,6 +964,16 @@ maximização.
 
 \hypertarget{inferuxeancia-bayesiana}{%
 \section{Inferência Bayesiana}\label{inferuxeancia-bayesiana}}
+
+\hspace*{1cm} Os modelos apresentados no capítulo anterior são
+considerados clássicos e tradicionais. Uma nova perspectiva de análise
+surgiu com a \emph{Bayesiana}, cujo os valores iniciais são originados
+por distribuições incertas e descritas por uma função de densidade
+\(f(x|\theta)\)
+
+\hspace*{1cm}
+
+\[\pi(\theta|x)\ =\ \frac{f(X|\theta)p(\theta)}{\int f(X|\theta)p(\theta)d(\theta)}\]
 
 \newpage
 
@@ -1014,69 +1073,6 @@ Av. Rul Lopes com fmgpd & 211497.7 & 211567.5 \\
 \bottomrule()
 \end{longtable}
 
-\hypertarget{av.-dos-ipuxeas}{%
-\subsection{Av. dos Ipês}\label{av.-dos-ipuxeas}}
-
-\begin{figure}
-
-{\centering \includegraphics[width=350px]{Ipes1} 
-
-}
-
-\caption{Av. dos Ipês - Função fggpd}\label{fig:unnamed-chunk-26}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=350px]{Ipes2} 
-
-}
-
-\caption{Av. dos Ipês - Função fmgpd}\label{fig:unnamed-chunk-27}
-\end{figure}
-
-\begin{longtable}[]{@{}lrr@{}}
-\toprule()
-Ajuste & DIC & BIC \\
-\midrule()
-\endhead
-Av. Av. dos Ipês com fggpd & 136611.9 & 136654.4 \\
-Av. dos Ipês com fmgpd & 131887.8 & 131672.3 \\
-\bottomrule()
-\end{longtable}
-
-\hypertarget{av.-av.-jose-francisco-de-almeida-neto}{%
-\subsection{Av. Av. Jose Francisco de Almeida
-Neto}\label{av.-av.-jose-francisco-de-almeida-neto}}
-
-\begin{figure}
-
-{\centering \includegraphics[width=350px]{Jose1} 
-
-}
-
-\caption{Av. Jose - Função fggpd}\label{fig:unnamed-chunk-29}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=350px]{Jose2} 
-
-}
-
-\caption{Av. Jose - Função fmgpd}\label{fig:unnamed-chunk-30}
-\end{figure}
-
-\begin{longtable}[]{@{}lrr@{}}
-\toprule()
-Ajuste & DIC & BIC \\
-\midrule()
-\endhead
-Av. Av. Jose com fggpd & 313760.1 & 303626.5 \\
-Av. Jose com fmgpd & 313806.8 & 303289.6 \\
-\bottomrule()
-\end{longtable}
-
 \hypertarget{av.-baruxe3o-de-castelo-branco}{%
 \subsection{Av. Barão de Castelo
 Branco}\label{av.-baruxe3o-de-castelo-branco}}
@@ -1087,7 +1083,7 @@ Branco}\label{av.-baruxe3o-de-castelo-branco}}
 
 }
 
-\caption{Av. Barão - Função fggpd}\label{fig:unnamed-chunk-32}
+\caption{Av. Barão - Função fggpd}\label{fig:unnamed-chunk-26}
 \end{figure}
 \begin{figure}
 
@@ -1095,7 +1091,7 @@ Branco}\label{av.-baruxe3o-de-castelo-branco}}
 
 }
 
-\caption{Av. Barão - Função fmgpd}\label{fig:unnamed-chunk-33}
+\caption{Av. Barão - Função fmgpd}\label{fig:unnamed-chunk-27}
 \end{figure}
 
 \begin{longtable}[]{@{}lrr@{}}
@@ -1119,22 +1115,28 @@ Av. Barão com fmgpd & 153049.2 & 152921.9 \\
 \section{Referências
 Bibliográficas}\label{referuxeancias-bibliogruxe1ficas}}
 
-(\textbf{article?})\{(\textbf{BRAGA?}), title = \{Aplicação da Teoria de
-Valores Extremos para índice pluviométrico da cidade de Juiz de Fora -
-MG\}, author = \{BRAGA, D. O. M.,\}, adress = \{Juiz de Fora, MG\}, year
-=\{2015\} \}
+(\protect\hyperlink{ref-article}{\textbf{article?}})\{(\protect\hyperlink{ref-BRAGA}{\textbf{BRAGA?}}),
+title = \{Aplicação da Teoria de Valores Extremos para índice
+pluviométrico da cidade de Juiz de Fora - MG\}, author = \{BRAGA, D. O.
+M.,\}, adress = \{Juiz de Fora, MG\}, year =\{2015\} \}
 
-(\textbf{article?})\{(\textbf{LIMA?}), title = \{Modelos Dinâmicos para
-valores extremos de dados ambientais do Piauí usando a Distribuição de
-Pareto Generalizada (GPD)\} author = \{Stênio Rodrigues Lima\}, adress =
-\{Teresina, PI\}, year = \{2014\} \}
+(\protect\hyperlink{ref-article}{\textbf{article?}})\{(\protect\hyperlink{ref-CARSSELA}{\textbf{CARSSELA?}})
+e BERGER, title = \{Inferência Estatística\}, author = \{CASSELA, G.,
+BERGER, L. R.\}, adress = \{SÃO PAULO - SP\}, year =\{2020\} \}
 
-(\textbf{article?})\{(\textbf{NASCIMENTO?}), title = \{MODELOS
-PROBABILíSTICOS PARA DADOS EXTREMOS:TEORIA E APLICAÇÕES\}, author =
-\{NASCIMENTO, F, F.\}, adress = \{Teresina, PI\}, year = \{2012\} \}
+(\protect\hyperlink{ref-article}{\textbf{article?}})\{(\protect\hyperlink{ref-LIMA}{\textbf{LIMA?}}),
+title = \{Modelos Dinâmicos para valores extremos de dados ambientais do
+Piauí usando a Distribuição de Pareto Generalizada (GPD)\} author =
+\{Stênio Rodrigues Lima\}, adress = \{Teresina, PI\}, year = \{2014\} \}
 
-(\textbf{article?})\{(\textbf{PINHEIRO?}), title = \{Contribuições em
-inferência e modelagem de valores extremos\}, author = \{PINHEIRO, E,
-C.\}, address = \{São Paulo, SP\}, year = \{2014\} \}
+(\protect\hyperlink{ref-article}{\textbf{article?}})\{(\protect\hyperlink{ref-NASCIMENTO}{\textbf{NASCIMENTO?}}),
+title = \{MODELOS PROBABILíSTICOS PARA DADOS EXTREMOS:TEORIA E
+APLICAÇÕES\}, author = \{NASCIMENTO, F, F.\}, adress = \{Teresina, PI\},
+year = \{2012\} \}
+
+(\protect\hyperlink{ref-article}{\textbf{article?}})\{(\protect\hyperlink{ref-PINHEIRO}{\textbf{PINHEIRO?}}),
+title = \{Contribuições em inferência e modelagem de valores extremos\},
+author = \{PINHEIRO, E, C.\}, address = \{São Paulo, SP\}, year =
+\{2014\} \}
 
 \end{document}

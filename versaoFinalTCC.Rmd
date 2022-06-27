@@ -540,7 +540,21 @@ data.frame(Local = c('Alameda Parnaiba', 'Av. Raul Lopes',
 
 \newpage
 
-# Distribuição Pareto Generalizada (GPD)
+# Distribuições de probabilidade
+
+
+## Distribuição de Poisson
+
+\tab A distribuição Poisson pertence a família das distribuições quantitivas discretas. Seus resultados indicam a probabilidade de evento ocorrer após um período de tempo, segundo ([@CARSSELA e BERGER], 83), "um dos suposições básicas aobre a qual este modelo é desenvolvida é a de que, para pequnos intervalos de tempo, a probabilidade de uma chegada é proporcional ao tempo de espera.", em outras palavras, o tempo que se aguardar para um evento influência o resultado.
+
+\tab A distribuição Poisson possui um único parametro, $\lambda$, que corresponde a um parametro de intensidade. Sua função de distribuição é:
+
+$$P(X = x|\lambda) = \frac{e^{-\lambda}\lambda^{x}}{x!},\ x = 0,1,...$$
+
+\tab Para esta distribuição, temos que $E(X) = \lambda$ e $VAR(X) = \lambda$ 
+
+
+## Distribuição Pareto Generalizada (GPD)
 
 \tab A distribuição Pareto Generalizada (GPD) analisa a distribuição dos excessos de acordo com um limiar determinado. Esse formato de análise é mais eficaz pois evita a perda de informações que uma análise em períodos (ou blocos) pode gerar, afetando, principalmente, pesquisas com um grande volume de dados.
 
@@ -590,7 +604,7 @@ $$
 q_{x}p = \frac{((1 - p*)^{-\xi}-1)}{\xi},
 $$ onde $p*\ =\ 1 - (1-p)N/N_{u}$.
 
-## Domínio da atração
+### Domínio da atração
 
 \tab As distribuições de valores extremos são obtidas como distribuição limite $(n \rightarrow \infty)$ do máximo de um conjunto de variáveis aleatórias (v.a.s) independente e identicamente distribuídas (i.i.d) e são unicamente determinadas, a menos de transformac˜oes afins. O teorema de Fisher-Tippet implica que se $F^{n}_{x}(C_{n}x + d_{n})$ e n˜ao degenerada quando $(n \rightarrow \infty)$, para certas constantes $C_{n} > 0,\ d_{n}\ \varepsilon\ \mathbb{R}$, então
 
@@ -610,7 +624,7 @@ $$
 
 sendo assim, o domínio, uma distribuição Exponencial com parâmetro $\frac{1}{\sigma}$. Para o domínio tipo II $(\gamma > 0)$, a distribuição limite será a distribuição de Pareto . Já para o domínio tipo III $(\gamma < 0)$, quando $\sigma = -\frac{1}{\gamma}$ , a distribuição limite será uma Beta e quando $\sigma \neq -\frac{1}{\gamma}$, adistribuição limite será uma Beta reescalada com suporte em $(0,\frac{\sigma}{\gamma})$.
 
-## Determinação do Limiar
+### Determinação do Limiar
 
 \tab  A análise via GPD exige um cuidado inicial pois é preciso determinar um limiar para os dados. O valor escolhido pode ser determinado pelo pesquisador, entretanto, correm-se riscos que podem influenciar os cálculos, resultando em análises incorretas.
 
@@ -637,7 +651,7 @@ $$
 \left\{\left(\mu, \frac{Var(Y)}{E(Y)}\right): \mu <x_{max}\right\}
 $$
 
-## Estimação da GPD
+### Estimação da GPD
 
 \tab Após determinar o limiar, a estimação dos parâmetros da distribuição GPD podem ser estimados por vários métodos, entre eles, tem-se o da máxima verossimilhança, que iremos trabalhar. Existem outros métodos como de momentos proposto por Smith [1987] (citado por Mendes [2004]) e o métodos dos momentos ponderados (Singh e Guo [1995], (citado por Mendes [2004]), em que a eficiência de cada método depende da situação estudada.
 
@@ -660,6 +674,13 @@ $$
 \newpage
 
 # Inferência Bayesiana
+
+\tab Os modelos apresentados no capítulo anterior são considerados clássicos e tradicionais. Uma nova perspectiva de análise surgiu com a *Bayesiana*, cujo os valores iniciais são originados por distribuições incertas e descritas por uma função de densidade $f(x|\theta)$
+
+\tab 
+
+
+$$\pi(\theta|x)\ =\ \frac{f(X|\theta)p(\theta)}{\int f(X|\theta)p(\theta)d(\theta)}$$
 
 \newpage
 
@@ -744,6 +765,13 @@ data.frame(Ajuste = c('Av. Barão com fggpd', 'Av. Barão com fmgpd'),
   author = {BRAGA, D. O. M.,},
   adress = {Juiz de Fora, MG},
   year ={2015}
+  }
+
+@article{@CARSSELA e BERGER,
+  title = {Inferência Estatística},
+  author = {CASSELA, G., BERGER, L. R.},
+  adress = {SÃO PAULO - SP},
+  year ={2020}
   }
 
 @article{@LIMA,
