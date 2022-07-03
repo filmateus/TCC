@@ -204,7 +204,7 @@ Obrigado a todos, de coração.
 
 
 ```{r  fig.cap= "Tabela com relação Velocidade Medida (VM) e Velocidade Considerada (VC)", out.height= '93%', fig.pos = "H"}
-knitr::include_graphics('1_MINFRA_9_002.jpg')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/1_MINFRA_9_002.jpg')
 #https://www.in.gov.br/en/web/dou/-/resolucao-n-798-de-2-de-setembro-de-2020-276446814
 ```
 
@@ -673,14 +673,14 @@ $$
 
 \newpage
 
-# Inferência Bayesiana
+## Inferência Bayesiana
 
-\tab Os modelos apresentados no capítulo anterior são considerados clássicos e tradicionais. Uma nova perspectiva de análise surgiu com a *Bayesiana*, cujo os valores iniciais são originados por distribuições incertas e descritas por uma função de densidade $f(x|\theta)$
-
-\tab 
+\tab Os modelos apresentados no capítulo anterior são considerados clássicos e tradicionais. Uma nova perspectiva de análise surgiu com a *Bayesiana*, cujo os valores iniciais são originados por distribuições incertas e descritas por uma função de densidade 
 
 
-$$\pi(\theta|x)\ =\ \frac{f(X|\theta)p(\theta)}{\int f(X|\theta)p(\theta)d(\theta)}$$
+$$\pi(\theta|x) = \frac{f(x|\theta)p(\theta)}{\int f(x|\theta)p(\theta)d \theta}$$
+
+
 
 \newpage
 
@@ -689,11 +689,11 @@ $$\pi(\theta|x)\ =\ \frac{f(X|\theta)p(\theta)}{\int f(X|\theta)p(\theta)d(\thet
 ## Alameda Parnaíba
 ```{r out.width=350, fig.cap="Alameda Parnaíba - Função fggpd"}
 
-knitr::include_graphics('Alameda1.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Alameda1.png')
 ```
 
 ```{r out.width=350, fig.cap="Alameda Parnaíba - Função fmgpd"}
-knitr::include_graphics('Alameda2.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Alameda2.png')
 ```
 
 ```{r}
@@ -705,10 +705,10 @@ data.frame(Ajuste = c('Alameda com fggpd', 'Alameda com fmgpd'),
 ## Av. Maranhão
 
 ```{r out.width=350, fig.cap="Av. Maranhão - Função fggpd"}
-knitr::include_graphics('Maranhao1.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Maranhao1.png')
 ```
 ```{r out.width=350, fig.cap="Av. Maranhão - Função fmgpd"}
-knitr::include_graphics('Maranhao2.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Maranhao2.png')
 ```
 
 ```{r}
@@ -721,11 +721,11 @@ data.frame(Ajuste = c('Av. Maranhao com fggpd', 'Av. Maranhão com fmgpd'),
 ## Av. Raul Lopes - Shopping
 
 ```{r out.width=350, fig.cap="Av. Raul Lopes - Função fggpd"}
-knitr::include_graphics('Shopping1.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Shopping1.png')
 ```
 
 ```{r out.width=350, fig.cap="Av. Raul Lopes - Função fmgpd"}
-knitr::include_graphics('Shopping2.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Shopping2.png')
 ```
 
 ```{r}
@@ -738,10 +738,10 @@ data.frame(Ajuste = c('Av. Raul Lopes com fggpd', 'Av. Rul Lopes com fmgpd'),
 ## Av. Barão de Castelo Branco
 
 ```{r out.width=350, fig.cap="Av. Barão - Função fggpd"}
-knitr::include_graphics('Barao1.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Barao1.png')
 ```
 ```{r out.width=350, fig.cap="Av. Barão - Função fmgpd"}
-knitr::include_graphics('Barao2.png')
+knitr::include_graphics('D:/OneDrive/DEV/TCC-1/Imagens/Barao2.png')
 ```
 
 ```{r}
